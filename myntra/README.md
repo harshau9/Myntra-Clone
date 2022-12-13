@@ -1,7 +1,7 @@
 
-# eager-grain-3783  (Myntra Clone)
+## eager-grain-3783  (Myntra Clone)
 
-## MyntShop
+# MyntShop  ( Renamed )
 
 CW-RCT201-B21
 
