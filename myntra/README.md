@@ -20,6 +20,10 @@ Team Members :-
 
 Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e8fa99f1dd28d3f669b1be3179508c036fee61b
  1. Navbar and footer with home page ---> Harsha and Alok 
  2. Login functionality and page --> Saurav
  3. Mens & womens  --> Dipratna Sakhare
@@ -35,4 +39,8 @@ Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
         b. pages    
             1. Men
             2. women
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e8fa99f1dd28d3f669b1be3179508c036fee61b
 
