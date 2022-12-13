@@ -1,5 +1,8 @@
 
-# eager-grain-3783  (Myntra Clone)
+## eager-grain-3783  (Myntra Clone)\
+
+
+# MyntShop
 
 
 CW-RCT201-B21
@@ -16,21 +19,18 @@ Team Members :-
 2. Dipratna Sakhare (fw20_0667)
 3. Saurav Kumar (fw20_0920)
 4. Pushpendra Singh (fw20_0921)
-# Here is the detail of our project "".
+## Here is the detail of our project "MyntShop".
 
 Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1e8fa99f1dd28d3f669b1be3179508c036fee61b
  1. Navbar and footer with home page ---> Harsha and Alok 
  2. Login functionality and page --> Saurav
  3. Mens & womens  --> Dipratna Sakhare
  4. Pushpendra Singh --> Logo ,home&living ,Kids
 
 
-   # src
+   ### src
         a. Components
            1.Authentication
            2. Footer 
@@ -39,8 +39,5 @@ Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
         b. pages    
             1. Men
             2. women
-<<<<<<< HEAD
-=======
 
->>>>>>> 1e8fa99f1dd28d3f669b1be3179508c036fee61b
 
