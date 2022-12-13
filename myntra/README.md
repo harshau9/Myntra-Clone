@@ -1,7 +1,9 @@
 
+<<<<<<< HEAD
 ## eager-grain-3783  (Myntra Clone)
 
-# MyntShop  ( Renamed )
+
+# MyntShop  
 
 CW-RCT201-B21
 
@@ -17,7 +19,7 @@ Team Members :-
 2. Dipratna Sakhare (fw20_0667)
 3. Saurav Kumar (fw20_0920)
 4. Pushpendra Singh (fw20_0921)
-# Here is the detail of our project "".
+## Here is the detail of our project "MyntShop".
 
 Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
 
