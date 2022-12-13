@@ -26,13 +26,13 @@ Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
  Pushpendra Singh --> Logo ,home&living ,Kids
 
 
-  --->src
-        -->Components
-            --Authentication
-            --Footer 
-            --Home
-            --Navbar
-        --->pages    
-            --Men
-            --women
+   # src
+        a. Components
+           1. Authentication
+           2. Footer 
+           3. Home
+           4. Navbar
+        b. pages    
+            1. Men
+            2. women
 
