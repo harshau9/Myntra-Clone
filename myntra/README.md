@@ -20,19 +20,21 @@ Team Members :-
 
 Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
 
- Navbar and footer with home page ---> Harsha and Alok 
- Login functionality and page --> Saurav
- Mens & womens  --> Dipratna Sakhare
- Pushpendra Singh --> Logo ,home&living ,Kids
+
+ 1. Navbar and footer with home page ---> Harsha and Alok 
+ 2. Login functionality and page --> Saurav
+ 3. Mens & womens  --> Dipratna Sakhare
+ 4. Pushpendra Singh --> Logo ,home&living ,Kids
 
 
-  --->src
-        -->Components
-            --Authentication
-            --Footer 
-            --Home
-            --Navbar
-        --->pages    
-            --Men
-            --women
+   # src
+        a. Components
+           1.Authentication
+           2. Footer 
+           3. Home
+           4. Navbar
+        b. pages    
+            1. Men
+            2. women
+
 
