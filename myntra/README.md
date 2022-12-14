@@ -41,3 +41,7 @@ Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
             2. women
 
 
+   ### Usable components:-
+
+           1.Footer.jsx
+           
