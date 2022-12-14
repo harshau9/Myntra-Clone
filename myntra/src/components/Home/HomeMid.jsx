@@ -212,6 +212,9 @@ export const HomeMid = () => {
     c24,
     c25,
     c25,
+
+    c26,
+
     c27,
     c28,
     c29,
