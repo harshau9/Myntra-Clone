@@ -53,7 +53,7 @@ const SocialButton = ({ children, label, href }) => {
 
 export default function Footer() {
   return (
-    <Box
+    <div
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
       className="footer"
@@ -62,12 +62,13 @@ export default function Footer() {
         as={HStack}
         display={"flex"}
         justifyContent={"space-between"}
-        gap={15}
+     
         alignContent={"flex-start"}
         maxW={"6xl"}
         py={10}
+        
       >
-        <Box width={"50%"}>
+        <Box width={"50%"} >
           <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={2}>
             <Stack align={"flex-start"}>
               <Text className="footertext">ONLINE&nbsp;SHOPPING</Text>
@@ -121,7 +122,7 @@ export default function Footer() {
             </Stack>
           </SimpleGrid>
         </Box>
-        <Box width={"30%"} m={"auto"} h={"50vh"}>
+        <Box h={"50vh"}>
           <Stack>
             <HStack>
               <img src={original} alt="" className="i2f" />
@@ -142,45 +143,41 @@ export default function Footer() {
           </Stack>
         </Box>
       </Container>
-      <Box
-        display={"flex"}
-        pl={"28vh"}
-        alignItems={"center"}
-        pr={"28vh"}
-        pb={"20px"}
-      >
-        <Box>
-          {" "}
-          <Text className="footertext" w={"150px"} display={"flex"}>
-            POPULAR SEARCHES
-          </Text>
-        </Box>
+
+      <Container display={"flex"} maxW={"6xl"}>
+        {" "}
+        <Text className="footertext" w={"150px"} display={"flex"}>
+          POPULAR SEARCHES
+        </Text>
         <Box
-          w={"90%"}
+          // width={"75%"}
+          m={"auto"}
+          borderTopWidth={1}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("gray.200", "gray.700")}
+          pb={3}
+        ></Box>
+        <Box
           borderTopWidth={1}
           borderStyle={"solid"}
           borderColor={useColorModeValue("gray.200", "gray.700")}
         ></Box>
-      </Box>
-      <Box pl={"28vh"} pr={"28vh"}>
-        <Box className="w-10/12 mx-auto font1 text-base text-slate-600">
-          <Link
-            width={"100vh"}
-            color={useColorModeValue("gray.500", "gray.700")}
-            className="fontmin"
-          >
-            Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones |
-            Babydolls | Blazers For Men | Handbags | Ladies Watches | Bags |
-            Sport Shoes | Reebok Shoes | Puma Shoes | Boxers | Wallets | Tops |
-            Earrings | Fastrack Watches | Kurtis | Nike | Smart Watches | Titan
-            Watches | Designer Blouse | Gowns | Rings | Cricket Shoes | Forever
-            21 | Eye Makeup | Photo Frames | Punjabi Suits | Bikini | Myntra
-            Fashion Show | Lipstick | Saree | Watches | Dresses | Lehenga | Nike
-            Shoes | Goggles | Bras | Suit | Chinos | Shoes | Adidas Shoes |
-            Woodland Shoes | Jewellery | Designers Sarees
-          </Link>
-        </Box>
-      </Box>
+      </Container>
+      <Container
+         maxW={"6xl"}
+        color={useColorModeValue("gray.500", "gray.700")}
+        className="fontmin"
+      >
+        Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones | Babydolls
+        | Blazers For Men | Handbags | Ladies Watches | Bags | Sport Shoes |
+        Reebok Shoes | Puma Shoes | Boxers | Wallets | Tops | Earrings |
+        Fastrack Watches | Kurtis | Nike | Smart Watches | Titan Watches |
+        Designer Blouse | Gowns | Rings | Cricket Shoes | Forever 21 | Eye
+        Makeup | Photo Frames | Punjabi Suits | Bikini | Myntra Fashion Show |
+        Lipstick | Saree | Watches | Dresses | Lehenga | Nike Shoes | Goggles |
+        Bras | Suit | Chinos | Shoes | Adidas Shoes | Woodland Shoes | Jewellery
+        | Designers Sarees
+      </Container>
 
       <Box>
         <Container
@@ -199,18 +196,10 @@ export default function Footer() {
             <span style={{ color: "blue" }}> Contact Us</span>{" "}
           </Text>
           <Text color={"gray.500"}>
-          © 2022 www.myntra.com All rights reserved
+            © 2022 www.myntra.com All rights reserved
           </Text>
         </Container>
       </Box>
-      <Box
-        width={"75%"}
-        m={"auto"}
-        borderTopWidth={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.700")}
-        pb={3}
-      ></Box>
-    </Box>
+    </div>
   );
 }
