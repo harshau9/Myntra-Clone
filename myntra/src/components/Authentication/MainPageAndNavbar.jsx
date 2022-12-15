@@ -17,7 +17,7 @@ import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import SignupPage from "./SignupPage";
-import PhoneVerifyPhone from "./PhoneVerifyPhone";
+import LoginPage from "./LoginPage";
 
 const navLI = ["Men", "Women", "Kids", "Home Living", "Studio"];
 
@@ -122,7 +122,7 @@ function Navbar() {
           </Box>
         ) : null}
 
-        {change ? <SignupPage /> : <PhoneVerifyPhone />}
+        {change ? <SignupPage /> : <LoginPage />}
       </Box>
     </>
   );
