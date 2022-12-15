@@ -1,5 +1,5 @@
 
-<<<<<<< HEAD
+
 ## eager-grain-3783  (Myntra Clone)
 
 
@@ -24,7 +24,7 @@ Team Members :-
 Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
 
 
- 1. Navbar and footer with home page ---> Alok 
+ 1. Navbar and footer with home page ---> Harsha and Alok 
  2. Login functionality and page --> Saurav
  3. Mens & womens  --> Dipratna Sakhare
  4. Pushpendra Singh --> Logo ,home&living ,Kids
