@@ -1,8 +1,10 @@
 import React from 'react'
-
+import SidebarWithHeader from './Component/Navbar'
 const AdminPage = () => {
   return (
-    <div>AdminPage</div>
+    <div>
+      <SidebarWithHeader/>
+    </div>
   )
 }
 
