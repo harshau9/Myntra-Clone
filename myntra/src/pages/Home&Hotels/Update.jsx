@@ -130,7 +130,7 @@ export default function Update() {
           There was an error processing your request
         </Alert>}
 
-        <Heading m={"2rem"} color={'green.900'}>ADMIN DASHBOARD</Heading>
+        <Heading m={"2rem"} textAlign="center" color={'green.900'}>ADMIN DASHBOARD</Heading>
         <TableContainer
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
           pt={"1rem"}

@@ -23,17 +23,6 @@
       "id": 7
     },
     {
-      "category": "family",
-      "image_url": "https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923__480.jpg",
-      "type_of_room": "AC",
-      "bed_type": "",
-      "no_of_persons": "2",
-      "capacity": "4",
-      "cost": 299,
-      "booked": false,
-      "id": 8
-    },
-    {
       "category": "duluxe",
       "image_url": "https://media.istockphoto.com/photos/3d-rendering-beautiful-luxury-bedroom-suite-in-hotel-with-tv-picture-id1066999762?k=20&m=1066999762&s=612x612&w=0&h=BitPXyhBFZQHMfpC9ikX_DReVK6Rd28hH9pRoZW8YAs=",
       "type_of_room": "Non-AC",
@@ -98,6 +87,17 @@
       "cost": 1689,
       "booked": "",
       "id": 14
+    },
+    {
+      "category": "family",
+      "image_url": "https://images.trvl-media.com/hotels/45000000/44800000/44795100/44795042/16a3dca1_b.jpg",
+      "type_of_room": "Non-AC",
+      "bed_type": "Double",
+      "no_of_persons": "2",
+      "capacity": "4",
+      "cost": 9990,
+      "booked": false,
+      "id": 15
     }
   ]
 }

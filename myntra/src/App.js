@@ -1,12 +1,8 @@
-import './App.css';
-import Hotel from './pages/Home&Hotels/Hotel';
-import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home/Home';
-import Update from './pages/Home&Hotels/Update';
+import {Allroutes} from './components/Routes/Allroutes';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Allroutes />
     </div>
   );
