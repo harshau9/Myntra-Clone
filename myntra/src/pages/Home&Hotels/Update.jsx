@@ -44,6 +44,13 @@ export default function Update() {
     dispatch(getProduct());
   }, []);
 
+  
+  /* For Admin Deshboard */
+  // const email = "admin@gmail.com";
+  // if (email !== "admin@gmail.com") {
+  //   return;
+  // }
+
   const handleChange = (e) => {
     let { value, id } = e.target;
     value = id === "cost" ? +(value) : value;

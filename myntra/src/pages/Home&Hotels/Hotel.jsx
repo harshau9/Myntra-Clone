@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterData, getProduct, sortData, getData } from "./Redux/actions";
 import { Spinner } from '@chakra-ui/react';
 import Update from './Update';
+import Footer from "../../components/Footer/Footer";
 
 
 let ProductArr = JSON.parse(localStorage.getItem("products")) || [];
@@ -146,6 +147,7 @@ export default function Hotel() {
           })}
         </Box>
       </Flex>
+      <Footer />
     </>
   );
 }
