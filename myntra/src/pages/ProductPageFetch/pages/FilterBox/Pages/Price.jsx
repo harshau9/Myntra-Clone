@@ -10,6 +10,6 @@ export const PriceBox = () => {
         "Rs 2514 to Rs 3023"
     ]
   return (
-    <FilterSinglePage data={Pricedata} Textdata={"PRICE"} />
+    <FilterSinglePage  data={Pricedata} Textdata={"PRICE"} />
   )
 }

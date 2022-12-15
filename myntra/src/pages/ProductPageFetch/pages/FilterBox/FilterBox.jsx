@@ -6,22 +6,15 @@ import { DiscountRange } from './Pages/DiscountRange'
 import { GenderBox } from './Pages/GenderBox'
 import { PriceBox } from './Pages/Price'
 
-export const FilterBox = () => {
+export const FilterBox = ({Mens}) => {
   return (
-    <Box w="25%" >
-      <Flex p="10px">
-        <Text as='b'>
-          FILTER
-        </Text>
-          <Spacer />
-        <Text color="red">
-          CLEAR ALL
-        </Text>
-      </Flex>
+    <> 
+    <Box w="25%" display={["none", "initial" ,"initial", "initial"]} border="1px solid red">
+
 
     {/* Gender Box here  */}
 
-    <GenderBox />
+    <GenderBox Mens = {Mens} />
 
      {/* Category Box here  */}
 
@@ -41,5 +34,7 @@ export const FilterBox = () => {
 
 
     </Box>
+
+    </>
   )
 }
