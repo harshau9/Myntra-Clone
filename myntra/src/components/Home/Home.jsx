@@ -10,3 +10,4 @@ export const Home = () => {
     </div>
   );
 };
+
