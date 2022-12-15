@@ -40,7 +40,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-function Navbar() {
+function MainLoginAndSignup() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [change, setChange] = useState(false);
   return (
@@ -128,4 +128,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default MainLoginAndSignup;
