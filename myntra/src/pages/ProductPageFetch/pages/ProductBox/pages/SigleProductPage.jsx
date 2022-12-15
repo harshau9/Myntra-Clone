@@ -1,37 +1,40 @@
-import {
-    Flex,
-    Text,
-    Box,
-    Image,
-  } from '@chakra-ui/react';
-import React from 'react'
+import { Box } from "@chakra-ui/react";
+import React, { useState } from "react";
 
-export const SigleProductPage = () => {
+import { AddToCartBox } from "./pages/HoverBox/AddToCartBox";
+import { NameBox } from "./pages/HoverBox/NameBox";
+import { CrousalBox } from "./pages/SliderBox/CrousalBox";
 
 
-    const data = {
-        isNew: true,
-        imageURL:
-          'https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80',
-        name: 'Wayfarer Classic',
-        price: 4.5,
-        rating: 4.2,
-        numReviews: 34,
-      };
+export const SigleProductPage = ({product}) => {
+  const [Hover, setHover] = useState(false);
+  const [CrouselBox, setCrouselBox] = useState(false)
+
+
+console.log(product)
 
   return (
-    <Flex w="full" border={"1px solid red"} alignItems="center" justifyContent="center">
-        <Box  bg='white'> 
-          <Image
-            src={data.imageURL}
-            alt={`Picture of ${data.name}`}
-          />
-          <Box border={"1px solid red"}>
-            <Text textAlign={"start"} color="black">{data.name}</Text>
-            <Text color="black">Women Puff Sleevs  mini Dress</Text>
-            <Text textAlign={"start"} color="black">Rs.{data.price}</Text>
-          </Box>
+    <Box boxShadow='lg'  rounded='md' bg='white' key={product.images.join(" ") }>
+      <Box bg="white" h={["25rem", "24rem", "26rem"]} >
+        <Box onMouseEnter={() => setCrouselBox(true)}
+          onMouseLeave={() => setCrouselBox(false)} h="13.5rem"
+          overflow="hidden"
+          >
+        <CrousalBox data={product} CrouselBox={CrouselBox}/>
         </Box>
-      </Flex>
-  )
-}
+        <Box
+          p='15px'
+          pt={["34px", "20px", "20px"]}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          {!Hover ? (
+            <NameBox data={product}/>
+          ) : (
+            <AddToCartBox data={product} />
+          )}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
