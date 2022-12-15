@@ -114,7 +114,7 @@ export default function Hotel() {
           </Box>
         </Container>
 
-        <Box display={"grid"} gridTemplateColumns={{ base: "repeat(3,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)", xl: "repeat(3,1fr)" }}>
+        <Box display={"grid"} gridTemplateColumns={{ base: "repeat(3,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)", xl: "repeat(3,1fr)" }} textAlign="center">
           {rooms && rooms.map((el) => {
             return (
               <Box
