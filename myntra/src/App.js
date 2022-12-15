@@ -1,11 +1,5 @@
-import {Allroutes} from './components/Routes/Allroutes';
-
 function App() {
-  return (
-    <div>
-      <Allroutes />
-    </div>
-  );
-};
+  return <div></div>;
+}
 
 export default App;
