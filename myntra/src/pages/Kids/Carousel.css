@@ -1,0 +1,39 @@
+.link_button:hover {
+    border-bottom: 3px solid black;
+    width: auto;
+}
+
+.slideshow {
+    width: 75%;
+    height: 30em;
+    /* margin-left: 3.5em; */
+    border-radius: 10px;
+    box-shadow: 1px 2px 10px 5px white;
+    animation: slider 19s infinite linear;
+    background-image: url(https://media.istockphoto.com/id/1367592284/photo/loving-her-dentist-so-much.jpg?b=1&s=170667a&w=0&k=20&c=ff2M_vFMyXzZhrgoqTKN4JqSx0CkS1dNsO59wNnAE9A=);
+    background-size: 100% 100%;
+}
+
+@keyframes slider {
+    0% {
+        background-image: url(https://media.istockphoto.com/id/1152823474/photo/trendy-children-listening-to-music.jpg?s=612x612&w=0&k=20&c=uA4TK3-oV2GXHh1NZFUvi4mr9kli4VxZQbBSGe_-RKI=);
+        background-size: 100% 100%;
+    }
+    35% {
+        background-image: url(https://media.istockphoto.com/id/674315022/photo/couple-of-kids.jpg?s=612x612&w=0&k=20&c=SAwXG6nGAfzcmZlfFMXWh5xDTYY-E6GXiIDZ28goZoE=);
+        background-size: 100% 100%;
+    }
+    70% {
+        background-image: url(https://media.istockphoto.com/id/1296115846/photo/happy-child-boy-stock-photo.jpg?s=612x612&w=0&k=20&c=Ttd7ayaHiLS0Wsc2LOzhdXAOyU30j0paSnceTCCDGnU=);
+        background-size: 100% 100%;
+    }
+    90% {
+        background-image: url(https://media.istockphoto.com/id/1299933630/photo/kids-jumping-having-fun-in-studio.jpg?s=612x612&w=0&k=20&c=z_8tp3jI13FToiHhmm3TgKnD2w_yPD5Ut4HVILnITOY=);
+        background-size: 100% 100%;
+    }
+}
+
+.hov:hover {
+    color: red;
+    font-weight: bold;
+}

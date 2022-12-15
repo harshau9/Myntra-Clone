@@ -1,0 +1,32 @@
+
+.footer{
+    font-size: 16px;
+    padding-top: 10px;
+    font-family: "-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif",    
+}
+.storef{
+ display: flex;
+ justify-content: space-between;
+ gap: 15px;
+ width:100%;
+}
+
+.i2f{
+  width: 56px;
+}
+.i3f{
+    width: 48px;
+}
+.footertext{
+    font-weight: bold;
+    font-size: 12px;
+    padding-bottom: 15px;
+    padding-top: 7px;
+}
+.fontmin{
+    font-size:14px;
+}
+.fontor{
+    font-size:16px;
+    color: gray;
+}
