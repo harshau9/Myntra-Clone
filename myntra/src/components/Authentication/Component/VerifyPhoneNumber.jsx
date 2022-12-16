@@ -6,57 +6,96 @@ import {
   HStack,
   Center,
   useToast,
+  Input,
 } from "@chakra-ui/react";
-import { PinInput, PinInputField } from "@chakra-ui/react";
-import React, { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { GetUserData } from "../LoginPage";
 
-function VerfiyPhoneNumber({ UserNumber }) {
+function VerfiyPhoneNumber({ UserNumber, id }) {
+  const [data, setData] = useState([]);
+  const [btn, setbtn] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
-  const [Pin1, setPin1] = useState("");
-  const [Pin2, setPin2] = useState("");
-  const [Pin3, setPin3] = useState("");
-  const [Pin4, setPin4] = useState("");
-  const [Pin5, setPin5] = useState("");
-  const [Pin6, setPin6] = useState("");
+  const navigate = useNavigate();
+  const [Password, setPassword] = useState("");
+  let flag;
 
-  const HandleVerfiyButton = () => {
-    const mobilenumber = [Pin1, Pin2, Pin3, Pin4, Pin5, Pin6];
-
-    const otp = mobilenumber.join("");
-
-    const number = [
-      UserNumber[0],
-      UserNumber[1],
-      UserNumber[2],
-      UserNumber[3],
-      UserNumber[4],
-      UserNumber[5],
-    ];
-
-    const userNumber = number.join("");
-
-    if (otp == userNumber) {
+  const PatchUser = async () => {
+    try {
+      await axios
+        .patch("https://mock-server-trz7.onrender.com/User", {
+          id: id,
+          isAuth: true,
+        })
+        .then((res) => {
+          toast({
+            title: "Login SuccessFully",
+            description: "Welcome to Mynta",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+            variant: "top-accent",
+            position: "top",
+          });
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        });
+    } catch (err) {
       toast({
-        title: "SuccessFully Verified",
-        description: "Welcome to Mynta",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-        variant: "top-accent",
-        position: "top",
-      });
-    } else {
-      toast({
-        title: "invalid otp",
-        description: "Please Enter Correct Otp",
+        title: "Something went wrong",
+        description: `${err.message}`,
         status: "error",
-        duration: 3000,
+        duration: 4000,
         isClosable: true,
         variant: "top-accent",
         position: "top",
       });
     }
   };
+
+  const HandleVerfiyButton = () => {
+    data.map((item) => {
+      if (item.Password === Password) {
+        flag = true;
+      }
+    });
+    setbtn(true)
+    if (flag) {
+      PatchUser();
+    }
+    if (!flag) {
+      setbtn(false);
+      toast({
+        title: `Incorrect Password`,
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        variant: "left-accent",
+        position: "top",
+      });
+    }
+  };
+  useEffect(() => {
+    setLoading(true);
+    GetUserData()
+      .then((res) => {
+        setData(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        toast({
+          title: "Something Went Wrong",
+          description: `${err.message}`,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+      });
+  }, []);
   return (
     <Stack spacing={4}>
       <Center>
@@ -65,7 +104,7 @@ function VerfiyPhoneNumber({ UserNumber }) {
         </Heading>
       </Center>
       <Center fontSize={{ base: "sm", sm: "md" }}>
-        We have sent code to your Phone Number
+        Please Enter Your Password
       </Center>
       <Center fontSize={{ base: "sm", sm: "md" }} fontWeight="bold">
         {UserNumber}
@@ -73,38 +112,10 @@ function VerfiyPhoneNumber({ UserNumber }) {
       <FormControl>
         <Center>
           <HStack>
-            <PinInput mask otp>
-              <PinInputField
-                required
-                onChange={(e) => setPin1(e.target.value)}
-                value={Pin1}
-              />
-              <PinInputField
-                required
-                onChange={(e) => setPin2(e.target.value)}
-                value={Pin2}
-              />
-              <PinInputField
-                required
-                onChange={(e) => setPin3(e.target.value)}
-                value={Pin3}
-              />
-              <PinInputField
-                required
-                onChange={(e) => setPin4(e.target.value)}
-                value={Pin4}
-              />
-              <PinInputField
-                required
-                onChange={(e) => setPin5(e.target.value)}
-                value={Pin5}
-              />
-              <PinInputField
-                required
-                onChange={(e) => setPin6(e.target.value)}
-                value={Pin6}
-              />
-            </PinInput>
+            <Input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+            />
           </HStack>
         </Center>
       </FormControl>
@@ -115,6 +126,7 @@ function VerfiyPhoneNumber({ UserNumber }) {
           _hover={{
             bg: "red.700",
           }}
+          disabled={btn}
           onClick={HandleVerfiyButton}
         >
           Verify
