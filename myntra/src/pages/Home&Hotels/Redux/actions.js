@@ -37,7 +37,7 @@ export const sortData = (data) => {
 export const getProduct = (page = 1, limit = 3) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.get(`http://localhost:8080/rooms?_page=${page}&_limit=${limit}&_sort=cost&_order=asc`);
+    let res = await axios.get(`https://render-si4e.onrender.com/rooms?_page=${page}&_limit=${limit}&_sort=cost&_order=asc`);
     dispatch({ type: PRODUCT_SUCCESS, payload: res.data });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });
@@ -47,7 +47,7 @@ export const getProduct = (page = 1, limit = 3) => async (dispatch) => {
 export const addProduct = (message) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.post(`http://localhost:8080/rooms`, message);
+    let res = await axios.post(`https://render-si4e.onrender.com/rooms`, message);
     dispatch({ type: ADD_PRODUCT, payload: res.data });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });
@@ -57,7 +57,7 @@ export const addProduct = (message) => async (dispatch) => {
 export const updateProduct = (id, changes) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.patch(`http://localhost:8080/rooms/${id}`, {
+    let res = await axios.patch(`https://render-si4e.onrender.com/rooms/${id}`, {
       ...changes
     });
     dispatch({ type: UPDATE_PRODUCT, payload: res.data });
@@ -69,7 +69,7 @@ export const updateProduct = (id, changes) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.delete(`http://localhost:8080/rooms/${id}`);
+    let res = await axios.delete(`https://render-si4e.onrender.com/rooms/${id}`);
     dispatch({ type: REMOVE_PRODUCT, payload: id });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });
