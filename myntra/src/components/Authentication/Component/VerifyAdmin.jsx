@@ -9,30 +9,58 @@ import {
 } from "@chakra-ui/react";
 import { PinInput, PinInputField } from "@chakra-ui/react";
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const VerifyAdmin = () => {
   const toast = useToast();
+  const navigate = useNavigate();
   const [PinOne, setPinOne] = useState("");
   const [PinTwo, setPinTwo] = useState("");
   const [PinThree, setPinThree] = useState("");
   const [PinFour, setPinFour] = useState("");
+  const [btn, setBtn] = useState(false);
+  const [loading, setloading] = useState(false);
 
-  const HandleVerify = () => {
-    const arr = [PinOne, PinTwo, PinThree, PinFour];
-    if (arr.join("") == "2022") {
+  const PatchAdmin = async () => {
+    setloading(true);
+    try {
+      await axios
+        .patch("https://mock-server-trz7.onrender.com/Admin", {
+          id: "Admin Page",
+          isAuth: true,
+        })
+        .then(() => {
+          setloading(false);
+          toast({
+            title: "Admin Page",
+            description: "Welcome to the Admin Page",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+            variant: "top-accent",
+            position: "top",
+          });
+          setBtn(false);
+          navigate("/AdminPage");
+        });
+    } catch (err) {
       toast({
-        title: "Welcome Back Admin",
-        description: "wait few Seconds You will redirect to AdminPage",
-        status: "success",
-        duration: 5000,
+        title: "Something Went Wrong",
+        description: `${err.message}`,
+        status: "error",
+        duration: 3000,
         isClosable: true,
         variant: "top-accent",
         position: "top",
       });
-      setTimeout(() => {
-        localStorage.setItem("AdminPage", true);
-        window.location.reload();
-      }, 5000);
+    }
+  };
+  const HandleVerify = () => {
+    const arr = [PinOne, PinTwo, PinThree, PinFour];
+    if (arr.join("") === "2022") {
+      setBtn(true);
+      PatchAdmin();
     } else {
       toast({
         title: "invalid Pin",
@@ -85,6 +113,7 @@ const VerifyAdmin = () => {
             bg: "red.700",
           }}
           onClick={HandleVerify}
+          disabled={btn}
         >
           Verify
         </Button>

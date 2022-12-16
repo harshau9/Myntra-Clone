@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   useDisclosure,
   Stack,
@@ -18,11 +17,12 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
+import {Link} from 'react-router-dom'
 
-const navLI = ["Men", "Women", "Kids", "Home Living", "Studio"];
+const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
 const NavLink = ({ children }) => (
-  <Link
+  <Box
     fontFamily={"sans-serif"}
     px={2}
     py={1}
@@ -37,12 +37,11 @@ const NavLink = ({ children }) => (
     textTransform="uppercase"
   >
     {children}
-  </Link>
+  </Box>
 );
 
-function MainLoginAndSignup() {
+function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [change, setChange] = useState(false);
   return (
     <>
       <Box
@@ -91,13 +90,13 @@ function MainLoginAndSignup() {
               </InputGroup>
             </Box>
             <Flex gap={"1rem"} paddingX="10px" marginRight={{ lg: "50px" }}>
-              <Box onClick={() => setChange(false)}>
+              <Box>
                 <IoIosHeartEmpty size={21} />
                 <Heading as={"p"} fontSize="10px">
                   WISHLIST
                 </Heading>
               </Box>
-              <Box onClick={() => setChange(true)}>
+              <Box>
                 <HiOutlineShoppingBag size={21} />
                 <Heading as={"p"} fontSize="10px">
                   BAG
@@ -121,11 +120,9 @@ function MainLoginAndSignup() {
             </Stack>
           </Box>
         ) : null}
-
-        {change ? <SignupPage /> : <LoginPage />}
       </Box>
     </>
   );
 }
 
-export default MainLoginAndSignup;
+export default Navbar;

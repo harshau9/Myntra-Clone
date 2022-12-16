@@ -14,13 +14,13 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Image,
+  useToast,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -34,6 +34,8 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -42,6 +44,22 @@ const LinkItems = [
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
 ];
+
+const PostRequest = async () => {
+  try {
+    let response = await axios.patch(
+      `https://mock-server-trz7.onrender.com/Admin`,
+      {
+        id: "Admin Page",
+        isAuth: false,
+      }
+    );
+
+    return await response.data;
+  } catch (err) {
+    return err;
+  }
+};
 
 export default function SidebarWithHeader({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -73,8 +91,6 @@ export default function SidebarWithHeader({ children }) {
   );
 }
 
-
-
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
@@ -88,9 +104,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+        <Box alignItems={"center"} justifyContent="center">
+          <Image
+            src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
+            width={20}
+            p="1.5"
+          />
+        </Box>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -101,7 +121,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
     </Box>
   );
 };
-
 
 const NavItem = ({ icon, children, ...rest }) => {
   return (
@@ -139,8 +158,32 @@ const NavItem = ({ icon, children, ...rest }) => {
   );
 };
 
-
 const MobileNav = ({ onOpen, ...rest }) => {
+  const navigate = useNavigate();
+  const toast = useToast();
+  const HandleSignout = () => {
+    PostRequest()
+      .then((res) => {
+        toast({
+          title: "Logout Successfully",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        toast({
+          title: "Something Went Wrong",
+          description: `${err.message}`,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+      });
+  };
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -161,14 +204,17 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text
+      <Box
+        alignItems={"center"}
+        justifyContent="center"
         display={{ base: "flex", md: "none" }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
       >
-        Logo
-      </Text>
+        <Image
+          src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
+          width={20}
+          p="1.5"
+        />
+      </Box>
 
       <HStack spacing={{ base: "0", md: "6" }}>
         <IconButton
@@ -188,7 +234,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 <Avatar
                   size={"sm"}
                   src={
-                    "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    "https://media.licdn.com/dms/image/D4D03AQGpp6MY_-YX6Q/profile-displayphoto-shrink_400_400/0/1670064318301?e=1676505600&v=beta&t=kbFRH7WHw6SE-vJwmWNqcA2VlLAeV8KAjuVMM_pG5X8"
                   }
                 />
                 <VStack
@@ -197,7 +243,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Saurav Kumar</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
                   </Text>
@@ -211,11 +257,11 @@ const MobileNav = ({ onOpen, ...rest }) => {
               bg={useColorModeValue("white", "gray.900")}
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <MenuItem>Profile</MenuItem>
+              {/* <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
+              <MenuItem>Billing</MenuItem> */}
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={HandleSignout}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
