@@ -10,8 +10,8 @@ export const DiscountRange = () => {
     ]
   return (
     <Box border={"1px solid"} borderBottom={"0px"} p="10px" >
-        {Discount.map((gen)=>(
-            <Box textAlign={"start"}>
+        {Discount.map((gen, i)=>(
+            <Box textAlign={"start"} key={i/Date.now()}>
                 <Radio colorScheme='red' value='1'>
                 {gen}
                 </Radio>

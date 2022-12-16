@@ -56,9 +56,9 @@ export const CrousalBox = ({ data, CrouselBox }) => {
       h="13.5rem"
     >
 
-     {data.images.map((ele)=>{
+     {data.images.map((ele, i)=>{
         return(
-            <Box h="13.5rem">
+            <Box h="13.5rem" key={i/Date.now()}>
             <Image src={ele} />
           </Box>
         )

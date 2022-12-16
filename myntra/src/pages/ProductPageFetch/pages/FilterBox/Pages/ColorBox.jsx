@@ -18,15 +18,15 @@ export const ColorBox = () => {
       </Text>
 
       <Box gap="5px">
-        {Color.map(({ color, bg }) => (
-          <Box textAlign={"start"} mb="5px">
+        {Color.map(({ color, bg }, i) => (
+          <Box textAlign={"start"} mb="5px" key={i/Math.random()}>
             <Flex m="auto" gap="8px">
               <Box>
                 <Checkbox
                   height={"100%"}
                   m="auto"
                   colorScheme="red"
-                  defaultChecked
+                  defaultChecked={false}
                 ></Checkbox>
               </Box>
               <Box
