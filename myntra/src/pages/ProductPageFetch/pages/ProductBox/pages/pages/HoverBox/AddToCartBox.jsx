@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsHeart } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
-import { Flex, Text, Box, Image, Button } from "@chakra-ui/react";
+import { Text, Box, Button } from "@chakra-ui/react";
 
 export const AddToCartBox = ({data}) => {
 

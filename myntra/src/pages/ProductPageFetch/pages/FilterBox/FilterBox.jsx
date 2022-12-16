@@ -6,10 +6,11 @@ import { DiscountRange } from './Pages/DiscountRange'
 import { GenderBox } from './Pages/GenderBox'
 import { PriceBox } from './Pages/Price'
 
-export const FilterBox = ({Mens}) => {
+export const FilterBox = ({Mens,cheakBox}) => {
+
   return (
     <> 
-    <Box w="25%" display={["none", "initial" ,"initial", "initial"]} border="1px solid red">
+    <Box w="25%" display={["none", "initial" ,"initial", "initial"]} >
 
 
     {/* Gender Box here  */}
@@ -22,7 +23,7 @@ export const FilterBox = ({Mens}) => {
 
     {/* Price Box here  */}
 
-    <PriceBox />
+    <PriceBox cheakBox={cheakBox} />
 
    {/* Color box filter here  */}
 

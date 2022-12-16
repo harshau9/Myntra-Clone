@@ -6,10 +6,10 @@ import { SigleProductPage } from "./pages/SigleProductPage";
 export const ProductBox = ({data}) => {
   return (
     <>
-    <Box w="70%" m="auto" border={"1px solid green"}>
+    <Box w="70%" m="auto" >
       <SimpleGrid columns={[1, 2, 2,4]} spacing={10}>
-        {data.map((product) => {
-          return <SigleProductPage product={product} />;
+        {data.map((product, i) => {
+          return <SigleProductPage i={i} product={product} key={i/Math.random()} />;
         })}
       </SimpleGrid>
     </Box>
