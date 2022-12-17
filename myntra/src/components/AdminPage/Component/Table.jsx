@@ -7,7 +7,6 @@ import {
   TableContainer,
   Tbody,
   Td,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -22,8 +21,6 @@ const DeleteRequest = async (id) => {
     let response = await axios.delete(
       `https://mock-server-trz7.onrender.com/User-Data/${id}`
     );
-
-    let Data = await response.data;
 
     return response;
   } catch (err) {
@@ -71,7 +68,7 @@ const TableComponent = (data) => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.length == 0 && (
+            {data.length === 0 && (
               <Center>
                 <Heading as={"h2"}>Server has no data</Heading>
               </Center>

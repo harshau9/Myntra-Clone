@@ -10,6 +10,7 @@ import { Mens } from "../../pages/Men/Mens";
 import { Womens } from "../../pages/Women/Womens";
 import { ProductPageApi } from "../../pages/ProductPageFetch/ProductPageApi";
 import AdminNavbar from "../AdminPage/Navbar";
+import AddHotel from "../AdminPage/Component/AddHotel";
 export const Allroutes = () => {
   return (
     <Routes>
@@ -26,6 +27,14 @@ export const Allroutes = () => {
         element={
           <PrivateRouteAdminPage>
             <AdminNavbar />
+          </PrivateRouteAdminPage>
+        }
+      />
+      <Route
+        path="/AdminPage/AddHotel"
+        element={
+          <PrivateRouteAdminPage>
+            <AddHotel />
           </PrivateRouteAdminPage>
         }
       />

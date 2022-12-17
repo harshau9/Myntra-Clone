@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Update from "../../pages/Home&Hotels/Update";
+import Update from "../../../pages/Home&Hotels/Update";
 import {
   Box,
   Flex,
@@ -31,9 +31,8 @@ import {
 } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GetUserData } from "../Authentication/LoginPage";
+import { GetUserData } from "../../Authentication/LoginPage";
 import { Blocks } from "react-loader-spinner";
-import TableComponent from "./Component/Table";
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
 const PostRequest = async () => {
@@ -71,7 +70,7 @@ const NavLink = ({ children }) => (
   </Box>
 );
 
-function AdminNavbar() {
+function AddHotel() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -257,9 +256,9 @@ function AdminNavbar() {
           />
         </Center>
       )}
-      {Page === navLI[3] ? navigate("/AdminPage/AddHotel") : TableComponent(data)}
+      {Update()}
     </>
   );
 }
 
-export default AdminNavbar;
+export default AddHotel;

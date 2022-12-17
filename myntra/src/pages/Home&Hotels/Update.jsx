@@ -19,10 +19,12 @@ import {
   Spinner,
   Alert,
   AlertIcon,
+  Center,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { addProduct, deleteProduct, getProduct, updateProduct } from "./Redux/actions";
 
 const initialValue = {
@@ -81,7 +83,7 @@ export default function Update() {
   const HandleDelete = (id) => {
     dispatch(deleteProduct(id));
   };
-
+ const navigate = useNavigate()
   const { category, image_url, no_of_persons, type_of_room, bed_type, capacity, cost } = formData;
 
   return (
@@ -136,7 +138,9 @@ export default function Update() {
           <AlertIcon />
           There was an error processing your request
         </Alert>}
-
+             <Center>
+              <Button backgroundColor={'teal'} color='white' onClick={()=> navigate("/AdminPage")}>Back to AdminPage</Button>
+             </Center>
         <Heading m={"2rem"} textAlign="center" color={'green.900'}>ADMIN DASHBOARD</Heading>
         <TableContainer
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
