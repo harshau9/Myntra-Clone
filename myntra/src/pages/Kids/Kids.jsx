@@ -6,6 +6,7 @@ import {
   Image,
   Heading,
   Text,
+  Toast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
@@ -40,7 +41,13 @@ const Kids = () => {
     } catch (err) {
       setLoading(false);
       setError(true);
-      console.log(err);
+      Toast({
+        title: 'Something went wrong',
+        description: `${err.message}`,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
     }
   };
 
@@ -65,85 +72,92 @@ const Kids = () => {
     } catch (err) {
       setLoading(false);
       setError(true);
-      console.log(err);
+      Toast({
+        title: 'Something went wrong',
+        description: `${err.message}`,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
   return (
     <>
-    <MainNavbar/>
-    <div pt={"80px"}>
-      {error && (
-        <Alert w={"400px"} m={"auto"} status="error">
-          <AlertIcon />
-          There was an error processing your request
-        </Alert>
-      )}
-      {loading && <Spinner color="red.500" />}
+      <MainNavbar />
+      <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
+        {error && (
+          <Alert w={"400px"} m={"auto"} status="error">
+            <AlertIcon />
+            There was an error processing your request
+          </Alert>
+        )}
 
-      <Heading m={"10px 0"} textAlign="center">
-        FASHION & ESSENTIALS
-      </Heading>
+        <Heading m={"10px 0"} textAlign="center">
+          FASHION & ESSENTIALS
+        </Heading>
 
-      <Box m="auto" className="slideshow"></Box>
+        {loading && <Spinner size={"xl"} color="red.500" />}
 
-      <Box m="1% 0">
-        <select onChange={handleChange}>
-          <option value={""}>Sort by Price</option>
-          <option value={"asc"}>Ascending</option>
-          <option value={"desc"}>Descending</option>
-        </select>
-      </Box>
-      <Box
-        display={"grid"}
-        gridTemplateColumns={{
-          base: "repeat(5, 1fr)",
-          sm: "repeat(3, 1fr)",
-          lg: "repeat(5, 1fr)",
-          xl: "repeat(5, 1fr)",
-        }}
-        gap="10px"
-      >
-        {childData &&
-          childData.map((ele, index) => (
-            <Box
-              key={index}
-              boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
-              padding="10px"
-            >
-              <Image src={ele.images} alt=""></Image>
-              <Text textAlign={"center"}>Category: {ele.category}</Text>
-              <Text
-                textAlign={"center"}
-                fontFamily={"cursive"}
-                fontSize={{ base: "22px", sm: "18px", lg: "22px", xl: "22px" }}
+        <Box m="auto" className="slideshow"></Box>
+
+        <Box m="1% 0">
+          <select onChange={handleChange}>
+            <option value={""}>Sort by Price</option>
+            <option value={"asc"}>Ascending</option>
+            <option value={"desc"}>Descending</option>
+          </select>
+        </Box>
+        <Box
+          display={"grid"}
+          gridTemplateColumns={{
+            base: "repeat(5, 1fr)",
+            sm: "repeat(3, 1fr)",
+            lg: "repeat(5, 1fr)",
+            xl: "repeat(5, 1fr)",
+          }}
+          gap="10px"
+        >
+          {childData &&
+            childData.map((ele, index) => (
+              <Box
+                key={index}
+                boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+                padding="10px"
               >
-                {ele.title}
-              </Text>
-              <Box display={"flex"} justifyContent={"space-between"}>
-                <Text color={"green"}>Discount: ₹{ele.discounted_price}</Text>
-                <Text color={"goldenrod"}>
-                  Original Price: ₹{ele.strike_price}
+                <Image src={ele.images} alt=""></Image>
+                <Text textAlign={"center"}>Category: {ele.category}</Text>
+                <Text
+                  textAlign={"center"}
+                  fontFamily={"cursive"}
+                  fontSize={{ base: "22px", sm: "18px", lg: "22px", xl: "22px" }}
+                >
+                  {ele.title}
+                </Text>
+                <Box display={"flex"} justifyContent={"space-between"}>
+                  <Text color={"green"}>Discount: ₹{ele.discounted_price}</Text>
+                  <Text color={"goldenrod"}>
+                    Original Price: ₹{ele.strike_price}
+                  </Text>
+                </Box>
+                <Text
+                  fontSize={{ base: "23px", sm: "18px", lg: "23px", xl: "23px" }}
+                  textAlign={"center"}
+                  fontFamily={"cursive"}
+                  color="blue.700"
+                >
+                  {ele.discount}
+                </Text>
+                <Text textAlign={"center"} color={"yellow.300"}>
+                  Rating: {`${ele.rating} ---> ${ele.rating_count}`}
                 </Text>
               </Box>
-              <Text
-                fontSize={{ base: "23px", sm: "18px", lg: "23px", xl: "23px" }}
-                textAlign={"center"}
-                fontFamily={"cursive"}
-                color="blue.700"
-              >
-                {ele.discount}
-              </Text>
-              <Text textAlign={"center"} color={"yellow.300"}>
-                Rating: {`${ele.rating} ---> ${ele.rating_count}`}
-              </Text>
-            </Box>
-          ))}
+            ))}
+        </Box>
+        <Box m={"1% 0"} textAlign="center">
+          <Pagination totalPages={totalPages} currentPage={page} handlePageChange={handlePageChange} />
+        </Box>
+        <Footer />
       </Box>
-      <Box m={"1% 0"} textAlign="center">
-        <Pagination totalPages={totalPages} currentPage={page} handlePageChange={handlePageChange} />
-      </Box>
-      <Footer />
-    </div>
     </>
   );
 };
