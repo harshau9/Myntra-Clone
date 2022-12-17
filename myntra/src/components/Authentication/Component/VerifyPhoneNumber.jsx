@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Blocks } from "react-loader-spinner";
 import { useNavigate } from "react-router";
 import { GetUserData } from "../LoginPage";
 
@@ -20,9 +21,11 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
   const toast = useToast();
   const navigate = useNavigate();
   const [Password, setPassword] = useState("");
+  const [PatchUserloading, setPathUserLoading] = useState(false);
   let flag;
 
   const PatchUser = async () => {
+    setPathUserLoading(true);
     try {
       await axios
         .patch("https://mock-server-trz7.onrender.com/User", {
@@ -41,9 +44,11 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
           });
           setTimeout(() => {
             navigate("/");
-          }, 2000);
+          }, 3000);
+          setPathUserLoading(false);
         });
     } catch (err) {
+      setPathUserLoading(true);
       toast({
         title: "Something went wrong",
         description: `${err.message}`,
@@ -62,7 +67,7 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
         flag = true;
       }
     });
-    setbtn(true)
+    setbtn(true);
     if (flag) {
       PatchUser();
     }
@@ -106,19 +111,45 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
       <Center fontSize={{ base: "sm", sm: "md" }}>
         Please Enter Your Password
       </Center>
+      {loading && (
+        <Center>
+          <Blocks
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+          />
+        </Center>
+      )}
+
       <Center fontSize={{ base: "sm", sm: "md" }} fontWeight="bold">
         {UserNumber}
       </Center>
-      <FormControl>
+      {PatchUserloading ? (
         <Center>
-          <HStack>
-            <Input
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-            />
-          </HStack>
+          <Blocks
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+          />
         </Center>
-      </FormControl>
+      ) : (
+        <FormControl>
+          <Center>
+            <HStack>
+              <Input
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+              />
+            </HStack>
+          </Center>
+        </FormControl>
+      )}
       <Stack spacing={6}>
         <Button
           bg={"red.500"}
