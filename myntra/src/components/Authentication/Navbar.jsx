@@ -11,13 +11,14 @@ import {
   InputGroup,
   InputLeftElement,
   Heading,
+  useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
@@ -42,6 +43,7 @@ const NavLink = ({ children }) => (
 
 function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
   return (
     <>
       <Box
@@ -59,11 +61,13 @@ function Navbar() {
           />
           <HStack spacing={10} alignItems={"center"}>
             <Box marginLeft={"50px"}>
-              <Image
-                src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
-                width={20}
-                p="1.5"
-              />
+              <Link to={"/"}>
+                <Image
+                  src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
+                  width={20}
+                  p="1.5"
+                />
+              </Link>
             </Box>
             <HStack
               as={"nav"}
@@ -71,7 +75,24 @@ function Navbar() {
               display={{ base: "none", md: "flex" }}
             >
               {navLI.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Link
+                  to={
+                    link == "Men"
+                      ? "/men"
+                      : link == "Women"
+                      ? "/women"
+                      : link == "kids"
+                      ? "/kids"
+                      : link == "Home Living"
+                      ? "/hotel"
+                      : link == "Studio"
+                      ? "/"
+                      : undefined
+                  }
+                >
+                  {" "}
+                  <NavLink key={link}>{link}</NavLink>
+                </Link>
               ))}
             </HStack>
           </HStack>
@@ -115,7 +136,24 @@ function Navbar() {
               alignItems={"center"}
             >
               {navLI.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Link
+                  to={
+                    link == "Men"
+                      ? "/men"
+                      : link == "Women"
+                      ? "/women"
+                      : link == "kids"
+                      ? "/kids"
+                      : link == "Home Living"
+                      ? "/hotel"
+                      : link == "Studio"
+                      ? "/"
+                      : undefined
+                  }
+                >
+                  {" "}
+                  <NavLink key={link}>{link}</NavLink>
+                </Link>
               ))}
             </Stack>
           </Box>
