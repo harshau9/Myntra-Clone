@@ -1,10 +1,11 @@
-
+import MainNavbar from "./components/Navbar/MainNavbar";
 import { Allroutes } from "./components/Routes/Allroutes";
 
 function App() {
   return (
     <div>
-    <Allroutes/>
+      <MainNavbar />
+      <Allroutes />
     </div>
   );
 }
