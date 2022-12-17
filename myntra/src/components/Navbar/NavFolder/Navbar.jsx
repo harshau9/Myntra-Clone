@@ -73,19 +73,19 @@ const Navbar = () => {
                 KIDS
               </p>
               <p
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/hotel")}
                 onMouseEnter={() => hoverHandler("HOME")}
               >
                 HOME & LIVING
               </p>
               <p
-                onClick={() => navigate("/beauty")}
+                onClick={() => navigate("/")}
                 onMouseEnter={() => hoverHandler("BEAUTY")}
               >
                 BEAUTY
               </p>
               <p
-                onClick={() => navigate("/studio")}
+                onClick={() => navigate("/")}
                 onMouseEnter={() => hoverHandler("STUDIO")}
               >
                 STUDIO

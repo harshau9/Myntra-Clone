@@ -5,6 +5,7 @@ import { filterData, getProduct, sortData, getData } from "./Redux/actions";
 import { Spinner } from '@chakra-ui/react';
 import Update from './Update';
 import Footer from "../../components/Footer/Footer";
+import MainNavbar from "../../components/Navbar/MainNavbar";
 
 
 let ProductArr = JSON.parse(localStorage.getItem("products")) || [];
@@ -70,8 +71,8 @@ export default function Hotel() {
 
   return (
     <>
-      <Update />
-
+      {/* <Update /> */}
+<MainNavbar/>
       <hr />
 
       {error && <Alert w={"400px"} m={"auto"} status='error'>

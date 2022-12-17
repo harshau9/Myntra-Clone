@@ -5,6 +5,8 @@ import { SingleNameBox } from "./Pages/SecondImageBox.jsx/SingleNameBox";
 import { ImageProductBox } from "./Pages/SecondImageBox.jsx/ImageProductBox";
 import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
 import Footer from "../../components/Footer/Footer";
+import MainNavbar from "../../components/Navbar/MainNavbar";
+
 export const Mens = () => {
   const ImagesFirstCol = [
     "https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/59b21fdd-7b4c-432f-83c0-e4d21110a9d41670400389365-Main-Banner_Desktop_02.jpg",
@@ -108,6 +110,8 @@ export const Mens = () => {
     "https://assets.myntassets.com/f_webp,w_490,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/a1dddc1c-a9ed-4e9c-9df3-38fd7cb126f91670399589007-MP_Shop-By-Category_15.jpg",
   ];
   return (
+    <>
+    <MainNavbar/>
     <Box pt={"80px"}>
       <Flex>
         <ImagesBox data={ImagesFirstCol} />
@@ -170,5 +174,6 @@ export const Mens = () => {
       </Box>
       <Footer />
     </Box>
+    </>
   );
 };

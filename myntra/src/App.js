@@ -4,7 +4,6 @@ import { Allroutes } from "./components/Routes/Allroutes";
 function App() {
   return (
     <div>
-      <MainNavbar />
       <Allroutes />
     </div>
   );

@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import Pagination from "./Pagination";
 import "./Carousel.css";
+import MainNavbar from "../../components/Navbar/MainNavbar";
 
 let totalPages = 10;
 const Kids = () => {
@@ -68,6 +69,8 @@ const Kids = () => {
     }
   };
   return (
+    <>
+    <MainNavbar/>
     <div pt={"80px"}>
       {error && (
         <Alert w={"400px"} m={"auto"} status="error">
@@ -141,6 +144,7 @@ const Kids = () => {
       </Box>
       <Footer />
     </div>
+    </>
   );
 };
 
