@@ -1,10 +1,12 @@
 import React from 'react'
-import { Flex, Text, Box, Image, Button } from "@chakra-ui/react";
+import { Flex, Text, Box, Image, Button, SimpleGrid, Grid } from "@chakra-ui/react";
 import { BsStar } from "react-icons/bs"
 export const NameBox = ({data}) => {
+
+  console.log(data)
   return (
     <Box pb="18px" mb="40px">
-    <Box>
+    <Grid gap="1" >
       <Text textAlign={"start"}>
         <Text as="b" color="black">
           {data.title}
@@ -16,13 +18,18 @@ export const NameBox = ({data}) => {
         <Box w="25px" mt="3px"><BsStar /></Box>
         </Flex>
        </Text>
-      <Text color="black">{data.discount}</Text>
-      <Text textAlign={"start"}>
+      
+      <SimpleGrid columns={3} spacing={[0]}>
+      <Text fontSize={["sm", "sm", "sm"]} textAlign={"start"}>
         <Text as="b" color="black">
-          Rs.{data.strike_price}
+          Rs.{data.discounted_price}
         </Text>
       </Text>
-    </Box>
+      <Text fontSize={["sm", "sm", "sm"]} color="black" as="del">Rs {data.strike_price}</Text>
+      <Text fontSize={["sm", "sm", "sm"]} color="orange">{data.discount}</Text>
+      </SimpleGrid>
+    
+    </Grid>
   </Box>
   )
 }
