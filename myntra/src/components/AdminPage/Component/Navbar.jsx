@@ -167,11 +167,13 @@ const MobileNav = ({ onOpen, ...rest }) => {
         toast({
           title: "Logout Successfully",
           status: "success",
-          duration: 5000,
+          duration: 2000,
           isClosable: true,
           position: "top",
         });
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        },2000);
       })
       .catch((err) => {
         toast({
