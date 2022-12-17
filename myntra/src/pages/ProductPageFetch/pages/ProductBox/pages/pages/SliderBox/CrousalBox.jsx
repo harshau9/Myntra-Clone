@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -58,8 +58,9 @@ export const CrousalBox = ({ data, CrouselBox }) => {
 
      {data.images.map((ele, i)=>{
         return(
-            <Box h="13.5rem" key={i/Date.now()}>
+            <Box  h="13.5rem" key={i/Date.now()} >
             <Image src={ele} />
+            {/* <Text bg="red"  color="red" > sadsad</Text> */}
           </Box>
         )
      })}
