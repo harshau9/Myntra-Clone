@@ -8,7 +8,7 @@ import axios from "axios"
 export default ApiFetchData
 
 const Apimintzone = async () => {
-  let res = await axios.get('https://3d086dc6-4319-4cfe-bd0c-abb1f9423b3a.mock.pstmn.io/mintshop')
+  let res = await axios.get('https://cecc3423-7ea7-49a1-b925-93bcf3c9f986.mock.pstmn.io/newmintdata')
   return res
 }
 

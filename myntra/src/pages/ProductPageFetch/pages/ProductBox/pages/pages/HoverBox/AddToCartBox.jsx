@@ -1,13 +1,13 @@
 import React from 'react'
 import { BsHeart } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
-import { Text, Box, Button } from "@chakra-ui/react";
+import { Text, Button, Grid } from "@chakra-ui/react";
 
 export const AddToCartBox = ({data}) => {
 
     data.size.length = 5 
   return (
-    <Box mt="5px">
+    <Grid gap="1" pt="5px">
               <Button
                 mb="2"
                 borderRadius={"0px"}
@@ -18,9 +18,11 @@ export const AddToCartBox = ({data}) => {
                 <Text textAlign={"start"}>
                   <BsHeart color="black" />
                 </Text>{" "}
-                <Text color="black">WISHLIST</Text>
+                <Text  color="black">WISHLIST</Text>
               </Button>
               <Button
+                bg="#F167AE"
+                _hover={"none"}
                 borderRadius={"0px"}
                 w="100%"
                 border={"1px solid black"}
@@ -38,6 +40,6 @@ export const AddToCartBox = ({data}) => {
                   Rs.{data.strike_price}
                 </Text>
               </Text>
-            </Box>
+            </Grid>
   )
 }

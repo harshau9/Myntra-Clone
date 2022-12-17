@@ -20,7 +20,7 @@ export const FilterSinglePage = ({Textdata, data , cheakBox}) => {
       <Text  as="b">{Textdata}</Text>
     </Text>
 
-    <CheckboxGroup onChange={(e)=>setValue(e)} value={value}>
+    <CheckboxGroup onChange={setValue} value={value}>
     {data.map((Cat, i) => (
       <Box textAlign={"start"} key={i/Date.now()}>
         <Checkbox defaultChecked={false} colorScheme="red" value={Cat.value ? Cat.value : Cat}>

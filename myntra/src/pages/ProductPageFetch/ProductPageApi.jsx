@@ -110,7 +110,12 @@ export const ProductPageApi = () => {
 
 
   function cheakBox(prop){
-    // 
+    if(prop){
+      
+      // prop.shift()
+    console.log(prop)
+    }
+
 
 
   }
@@ -127,7 +132,7 @@ export const ProductPageApi = () => {
       </Box>
 
       <Flex display={["none", "flex", "Flex"]}>
-        <Box w="25%">
+        <Box w="25%" p="3">
           <Flex p="10px">
             <Text color={"black"} as="b">
               FILTER
