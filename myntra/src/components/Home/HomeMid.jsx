@@ -232,12 +232,12 @@ export const HomeMid = () => {
     "https://assets.myntassets.com/f_webp,w_490,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/a1dddc1c-a9ed-4e9c-9df3-38fd7cb126f91670399589007-MP_Shop-By-Category_15.jpg",
   ];
   return (
-    <Box>
+    <Box pt={"80px"} >
       <Flex>
-        <ImagesBox data={ImagesFirstCol} />
-        <ImagesBox data={ImagesSecCol} />
-        <ImagesBox data={ImagesThirdCol} />
-        <ImagesBox data={ImagesForthCol} />
+        <ImagesBox  data={ImagesFirstCol} />
+        <ImagesBox  data={ImagesSecCol} />
+        <ImagesBox  data={ImagesThirdCol} />
+        <ImagesBox  data={ImagesForthCol} />
         <Box></Box>
       </Flex>
 
