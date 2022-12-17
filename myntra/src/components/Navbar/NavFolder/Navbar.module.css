@@ -2,7 +2,7 @@
     position: fixed;
     z-index: 100000;
     width: 100vw;
-    /* margin-top: -63px; */
+    top: 0.1px;
 } 
 .card{
     display: flex;
@@ -10,7 +10,6 @@
     align-items: center;
     height: 8vh;
     background-color: #ffffff;
-     
 }
 .card>div{
     display: flex;
