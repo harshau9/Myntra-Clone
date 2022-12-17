@@ -9,6 +9,7 @@ import SignupPage from "../Authentication/SignupPage";
 import PrivateRouteAdminPage from "../PrivateRoute/AdminPage";
 import {Mens} from "../../pages/Men/Mens"
 import {Womens} from "../../pages/Women/Womens"
+import { ProductPageApi } from "../../pages/ProductPageFetch/ProductPageApi";
 export const Allroutes = () => {
   return (
     <Routes>
@@ -19,6 +20,7 @@ export const Allroutes = () => {
       <Route path="/kids" element={<Kids />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/ProductPage" element={<ProductPageApi/>}/>
       <Route
         path="/AdminPage"
         element={
