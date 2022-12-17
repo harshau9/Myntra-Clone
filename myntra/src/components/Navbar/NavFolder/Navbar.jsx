@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./Navbar.module.css";
-import Logo1 from "./myn.png";
+import Logo1 from "./mtsp.jpeg";
 // import { IoIosSearch } from 'react-icons/io';
 // import { FaRegUser } from 'react-icons/fa';
 // import { RiGift2Line } from 'react-icons/ri';
