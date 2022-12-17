@@ -68,7 +68,7 @@ const Kids = () => {
     }
   };
   return (
-    <div>
+    <div pt={"80px"}>
       {error && (
         <Alert w={"400px"} m={"auto"} status="error">
           <AlertIcon />
