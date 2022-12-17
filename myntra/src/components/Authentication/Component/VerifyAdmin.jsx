@@ -11,6 +11,7 @@ import { PinInput, PinInputField } from "@chakra-ui/react";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { MagnifyingGlass } from "react-loader-spinner";
 
 const VerifyAdmin = () => {
   const toast = useToast();
@@ -83,7 +84,19 @@ const VerifyAdmin = () => {
       </Center>
       <FormControl>
         <Center>
-          <HStack>
+        {loading ? (
+          <MagnifyingGlass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="MagnifyingGlass-loading"
+            wrapperStyle={{}}
+            wrapperClass="MagnifyingGlass-wrapper"
+            glassColor="#c0efff"
+            color="#e15b64"
+          />
+        ):
+          <HStack display={!loading&&"hidden"}>
             <PinInput otp mask>
               <PinInputField
                 onChange={(e) => setPinOne(e.target.value)}
@@ -103,6 +116,7 @@ const VerifyAdmin = () => {
               />
             </PinInput>
           </HStack>
+        }
         </Center>
       </FormControl>
       <Stack>
@@ -117,6 +131,9 @@ const VerifyAdmin = () => {
         >
           Verify
         </Button>
+      </Stack>
+      <Stack>
+        
       </Stack>
     </Stack>
   );

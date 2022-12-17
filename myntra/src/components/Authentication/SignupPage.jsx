@@ -13,13 +13,15 @@ import {
   Text,
   useColorModeValue,
   useToast,
+  Center,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Navbar from "./Navbar";
 import { GetUserData } from "./LoginPage";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Blocks, Radio } from "react-loader-spinner";
 
 const PostRequest = async (data) => {
   try {
@@ -51,6 +53,7 @@ export default function SignupPage() {
   const [btn, setBtn] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
+  const [PostLoading, setPostLoading] = useState(false);
   let flag;
   const UserData = {
     FirstName,
@@ -103,6 +106,7 @@ export default function SignupPage() {
       }
 
       if (!flag) {
+        setPostLoading(true);
         PostRequest(UserData)
           .then((res) => {
             toast({
@@ -116,6 +120,7 @@ export default function SignupPage() {
             });
             setTimeout(() => {
               navigate("/login");
+              setPostLoading(false);
             }, 2000);
           })
           .catch((err) => {
@@ -191,93 +196,119 @@ export default function SignupPage() {
             border="0"
           ></img>
           <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
-            <Stack>
-              <Stack align={"center"}>
-                <Heading fontSize={"3xl"} textAlign={"center"}>
-                  Sign up
-                </Heading>
-                <Text fontSize={"lg"} color={"gray.600"}>
-                  to enjoy all of our cool Products ✌️
-                </Text>
-              </Stack>
-              <Box>
-                <Stack>
-                  <HStack>
-                    <Box>
-                      <FormControl id="FirstName" isRequired>
-                        <FormLabel>First Name</FormLabel>
-                        <Input
-                          type="text"
-                          onChange={(e) => setFirstName(e.target.value)}
-                          value={FirstName}
-                        />
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <FormControl id="LastName" isRequired>
-                        <FormLabel>Last Name</FormLabel>
-                        <Input
-                          type="text"
-                          onChange={(e) => setLastName(e.target.value)}
-                          value={LastName}
-                        />
-                      </FormControl>
-                    </Box>
-                  </HStack>
-                  <FormControl id="PhoneNumber" isRequired>
-                    <FormLabel>Phone Number</FormLabel>
-                    <Input
-                      type="number"
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      value={PhoneNumber}
-                    />
-                  </FormControl>
-                  <FormControl id="Email" isRequired>
-                    <FormLabel>Email address</FormLabel>
-                    <Input
-                      type="Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={Email}
-                    />
-                  </FormControl>
-                  <FormControl id="Password" isRequired>
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup>
-                      <Input
-                        type={showPassword ? "text" : "Password"}
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={Password}
-                      />
-                      <InputRightElement h={"full"}>
-                        <Button
-                          variant={"ghost"}
-                          onClick={() =>
-                            setShowPassword((showPassword) => !showPassword)
-                          }
-                        >
-                          {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        </Button>
-                      </InputRightElement>
-                    </InputGroup>
-                  </FormControl>
-                  <Stack spacing={10} pt={2}>
-                    <Button
-                      loadingText="Submitting"
-                      size="lg"
-                      bg={"red.500"}
-                      color={"white"}
-                      _hover={{
-                        bg: "red.800",
-                      }}
-                      onClick={HandleButton}
-                      disabled={btn}
-                    >
-                      Sign up
-                    </Button>
-                  </Stack>
+            {loading ? (
+              <Center>
+                <Blocks
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                />
+              </Center>
+            ) : (
+              <Stack>
+                <Stack align={"center"}>
+                  <Heading fontSize={"3xl"} textAlign={"center"}>
+                    Sign up
+                  </Heading>
+                  <Text fontSize={"lg"} color={"gray.600"}>
+                    to enjoy all of our cool Products ✌️
+                  </Text>
                 </Stack>
-              </Box>
-            </Stack>
+                <Box>
+                  <Stack>
+                    <HStack>
+                      <Box>
+                        <FormControl id="FirstName" isRequired>
+                          <FormLabel>First Name</FormLabel>
+                          <Input
+                            type="text"
+                            onChange={(e) => setFirstName(e.target.value)}
+                            value={FirstName}
+                          />
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl id="LastName" isRequired>
+                          <FormLabel>Last Name</FormLabel>
+                          <Input
+                            type="text"
+                            onChange={(e) => setLastName(e.target.value)}
+                            value={LastName}
+                          />
+                        </FormControl>
+                      </Box>
+                    </HStack>
+                    <FormControl id="PhoneNumber" isRequired>
+                      <FormLabel>Phone Number</FormLabel>
+                      <Input
+                        type="number"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        value={PhoneNumber}
+                      />
+                    </FormControl>
+                    <FormControl id="Email" isRequired>
+                      <FormLabel>Email address</FormLabel>
+                      <Input
+                        type="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={Email}
+                      />
+                    </FormControl>
+                    <FormControl id="Password" isRequired>
+                      <FormLabel>Password</FormLabel>
+                      <InputGroup>
+                        <Input
+                          type={showPassword ? "text" : "Password"}
+                          onChange={(e) => setPassword(e.target.value)}
+                          value={Password}
+                        />
+                        <InputRightElement h={"full"}>
+                          <Button
+                            variant={"ghost"}
+                            onClick={() =>
+                              setShowPassword((showPassword) => !showPassword)
+                            }
+                          >
+                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                    </FormControl>
+                    {PostLoading ? (
+                      <Center>
+                        <Radio
+                          visible={true}
+                          height="80"
+                          width="80"
+                          ariaLabel="radio-loading"
+                          wrapperStyle={{}}
+                          wrapperClass="radio-wrapper"
+                        />
+                      </Center>
+                    ) : (
+                      <Stack spacing={10} pt={2}>
+                        <Button
+                          loadingText="Submitting"
+                          size="lg"
+                          bg={"red.500"}
+                          color={"white"}
+                          _hover={{
+                            bg: "red.800",
+                          }}
+                          onClick={HandleButton}
+                          disabled={btn}
+                        >
+                          Sign up
+                        </Button>
+                      </Stack>
+                    )}
+                  </Stack>
+                </Box>
+              </Stack>
+            )}
             <Stack>
               <Text color="gray.500">
                 Have Trouble logging in ?{" "}
@@ -287,6 +318,14 @@ export default function SignupPage() {
                 >
                   <span style={{ color: "red" }}>Get help</span>
                 </a>
+              </Text>
+            </Stack>
+            <Stack>
+              <Text color="gray.500">
+                Already a User ?{" "}
+                <Link to={"/login"}>
+                  <span style={{ color: "red" }}>Login</span>
+                </Link>
               </Text>
             </Stack>
           </Flex>

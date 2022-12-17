@@ -14,6 +14,7 @@ import PhoneNumberInput from "./Component/PhoneNumberInput";
 import axios from "axios";
 import Navbar from "./Navbar";
 import { useNavigate, Link } from "react-router-dom";
+import { Blocks, Watch } from "react-loader-spinner";
 
 export const GetUserData = async () => {
   let response = await axios.get(
@@ -34,8 +35,9 @@ export default function LoginPage() {
   const [Count, SetCount] = useState(30);
   const [num, setNum] = useState("");
   const [id, setId] = useState("");
+  const [otherNumber, setOtherNumber] = useState(false);
 
-  let flag = false;
+  let flag;
   let name;
   const adminAndCountinueBtn = () => {
     setadminPage(false);
@@ -72,18 +74,19 @@ export default function LoginPage() {
           setchangeComponent(true);
         }
         if (!flag) {
-          toast({
-            title: `You Need to Signup`,
-            description: "after few seconds You will redirect to signup Page",
-            status: "warning",
-            duration: 4000,
-            isClosable: true,
-            variant: "left-accent",
-            position: "top",
-          });
+          setOtherNumber(true);
           setTimeout(() => {
+            toast({
+              title: `You Need to Signup`,
+              description: "after few seconds You will redirect to signup Page",
+              status: "warning",
+              duration: 3000,
+              isClosable: true,
+              variant: "left-accent",
+              position: "top",
+            });
             navigate("/signup");
-          }, 2000);
+          }, 3000);
         }
       }
     } else {
@@ -148,12 +151,38 @@ export default function LoginPage() {
             border="0"
           ></img>
           <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
-            {changeComponent ? (
+            {otherNumber && (
+              <Center>
+                <Watch
+                  height="80"
+                  width="80"
+                  radius="48"
+                  color="#4fa94d"
+                  ariaLabel="watch-loading"
+                  wrapperStyle={{}}
+                  wrapperClassName=""
+                  visible={true}
+                />
+              </Center>
+            )}
+            {loading ? (
+              <Center>
+                <Blocks
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="blocks-wrapper"
+                />
+              </Center>
+            ) : changeComponent ? (
               <VerifyPhoneNumber UserNumber={num} id={id} />
             ) : (
               <PhoneNumberInput
                 HandleSetNumber={HandleSetNumber}
                 ContinueBtn={ContinueBtn}
+                flag={flag}
               />
             )}
             {adminPage && <VerifyAdmin />}
@@ -178,7 +207,7 @@ export default function LoginPage() {
             </Stack>
             <Stack>
               <Text color="gray.500">
-                New User ?{" "} 
+                New User ?{" "}
                 <Link to={"/Signup"}>
                   <span style={{ color: "red" }}> Signup</span>
                 </Link>

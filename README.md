@@ -1,6 +1,6 @@
 
 
-## eager-grain-3783  (Myntra Clone)
+### eager-grain-3783  (Myntra Clone)
 
 
 # MyntShop  
@@ -21,13 +21,13 @@ Team Members :-
 4. Pushpendra Singh (fw20_0921)
 ## Here is the detail of our project "MyntShop".
 
-Database-:https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/
+Database-: myntradatabase-b3ni2kn38-aloki9singh.vercel.app
 
 
  1. Navbar and footer with home page ---> Harsha and Alok 
  2. Login functionality and page --> Saurav
  3. Mens & womens  --> Dipratna Sakhare
- 4. Pushpendra Singh --> Logo ,home&living ,Kids
+ 4. Logo ,home&living ,Kids --> Pushpendra Singh
 
 
    ### src

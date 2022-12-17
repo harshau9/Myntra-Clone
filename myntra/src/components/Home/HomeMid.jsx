@@ -4,6 +4,7 @@ import { ImagesBox } from "./Pages/FirstSlideBox/ImagesBox";
 import { SingleNameBox } from "./Pages/SecondImageBox.jsx/SingleNameBox";
 import { ImageProductBox } from "./Pages/SecondImageBox.jsx/ImageProductBox";
 import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
+import "./Carousel.css";
 
 import t1 from "./HomeMidImages/t1.jpg";
 import t2 from "./HomeMidImages/t2.jpg";
@@ -232,14 +233,16 @@ export const HomeMid = () => {
     "https://assets.myntassets.com/f_webp,w_490,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/a1dddc1c-a9ed-4e9c-9df3-38fd7cb126f91670399589007-MP_Shop-By-Category_15.jpg",
   ];
   return (
-    <Box>
-      <Flex>
-        <ImagesBox data={ImagesFirstCol} />
-        <ImagesBox data={ImagesSecCol} />
-        <ImagesBox data={ImagesThirdCol} />
-        <ImagesBox data={ImagesForthCol} />
+    <Box pt={"80px"} >
+    <Box m="auto" className="slideshow"></Box>
+
+      {/* <Flex>
+        <ImagesBox  data={ImagesFirstCol} />
+        <ImagesBox  data={ImagesSecCol} />
+        <ImagesBox  data={ImagesThirdCol} />
+        <ImagesBox  data={ImagesForthCol} />
         <Box></Box>
-      </Flex>
+      </Flex> */}
 
       {/* Lowest Price Ever  */}
       <Box>
