@@ -111,7 +111,7 @@ export const ProductPageApi = () => {
 
     }
 
-  }
+ 
 
   return (
     <>
