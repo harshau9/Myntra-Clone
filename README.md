@@ -45,3 +45,4 @@ Database-: myntradata-39agumdo9-aloki9singh.vercel.app
 
            1.Footer.jsx
            
+Vercel link : https://myntra-gilt.vercel.app
