@@ -1,0 +1,88 @@
+
+#master {
+    margin: auto;
+    width: 100vw;
+    height: 750px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 200%;
+    margin-left: -100%;
+}
+
+.box {
+    transition-duration: 2s;
+    transform: translateX(50%);
+}
+
+#b1,
+#b2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    border-radius: 30px;
+    text-align: center;
+}
+
+#b2 {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1% 1%;
+}
+
+input,
+button {
+    width: 100%;
+    padding: 20px 10px;
+    margin: 10px 0;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(236, 236, 236);
+    box-sizing: border-box;
+}
+
+form {
+    border-radius: 30px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid;
+    border-color: #25d298;
+}
+
+button {
+    background-color: #25d298;
+    border-radius: 30px;
+}
+
+#b1>img {
+    width: 50%;
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+
+    #b1,
+    #b2 {
+        padding: 3%;
+    }
+}
+
+@media all and (min-width: 320px) and (max-width: 767px) {
+
+    #b1,
+    #b2 {
+        padding: 4%;
+    }
+}

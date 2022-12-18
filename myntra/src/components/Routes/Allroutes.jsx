@@ -11,6 +11,7 @@ import { Womens } from "../../pages/Women/Womens";
 import { ProductPageApi } from "../../pages/ProductPageFetch/ProductPageApi";
 import AdminNavbar from "../AdminPage/Navbar";
 import AddHotel from "../AdminPage/Component/AddHotel";
+import Checkout from "../../pages/Checkout/Checkout";
 export const Allroutes = () => {
   return (
     <Routes>
@@ -38,6 +39,8 @@ export const Allroutes = () => {
           </PrivateRouteAdminPage>
         }
       />
+
+      <Route path="/checkout" element={<Checkout />}></Route>
     </Routes>
   );
 };

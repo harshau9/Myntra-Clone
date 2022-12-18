@@ -10,8 +10,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutBox = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/checkout");
+  };
+  
   return (
     <div>
       <Flex
@@ -26,6 +33,7 @@ const CheckoutBox = () => {
             color="white"
             backgroundColor={"red"}
             textAlign="center"
+            onClick={handleClick}
           >
             CHECKOUT
           </Button>
