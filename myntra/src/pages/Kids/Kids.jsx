@@ -61,7 +61,7 @@ const Kids = () => {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 2000);
       setError(false);
       let res = await fetch(
         `https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/clothing?category=Child&_limit=10&_page=${page}&_sort=strike_price&_order=${value}`

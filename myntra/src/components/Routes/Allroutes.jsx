@@ -12,6 +12,7 @@ import { ProductPageApi } from "../../pages/ProductPageFetch/ProductPageApi";
 import AdminNavbar from "../AdminPage/Navbar";
 import AddHotel from "../AdminPage/Component/AddHotel";
 import Checkout from "../../pages/Checkout/Checkout";
+import Cart from "../../pages/cartPage/Cart";
 export const Allroutes = () => {
   return (
     <Routes>
@@ -40,6 +41,8 @@ export const Allroutes = () => {
         }
       />
 
+
+      <Route path="/cart" element={<Cart />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
     </Routes>
   );

@@ -12,6 +12,7 @@ import { useToast } from "@chakra-ui/react";
 
 
 let totalPages = 5;
+let arr=[];
 export default function Hotel() {
   const [page, setPage] = useState(1);
   const [flag, setFlag] = useState(false);
@@ -96,8 +97,9 @@ export default function Hotel() {
 
   /*Add to Cart Functions */
   const handleAddToCart = (el) => {
+    arr.push(el)
     if (isAuth === true) {
-      postUserCartData([el]).then((res) => {
+      postUserCartData({CartPage: arr}).then((res) => {
         toast({
           title: 'Successfully',
           description: "Product added successfully",
