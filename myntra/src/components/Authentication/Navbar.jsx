@@ -19,6 +19,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
 import { Link } from "react-router-dom";
+import Myntralogo from '../../components/Navbar/NavFolder/myn.png'
 
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
@@ -63,7 +64,7 @@ function Navbar() {
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
                 <Image
-                  src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
+                  src={Myntralogo}
                   width={20}
                   p="1.5"
                 />
