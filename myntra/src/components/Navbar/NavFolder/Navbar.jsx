@@ -149,7 +149,6 @@ const Navbar = () => {
               />
             </div>
             <div className={style.card3}>
-
               {isAuth ? (
                 <Button onClick={HandleSignout}>Signout</Button>
               ) : (
@@ -160,9 +159,6 @@ const Navbar = () => {
                   </button>
                 </Link>
               )}
-
-            
-
             </div>
             {/* <div className={style.card3}>
               <Link to="/my_wishlist">
@@ -170,9 +166,6 @@ const Navbar = () => {
               </Link>
             </div> */}
             <div className={style.card3}>
- 
-            
-
               <Link to="/bag">
                 <BsHandbag fontSize="2.5vh" cursor="pointer" />
               </Link>

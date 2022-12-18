@@ -114,7 +114,7 @@ function Navbar() {
                   WISHLIST
                 </Heading>
               </Box> */}
-              <Link to={"/cart"}>
+              <Link to={"/bag"}>
                 <Box>
                   <HiOutlineShoppingBag size={21} />
                   <Heading as={"p"} fontSize="10px">
