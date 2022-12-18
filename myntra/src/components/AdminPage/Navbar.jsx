@@ -34,6 +34,7 @@ import axios from "axios";
 import { GetUserData } from "../Authentication/LoginPage";
 import { Blocks } from "react-loader-spinner";
 import TableComponent from "./Component/Table";
+import Myntralogo from "../../components/Navbar/NavFolder/myn.png";
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
 const PostRequest = async () => {
@@ -144,11 +145,7 @@ function AdminNavbar() {
           <HStack spacing={10} alignItems={"center"}>
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
-                <Image
-                  src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
-                  width={20}
-                  p="1.5"
-                />
+                <Image src={Myntralogo} width={20} p="1.5" />
               </Link>
             </Box>
             <HStack
@@ -257,7 +254,9 @@ function AdminNavbar() {
           />
         </Center>
       )}
-      {Page === navLI[3] ? navigate("/AdminPage/AddHotel") : TableComponent(data)}
+      {Page === navLI[3]
+        ? navigate("/AdminPage/AddHotel")
+        : TableComponent(data)}
     </>
   );
 }
