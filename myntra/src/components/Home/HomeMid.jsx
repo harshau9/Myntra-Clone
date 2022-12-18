@@ -213,7 +213,6 @@ export const HomeMid = () => {
     c23,
     c24,
     c25,
-    c25,
 
     c26,
 
@@ -234,9 +233,9 @@ export const HomeMid = () => {
     "https://assets.myntassets.com/f_webp,w_490,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/a1dddc1c-a9ed-4e9c-9df3-38fd7cb126f91670399589007-MP_Shop-By-Category_15.jpg",
   ];
   return (
-    <Box pt={"80px"} >
+    <Box pt={"80px"}>
       <Carousel1 />
-    {/* <Box m="auto" className="slideshow"></Box> */}
+      {/* <Box m="auto" className="slideshow"></Box> */}
 
       {/* <Flex>
         <ImagesBox  data={ImagesFirstCol} />
