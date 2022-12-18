@@ -8,6 +8,10 @@ import Logo1 from "./myn.png";
 import NavbarPopUpComponents from "../NavComponent/NavbarPopUpComponents";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { FaRegUser } from "react-icons/fa";
+import { BsHeart } from "react-icons/bs";
+import { BsHandbag } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [currentForm, setCurrentForm] = useState("login");
@@ -101,15 +105,28 @@ const Navbar = () => {
                 placeholder="Search for products, brands and more"
               />
             </div>
-            <div className={style.card2}>
-              {/* <p>
+            {/* <div className={style.card2}>
+              <p>
                 <FaRegUser fontSize="2.5vh" cursor="pointer" />
-              </p> */}
+              </p>
               <button onClick={() => handleLogin()}>
                 {!login ? "Sign in" : "Signout"}
+                <FaRegUser />
               </button>
+            </div> */}
+            <div className={style.card3}>
+            <button onClick={() => handleLogin()}><FaRegUser fontSize="2.5vh" cursor="pointer" /></button>
             </div>
-            <div className={style.card3}>{/* <MuiDrawer /> */}</div>
+            <div className={style.card3}>
+              <Link to="/my_wishlist">
+                    <BsHeart fontSize="2.5vh" cursor="pointer" />   
+              </Link>
+            </div>
+            <div className={style.card3}>
+              <Link to="/bag">
+                    <BsHandbag fontSize="2.5vh" cursor="pointer" />
+              </Link>
+            </div>
           </div>
         </div>
 
