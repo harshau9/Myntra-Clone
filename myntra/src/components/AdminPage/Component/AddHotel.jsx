@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Update from "../../../pages/Home&Hotels/Update";
+
 import {
   Box,
   Flex,

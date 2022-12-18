@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterData, getProduct, sortData, getData } from "./Redux/actions";
 import { Spinner } from '@chakra-ui/react';
-import Update from './Update';
 import Footer from "../../components/Footer/Footer";
 import MainNavbar from "../../components/Navbar/MainNavbar";
 import axios from "axios";
@@ -22,7 +21,9 @@ export default function Hotel() {
   const { error, loading, rooms } = useSelector((store) => store.Reducer);
   const { id, isAuth } = userData;
   const navigate = useNavigate();
-  const toast = useToast()
+  const toast = useToast();
+  // const [cartData, setCartData] = useState();
+
 
   useEffect(() => {
     dispatch(getProduct(page, limit));
@@ -96,7 +97,7 @@ export default function Hotel() {
   /*Add to Cart Functions */
   const handleAddToCart = (el) => {
     if (isAuth === true) {
-      postUserCartData({ CartPage: [el] }).then((res) => {
+      postUserCartData([el]).then((res) => {
         toast({
           title: 'Successfully',
           description: "Product added successfully",
@@ -120,7 +121,6 @@ export default function Hotel() {
 
   return (
     <>
-      {/* <Update /> */}
       <MainNavbar />
       <Box mt="5%">
         {error && <Alert w={"400px"} m={"auto"} status='error'>
@@ -151,12 +151,12 @@ export default function Hotel() {
           </Flex>
 
           <Container mt={"1%"} mb="1%">
-            <Box display={"flex"} justifyContent="space-between" color={"green"}>
-              <Button onClick={() => setPage(1)}>First</Button>
-              <Button disabled={page <= 1} onClick={() => handlePage(-1)}>PREV</Button>
-              <Button color={"red"} border={"2px solid blue"} disabled>{page}</Button>
-              <Button disabled={page === totalPages} onClick={() => handlePage(1)}>NEXT</Button>
-              <Button onClick={() => setPage(totalPages)}>Last</Button>
+            <Box display={"flex"} justifyContent="space-between" color={"green"} gap="5px">
+              <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(1)}>First</Button>
+              <Button bg={"teal"} color="black" variant={"outline"} disabled={page <= 1} onClick={() => handlePage(-1)}>PREV</Button>
+              <Button  color="red" fontSize={"23px"} variant={"outline"} border={"2px solid blue"} w="10px" disabled>{page}</Button>
+              <Button bg={"teal"} color="black" variant={"outline"} disabled={page === totalPages} onClick={() => handlePage(1)}>NEXT</Button>
+              <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(totalPages)}>Last</Button>
               <Select w="100px" onChange={(e) => setLimit(e.target.value)}>
                 <option value={3}>3</option>
                 <option vlaue={6}>6</option>
@@ -188,7 +188,7 @@ export default function Hotel() {
                     <p>No. of Adults : {el.no_of_persons || 4}</p>
                     <p>Capacity : {el.capacity}</p>
                     <p style={{ color: "green" }}>Cost : ₹{el.cost}</p>
-                    <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} onClick={() => handleAddToCart(el)}>
+                    <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px" onClick={() => handleAddToCart(el)}>
                       Book Now
                     </Button>
                   </Box>

@@ -91,14 +91,15 @@ const Kids = () => {
             There was an error processing your request
           </Alert>
         )}
+
         <Carousel1 />
+
         <Heading m={"10px 0"} textAlign="center">
           FASHION & ESSENTIALS
         </Heading>
 
         {loading && <Spinner size={"xl"} color="red.500" />}
 
-        {/* <Box m="auto" className="slideshow"></Box> */}
 
         <Box m="1% 0">
           <select onChange={handleChange}>
@@ -153,7 +154,7 @@ const Kids = () => {
               </Box>
             ))}
         </Box>
-        <Box m={"1% 0"} textAlign="center">
+        <Box m={"1% 0"} textAlign="center" >
           <Pagination totalPages={totalPages} currentPage={page} handlePageChange={handlePageChange} />
         </Box>
         <Footer />
