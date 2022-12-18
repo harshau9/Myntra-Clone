@@ -1,14 +1,14 @@
 .slidecontainer {
   width: 100%;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .eachslide > div {
   align-items: center;
   justify-content: center;
   background-size: cover;
-  height: 320px;
+  height: 450px;
 }
 
 .eachslide span {
