@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Box, Spinner, useToast, Image, Heading, Button, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import MainNavbar from '../../components/Navbar/MainNavbar';
+import Footer from '../../components/Footer/Footer';
 
 const Cart = () => {
     const [cartData, setCartData] = useState([]);
@@ -40,55 +42,61 @@ const Cart = () => {
     let total = 0;
     for (let ele of cartData) {
         total += ele.cost;
-    }
+    };
 
     const handleRemove = (index) => {
         cartData.splice(index, 1);
         setArr(cartData);
-    }
+    };
 
     return (
         <div>
-            {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
-            <Box display={"flex"} justifyContent="space-around">
-                <Heading fontSize={"23px"} display={"flex"} gap="10px">Total Quentity <Text color={"goldenrod"} fontSize="30px">{cartData.length}</Text></Heading>
-                <Heading fontSize={"23px"} display={"flex"} gap="10px">Total Price <Text color={"goldenrod"} fontSize="30px">{total}</Text></Heading>
-            </Box>
-            <Box display={"grid"} gridTemplateColumns={{ base: "repeat(3,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)", xl: "repeat(3,1fr)" }} textAlign="center">
-                {cartData && cartData.map((el, index) =>
-                    <Box
-                        boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
-                        m={"1rem"}
-                        key={el.id}
-                    >
-                        <Image
-                            src={el.image_url}
-                            alt="room"
-                            w={"100%"}
-                            h={"300px"}
-                        ></Image>
-                        <Box>
-                            <Heading m={"1rem 0"} size={"md"}>
-                                {el.category.toUpperCase()} ROOM
-                            </Heading>
-                            <p>Type of Room : {el.type_of_room}</p>
-                            <p>Bed : {el.bed_type}</p>
-                            <p>No. of Adults : {el.no_of_persons || 4}</p>
-                            <p>Capacity : {el.capacity}</p>
-                            <p style={{ color: "green" }}>Cost : ₹{el.cost}</p>
-                            <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px" onClick={() => handleRemove(index)}>
-                                Remove
-                            </Button>
+            <MainNavbar />
+            <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
+                {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
+                <Box display={"flex"} justifyContent="space-around" mb={"1%"}>
+                    <Heading fontSize={"20px"} display={"flex"} gap="10px">Total Quantity:- <Text fontSize={"20px"} color={"pink.500"} >{cartData.length}</Text></Heading>
+                    <Heading fontSize={"20px"} display={"flex"} gap="10px">Total Price:- <Text fontSize={"20px"} color={"pink.500"} >{total}</Text></Heading>
+                </Box>
+                <hr />
+                <Box display={"grid"} gridTemplateColumns={{ base: "repeat(3,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)", xl: "repeat(3,1fr)" }} textAlign="center">
+                    {cartData && cartData.map((el, index) =>
+                        <Box
+                            boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
+                            m={"1rem"}
+                            key={el.id}
+                        >
+                            <Image
+                                src={el.image_url}
+                                alt="room"
+                                w={"100%"}
+                                h={"300px"}
+                            ></Image>
+                            <Box>
+                                <Heading m={"1rem 0"} size={"md"}>
+                                    {el.category.toUpperCase()} ROOM
+                                </Heading>
+                                <p>Type of Room : {el.type_of_room}</p>
+                                <p>Bed : {el.bed_type}</p>
+                                <p>No. of Adults : {el.no_of_persons || 4}</p>
+                                <p>Capacity : {el.capacity}</p>
+                                <p style={{ color: "green" }}>Cost : ₹{el.cost}</p>
+                                <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px" onClick={() => handleRemove(index)}>
+                                    Remove
+                                </Button>
+                            </Box>
                         </Box>
-                    </Box>
-                )}
-            </Box>
+                    )}
+                </Box>
 
-            <Box display={"flex"} justifyContent="center" alignItems={"center"}>
-                <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px" onClick={handleCheckout}>Checkout</Button>
+                <hr />
+                <Box display={"flex"} justifyContent="center" alignItems={"center"}>
+                    <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px" onClick={handleCheckout}>Checkout</Button>
+                </Box>
+                <Footer />
             </Box>
         </div>
-    )
+    );
 }
 
 export default Cart;

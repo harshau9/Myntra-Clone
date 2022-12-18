@@ -115,16 +115,16 @@ const Navbar = () => {
               </button>
             </div> */}
             <div className={style.card3}>
-            <button onClick={() => handleLogin()}><FaRegUser fontSize="2.5vh" cursor="pointer" /></button>
+              <button onClick={() => handleLogin()}><FaRegUser fontSize="2.5vh" cursor="pointer" /></button>
             </div>
             <div className={style.card3}>
               <Link to="/my_wishlist">
-                    <BsHeart fontSize="2.5vh" cursor="pointer" />   
+                <BsHeart fontSize="2.5vh" cursor="pointer" />
               </Link>
             </div>
             <div className={style.card3}>
               <Link to="/bag">
-                    <BsHandbag fontSize="2.5vh" cursor="pointer" />
+                <BsHandbag fontSize="2.5vh" cursor="pointer" />
               </Link>
             </div>
           </div>
