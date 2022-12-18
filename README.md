@@ -9,6 +9,7 @@ CW-RCT201-B21
 
 Project Code - eager-grain-3783
 Project -https://www.myntra.com
+Vercel link : https://myntra-gilt.vercel.app
 
 IA - Sheelu
 
@@ -45,4 +46,4 @@ Database-: myntradata-39agumdo9-aloki9singh.vercel.app
 
            1.Footer.jsx
            
-Vercel link : https://myntra-gilt.vercel.app
+
