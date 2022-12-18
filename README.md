@@ -21,7 +21,7 @@ Team Members :-
 4. Pushpendra Singh (fw20_0921)
 ## Here is the detail of our project "MyntShop".
 
-Database-: myntradatabase-b3ni2kn38-aloki9singh.vercel.app
+Database-: myntradata-39agumdo9-aloki9singh.vercel.app
 
 
  1. Navbar and footer with home page ---> Harsha and Alok 
