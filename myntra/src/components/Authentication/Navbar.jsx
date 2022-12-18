@@ -19,7 +19,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import SignupPage from "./SignupPage";
 import LoginPage from "./LoginPage";
 import { Link } from "react-router-dom";
-import Myntralogo from '../../components/Navbar/NavFolder/myn.png'
+import Myntralogo from "../../components/Navbar/NavFolder/myn.png";
 
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
@@ -63,11 +63,7 @@ function Navbar() {
           <HStack spacing={10} alignItems={"center"}>
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
-                <Image
-                  src={Myntralogo}
-                  width={20}
-                  p="1.5"
-                />
+                <Image src={Myntralogo} width={16} p="1.5" />
               </Link>
             </Box>
             <HStack
@@ -87,7 +83,7 @@ function Navbar() {
                       : link == "Home Living"
                       ? "/hotel"
                       : link == "Studio"
-                      ? "/"
+                      ? "/ProductPage"
                       : undefined
                   }
                 >
@@ -112,18 +108,20 @@ function Navbar() {
               </InputGroup>
             </Box>
             <Flex gap={"1rem"} paddingX="10px" marginRight={{ lg: "50px" }}>
-              <Box>
+              {/* <Box>
                 <IoIosHeartEmpty size={21} />
                 <Heading as={"p"} fontSize="10px">
                   WISHLIST
                 </Heading>
-              </Box>
-              <Box>
-                <HiOutlineShoppingBag size={21} />
-                <Heading as={"p"} fontSize="10px">
-                  BAG
-                </Heading>
-              </Box>
+              </Box> */}
+              <Link to={"/cart"}>
+                <Box>
+                  <HiOutlineShoppingBag size={21} />
+                  <Heading as={"p"} fontSize="10px">
+                    BAG
+                  </Heading>
+                </Box>
+              </Link>
             </Flex>
           </Flex>
         </Flex>
@@ -148,7 +146,7 @@ function Navbar() {
                       : link == "Home Living"
                       ? "/hotel"
                       : link == "Studio"
-                      ? "/"
+                      ? "/ProductPage"
                       : undefined
                   }
                 >

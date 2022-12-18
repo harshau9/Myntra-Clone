@@ -34,6 +34,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GetUserData } from "../../Authentication/LoginPage";
 import { Blocks } from "react-loader-spinner";
+import myntralogo from "../../Navbar/NavFolder/myn.png";
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
 const PostRequest = async () => {
@@ -135,20 +136,17 @@ function AddHotel() {
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
-            size={"md"}
+            size={"sm"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
+            width="50px"
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={10} alignItems={"center"}>
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
-                <Image
-                  src="https://mumbaimirror.indiatimes.com/photo/80601325.cms"
-                  width={20}
-                  p="1.5"
-                />
+                <Image src={myntralogo} width={20} p="1.5" />
               </Link>
             </Box>
             <HStack
@@ -164,26 +162,11 @@ function AddHotel() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"} gap={{ lg: "3rem" }}>
-            <Box display={{ base: "none", xl: "flex", lg: "flex" }}>
-              <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<Search2Icon color="gray.300" />}
-                />
-                <Input
-                  type="text"
-                  placeholder="Search for products"
-                  width={{ lg: "200px", "2xl": "500px" }}
-                />
-              </InputGroup>
-            </Box>
-
-            <Flex alignItems={"center"} paddingX="20px">
+            <Flex alignItems={"center"} paddingX="25px">
               <Stack direction={"row"} spacing={7}>
                 <Button onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
-
                 <Menu>
                   <MenuButton
                     as={Button}

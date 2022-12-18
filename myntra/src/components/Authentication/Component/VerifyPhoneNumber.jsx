@@ -44,7 +44,7 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
           });
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 1500);
           setPathUserLoading(false);
         });
     } catch (err) {

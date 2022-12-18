@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./Navbar.module.css";
 import Logo1 from "./myn.png";
-// import { IoIosSearch } from 'react-icons/io';
-// import { FaRegUser } from 'react-icons/fa';
-// import { RiGift2Line } from 'react-icons/ri';
-// import { BsHandbag } from 'react-icons/bs';
 import NavbarPopUpComponents from "../NavComponent/NavbarPopUpComponents";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -12,38 +8,85 @@ import { FaRegUser } from "react-icons/fa";
 import { BsHeart } from "react-icons/bs";
 import { BsHandbag } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { Button, useToast } from "@chakra-ui/react";
+import axios from "axios";
+
+const getuserData = async () => {
+  try {
+    let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
+    return await res.data;
+  } catch (e) {
+    return e;
+  }
+};
+
+const PostRequest = async () => {
+  try {
+    let response = await axios.patch(
+      `https://mock-server-trz7.onrender.com/User`,
+      {
+        id: "Admin Page",
+        isAuth: false,
+      }
+    );
+
+    return await response.data;
+  } catch (err) {
+    return err;
+  }
+};
 
 const Navbar = () => {
-  const [currentForm, setCurrentForm] = useState("login");
   const navigate = useNavigate();
   const [howerState, setHowerState] = useState("");
-  const [login, setLogin] = useState(false);
-
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
+  const [userData, setUserData] = useState({});
+  const { id, isAuth } = userData;
+  const toast = useToast();
   const hoverHandler = (type) => {
     setHowerState(type);
   };
   const handleNoHover = () => {
     setHowerState("");
   };
-  const handleLogin = () => {
-    if (login) {
-      setLogin(false);
-      localStorage.removeItem("user");
-      localStorage.removeItem("oAuth");
-      window.location.reload();
-    } else {
-      navigate("/login");
-    }
-  };
 
+  const HandleSignout = () => {
+    PostRequest()
+      .then((res) => {
+        toast({
+          title: "Logout Successfully",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+          position: "bottom-right",
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1100);
+      })
+      .catch((err) => {
+        toast({
+          title: "Something Went Wrong",
+          description: `${err.message}`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "botto-right",
+        });
+      });
+  };
   useEffect(() => {
-    const data =
-      JSON.parse(localStorage.getItem("user")) ||
-      JSON.parse(localStorage.getItem("oAuth"));
-    if (data) setLogin(true);
+    getuserData()
+      .then((res) => setUserData(res))
+      .catch((err) =>
+        toast({
+          title: "Something Went Wrong",
+          description: `${err.message}`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+          position: "botto-right",
+        })
+      );
   }, []);
   return (
     <>
@@ -89,7 +132,7 @@ const Navbar = () => {
                 BEAUTY
               </p>
               <p
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/ProductPage")}
                 onMouseEnter={() => hoverHandler("STUDIO")}
               >
                 STUDIO
@@ -105,26 +148,26 @@ const Navbar = () => {
                 placeholder="Search for products, brands and more"
               />
             </div>
-            {/* <div className={style.card2}>
-              <p>
-                <FaRegUser fontSize="2.5vh" cursor="pointer" />
-              </p>
-              <button onClick={() => handleLogin()}>
-                {!login ? "Sign in" : "Signout"}
-                <FaRegUser />
-              </button>
-            </div> */}
             <div className={style.card3}>
-            <button onClick={() => handleLogin()}><FaRegUser fontSize="2.5vh" cursor="pointer" /></button>
+              {isAuth ? (
+                <Button onClick={HandleSignout}>Signout</Button>
+              ) : (
+                <Link to={"/login"}>
+                  {" "}
+                  <button>
+                    <FaRegUser fontSize="2.5vh" cursor="pointer" />
+                  </button>
+                </Link>
+              )}
             </div>
-            <div className={style.card3}>
+            {/* <div className={style.card3}>
               <Link to="/my_wishlist">
                     <BsHeart fontSize="2.5vh" cursor="pointer" />   
               </Link>
-            </div>
+            </div> */}
             <div className={style.card3}>
-              <Link to="/bag">
-                    <BsHandbag fontSize="2.5vh" cursor="pointer" />
+              <Link to="/cart">
+                <BsHandbag fontSize="2.5vh" cursor="pointer" />
               </Link>
             </div>
           </div>

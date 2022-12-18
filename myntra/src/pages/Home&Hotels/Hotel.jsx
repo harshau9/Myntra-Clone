@@ -71,7 +71,7 @@ export default function Hotel() {
     dispatch(sortData(sortedData));
   };
 
-  const getuserData = async () => {
+ const getuserData = async () => {
     try {
       let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
       return await res.data;
