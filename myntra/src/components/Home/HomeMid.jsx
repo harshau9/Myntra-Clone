@@ -236,7 +236,7 @@ export const HomeMid = () => {
   return (
     <Box pt={"80px"} >
       <Carousel1 />
-    <Box m="auto" className="slideshow"></Box>
+    {/* <Box m="auto" className="slideshow"></Box> */}
 
       {/* <Flex>
         <ImagesBox  data={ImagesFirstCol} />

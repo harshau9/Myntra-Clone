@@ -6,6 +6,8 @@ import { ImageProductBox } from "./Pages/SecondImageBox.jsx/ImageProductBox";
 import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
 import Footer from "../../components/Footer/Footer";
 import MainNavbar from "../../components/Navbar/MainNavbar";
+import Carousel1 from "./Carousel1";
+
 export const Womens = () => {
   const ImagesFirstCol = [
     "https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/02440f40-732e-4baa-96fd-5f16d468c9d81670407321595-Main-Banner_Desktop_02.jpg",
@@ -118,6 +120,7 @@ export const Womens = () => {
     <>
     <MainNavbar/>
     <Box pt={"80px"}>
+    <Carousel1  />
       <Flex>
         <ImagesBox data={ImagesFirstCol} />
         <ImagesBox data={ImagesSecCol} />

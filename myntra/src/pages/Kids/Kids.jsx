@@ -13,7 +13,7 @@ import Footer from "../../components/Footer/Footer";
 import Pagination from "./Pagination";
 import "./Carousel.css";
 import MainNavbar from "../../components/Navbar/MainNavbar";
-
+import Carousel1 from "./Carousel1";
 let totalPages = 10;
 const Kids = () => {
   const [childData, setChildData] = useState([]);
@@ -91,14 +91,14 @@ const Kids = () => {
             There was an error processing your request
           </Alert>
         )}
-
+        <Carousel1 />
         <Heading m={"10px 0"} textAlign="center">
           FASHION & ESSENTIALS
         </Heading>
 
         {loading && <Spinner size={"xl"} color="red.500" />}
 
-        <Box m="auto" className="slideshow"></Box>
+        {/* <Box m="auto" className="slideshow"></Box> */}
 
         <Box m="1% 0">
           <select onChange={handleChange}>

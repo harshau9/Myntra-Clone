@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./Navbar.module.css";
-import Logo1 from "./mtsp.jpeg";
+import Logo1 from "./myn.png";
 // import { IoIosSearch } from 'react-icons/io';
 // import { FaRegUser } from 'react-icons/fa';
 // import { RiGift2Line } from 'react-icons/ri';
@@ -133,8 +133,9 @@ const Subnav = styled.div`
   background-color: #ffffff;
   gap: 2vw;
   font-weight: 400;
-  color: gray;
+  color: #000000;
   font-size: 15px;
+  font-family: sans-serif;
   // margin-top:63px;
   p:hover {
     border-bottom: 3px solid #fc3581;
