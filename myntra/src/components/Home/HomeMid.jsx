@@ -5,6 +5,7 @@ import { SingleNameBox } from "./Pages/SecondImageBox.jsx/SingleNameBox";
 import { ImageProductBox } from "./Pages/SecondImageBox.jsx/ImageProductBox";
 import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
 import "./Carousel.css";
+import Carousel1 from "./Carousel1";
 
 import t1 from "./HomeMidImages/t1.jpg";
 import t2 from "./HomeMidImages/t2.jpg";
@@ -234,6 +235,7 @@ export const HomeMid = () => {
   ];
   return (
     <Box pt={"80px"} >
+      <Carousel1 />
     <Box m="auto" className="slideshow"></Box>
 
       {/* <Flex>
