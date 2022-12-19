@@ -4,6 +4,8 @@ import { ProductSideFiter } from "../ProductSideFilter/ProductSideFiter";
 import { SigleProductPage } from "./pages/SigleProductPage";
 
 export const ProductBox = ({data}) => {
+
+  data.length = 20
   return (
     <>
     <Box w="70%" m="auto" >

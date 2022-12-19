@@ -108,7 +108,18 @@ export const ProductPageApi = () => {
 
 
   function cheakBox(prop){
+    console.log(prop, "sdf")
+    
+   const  ans = prop.split(",")
+     
+      let update = Listmintdata.filter(ele => ele.discounted_price >= ans[0] && ele.discounted_price <= ans[1])
+      setdemo(update);
+      setListmintdata(update);
+    
+      console.log(update)
+      setdemo([]);
 
+    
     }
 
  
@@ -131,7 +142,7 @@ export const ProductPageApi = () => {
       </Box>
 
       <Flex display={["none", "flex", "Flex"]}>
-        <Box w="25%" p="3">
+        <Box w="20%" p="3">
           <Flex p="10px">
             <Text color={"black"} as="b">
               FILTER

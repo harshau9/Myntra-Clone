@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Box, Image, Button, Heading } from "@chakra-ui/react";
 import { FcPlus } from "react-icons/fc";
-import {TbTruckDelivery} from "react-icons/tb";
+import { TbTruckDelivery } from "react-icons/tb";
 
-const CartItem = () => {
+const CartItem = ({ ele, handelDelete, cartData, setTotal }) => {
+  const [count, setquantity] = useState(1);
+
+  const decqun = () => {
+    setquantity(count - 1);
+  };
+
+  const addqun = () => {
+    setquantity(count + 1);
+  };
+
   return (
     <Flex
       border={"1px solid rgb(224, 224, 225)"}
@@ -12,104 +22,70 @@ const CartItem = () => {
       boxShadow={"rgb(0 0 0 / 6%) 0px 2px 2px"}
       borderRadius="4px"
     >
-      <Flex
-        p={"16px"}
-        flexDirection={{
-          base: "column",
-          sm: "column",
-          md: "row",
-          lg: "row",
-          xl: "row",
-          "2xl": "row",
-        }}
-        justifyContent={{ sm: "center", base: "center" }}
-        alignItems={{
-          sm: "center",
-          md: "normal",
-          lg: "normal",
-          xl: "normal",
-          "2xl": "normal",
-        }}
-        gap={{ sm: "8px", base: "7px" }}
-      >
+      <Box p={"16px"} gap={{ sm: "8px", base: "7px" }}>
         {/* //part1-17to 44line */}
         <Flex
           flexDirection="column"
-          border={"0px solid blue"}
           justifyContent="center"
           alignItems={"center"}
           gap="2"
         >
           <Box>
-            <Image
-              src="https://www.reliancedigital.in/medias/One-Plus-10T-Mobile-Phone-493177297-i-1?context=bWFzdGVyfGltYWdlc3wxMjc4NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGI2L2hkNi85ODY5OTI1NDQ5NzU4LmpwZ3wxN2IyZDRmOTdjYWRmMTNhOTRkZWM5ODE1YTJjYTM5MTM4OGU3YTJjY2RjMjM0YzdmNjhjZDUxYzZjYTA4ODI1"
-              alt="Image"
-              width="200px"
-            />
+            <Image src={ele.images[0]} alt="Image" width="200px" />
           </Box>
           <Box display={"flex"} gap="2">
-            <Button>-</Button>
+            <Button
+              onClick={() => {
+                decqun();
+                ele.count = count - 1;
+                let total = 0;
+
+                for (let elee of cartData) {
+                  total += Number(elee.discounted_price) * Number(elee.count);
+                }
+                setTotal(total);
+              }}
+              disabled={count === 1}
+            >
+              -
+            </Button>
             <Button
               backgroundColor={"white"}
               disabled="true"
               fontWeight={"bold"}
             >
-              1
+              {count}
             </Button>
-            <Button>+</Button>
+            <Button
+              disabled={count === 8}
+              onClick={() => {
+                addqun();
+                ele.count = count + 1;
+                let total = 0;
+
+                for (let eele of cartData) {
+                  total += Number(eele.discounted_price) * Number(eele.count);
+                }
+                setTotal(total);
+              }}
+            >
+              +
+            </Button>
           </Box>
         </Flex>
         {/* //part2-line 46 to 71 */}
-        <Flex
-          flexDirection={"column"}
-          border={"0px solid green"}
-          textAlign={{
-            sm: "center",
-            md: "left",
-            lg: "left",
-            xl: "left",
-            "2xl": "left",
-          }}
-          gap={2}
-        >
-          <Heading
-            fontSize="14px"
-            color={" rgb(0, 51, 128)"}
-            fontWeight="600"
-            lineHeight={"1.1"}
-          >
-            OnePlus 10T 5G 128 GB, 8 GB RAM, Moonstone Black, Mobile Phone
-          </Heading>
-          <Heading
-            fontSize="14px"
-            color={"rgb(102, 102, 102)"}
-            fontWeight="600"
-            lineHeight={"1.1"}
-          >
-            1234567789
-          </Heading>
-          <Flex gap={1}>
-            <FcPlus/>
-          <Heading fontSize="14px" color={"red"}>
-           RECOMMENDED SERVICES/WARRANTY
-          </Heading>
-          </Flex>
+        <Flex flexDirection={"column"} border={"0px solid green"}>
+          <Flex gap={1}></Flex>
         </Flex>
         {/* //part3- line 71 to 99*/}
         <Flex
           flexDirection={"column"}
-          textAlign={{
-            sm: "center",
-            md: "right",
-            lg: "right",
-            xl: "right",
-            "2xl": "right",
-          }}
+          alignItems="center"
           gap={1}
           fontWeight="500"
         >
           <Heading fontSize="18px" color={"rgb(0, 0, 0)"}>
-            ₹49,999
+            Rs:-  {ele.discounted_price}
           </Heading>
           <Heading
             fontSize="14px"
@@ -119,22 +95,9 @@ const CartItem = () => {
             {" "}
             Free Shipping
           </Heading>
-          <Flex gap={1} justifyContent="flex-end">
-            <TbTruckDelivery size={20}/>
-          <Heading
-            fontSize="13px"
-            color={"rgb(0, 51, 128)"}
-            lineHeight={"20px"}
-          >
-            Standard Delivery: 18 Dec (Sun)-20 Dec (Tue)
-          </Heading>
-          </Flex>
-          <Heading fontSize="12px" color={"rgb(102, 102, 102)"}>
-            *Delivery assurance is subject to our delivery locations staying
-            open as per govt. regulations
-          </Heading>
+          <Flex gap={1} justifyContent="flex-end"></Flex>
         </Flex>
-      </Flex>
+      </Box>
       <Flex
         justifyContent={"space-between"}
         alignItems="center"
@@ -143,11 +106,16 @@ const CartItem = () => {
         fontWeight={"500"}
         background="transparent"
       >
-        <Box width={"49%"} borderRight="1px solid rgb(224, 224, 225)" textAlign={"center"}>
+        <Box
+          width={"49%"}
+          borderRight="1px solid rgb(224, 224, 225)"
+          textAlign={"center"}
+        >
           <Button
             backgroundColor={"white"}
             color=" rgb(23, 116, 239)"
             _hover={"backgroundColor:white"}
+            onClick={() => handelDelete(ele.id)}
           >
             Remove
           </Button>

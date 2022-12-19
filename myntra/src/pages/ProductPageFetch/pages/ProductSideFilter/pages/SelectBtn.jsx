@@ -4,9 +4,6 @@ import React, { useState } from "react";
 export const SelectBtn = ({Sortfunction}) => {
   const [select, setSelect] = useState("")
   const data = [
-    "Recommended",
-    "What's New",
-    "Popularity",
     "Better Discount",
     "Price High to Low",
     "Price Low to High",
@@ -18,11 +15,11 @@ export const SelectBtn = ({Sortfunction}) => {
   }
   return (
     <Box p="5px">
-      <Select
-        outline={"1px solid"}
-        borderRadius="0px"
-        color="black"
-        placeholder="Sort By Recommmended"
+      <select
+        outline = {"2px solid"}
+        borderRadius = "0px"
+        color = "black"
+        p="px"
         onChange={(e)=>handelselect(e.target.value)} value={select}
       >
         {data.map((ele, i) => {
@@ -32,7 +29,7 @@ export const SelectBtn = ({Sortfunction}) => {
             </option>
           );
         })}
-      </Select>
+      </select>
     </Box>
   );
 };

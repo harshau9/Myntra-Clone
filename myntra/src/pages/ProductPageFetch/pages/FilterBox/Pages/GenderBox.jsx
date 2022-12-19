@@ -33,12 +33,6 @@ export const GenderBox = ({Mens}) => {
             </Radio>
           </Box>
 
-          <Box>
-            <Radio colorScheme="red" value="Child">
-              <Text color="black">Child</Text>
-            </Radio>
-          </Box>
-
         </SimpleGrid>
       </RadioGroup>
     </Box>

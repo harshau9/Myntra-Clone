@@ -22,14 +22,6 @@ export const CrousalBox = ({ data, CrouselBox }) => {
     },
   };
 
-  const mendata = [
-    "https://th.bing.com/th/id/OIP.L51qzGCLtslIZn42Q0BFhgHaE7?pid=ImgDet&rs=1",
-    "https://th.bing.com/th/id/OIP.RsLrjZDqbT1cvevgpZgfuAHaF7?pid=ImgDet&w=900&h=720&rs=1",
-    "https://image.shutterstock.com/image-photo/sun-sets-below-clouds-260nw-18034228.jpg",
-    "https://live.staticflickr.com/3160/2916623923_8f9abf480f.jpg",
-    "https://external-preview.redd.it/ftHchWS2N8QJ1afAwhmrTEC6ahMKYhsj13EbIjAGQ14.png?format=pjpg&auto=webp&s=bed4376e0509aad5e70c2cb77d5d73136ab54709",
-    "https://th.bing.com/th/id/OIP.4O8HuqjQIUn1ZbTa6F_FngHaEw?pid=ImgDet&w=1881&h=1209&rs=1"
-  ]
 
 
 
@@ -58,9 +50,8 @@ export const CrousalBox = ({ data, CrouselBox }) => {
 
      {data.images.map((ele, i)=>{
         return(
-            <Box  h="13.5rem" key={i/Date.now()} >
-            <Image src={ele} />
-            {/* <Text bg="red"  color="red" > sadsad</Text> */}
+            <Box  h="13.5rem"  key={i/Date.now()} >
+            <Image w="100%" src={ele} />
           </Box>
         )
      })}

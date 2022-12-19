@@ -13,6 +13,8 @@ import AdminNavbar from "../AdminPage/Navbar";
 import AddHotel from "../AdminPage/Component/AddHotel";
 import Checkout from "../../pages/Checkout/Checkout";
 import Cart from "../../pages/cartPage/Cart";
+import ProductCart from "../../pages/cartPage/ProductCart";
+import { SingleCartPage } from "../../pages/cartPage/SingleCartPage";
 
 export const Allroutes = () => {
   return (
@@ -42,8 +44,10 @@ export const Allroutes = () => {
         }
       />
 
-      <Route path="/bag" element={<Cart />}></Route>
+      <Route path="/bag" element={<SingleCartPage />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
+      <Route path="bag/cart" element={<Cart />}></Route>
+      <Route path="bag/product" element={<ProductCart />}></Route>
     </Routes>
   );
 };

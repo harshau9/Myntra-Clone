@@ -10,7 +10,7 @@ export const FilterBox = ({Mens,cheakBox}) => {
 
   return (
     <> 
-    <Box w="25%" display={["none", "initial" ,"initial", "initial"]} >
+    <Box w="20%" display={["none", "initial" ,"initial", "initial"]} >
 
 
     {/* Gender Box here  */}

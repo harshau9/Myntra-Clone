@@ -7,7 +7,12 @@ import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
 import Footer from "../../components/Footer/Footer";
 import MainNavbar from "../../components/Navbar/MainNavbar";
 import Carousel1 from "./Carousel1";
+import { useNavigate } from "react-router-dom";
+
 export const Mens = () => {
+
+  const navigate = useNavigate();
+
   const ImagesFirstCol = [
     "https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/59b21fdd-7b4c-432f-83c0-e4d21110a9d41670400389365-Main-Banner_Desktop_02.jpg",
     "https://assets.myntassets.com/f_webp,w_245,c_limit,fl_progressive,dpr_2.0/assets/images/2022/12/7/a4e166ea-b571-4a7f-8326-700274ff08971670400389406-Main-Banner_Desktop_06.jpg",
@@ -124,7 +129,7 @@ export const Mens = () => {
 
       {/* Lowest Price Ever  */}
       <Box>
-        <SingleNameBox data={LowestBox} />
+        <SingleNameBox onClick={()=>navigate('/ProductPage')} data={LowestBox} />
       </Box>
 
       <Box>
