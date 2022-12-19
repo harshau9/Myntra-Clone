@@ -47,7 +47,7 @@ export default function LoginPage() {
 
   const HandleSetNumber = (UserNumber) => {
     if (UserNumber.length == 10) {
-      if (UserNumber === "9572365331") {
+      if (UserNumber === "9572365331" || "7019722654" || "9721085620" || "8318739431" || "9109760078") {
         setadminPage(true);
         SetCountinueBtn(true);
         setInterval(() => {
