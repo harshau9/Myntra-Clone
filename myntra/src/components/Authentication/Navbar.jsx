@@ -1,4 +1,3 @@
-import { ReactNode, useState } from "react";
 import {
   Box,
   Flex,
@@ -14,10 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
-import { IoIosHeartEmpty } from "react-icons/io";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import SignupPage from "./SignupPage";
-import LoginPage from "./LoginPage";
 import { Link } from "react-router-dom";
 import Myntralogo from "../../components/Navbar/NavFolder/myn.png";
 

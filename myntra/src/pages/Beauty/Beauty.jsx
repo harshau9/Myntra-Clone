@@ -35,7 +35,7 @@ const getuserData = async () => {
 export const Beauty = () => {
   const [data, setdata] = useState([]);
   const [value, setValue] = useState("");
-  const [val, setVal] = useState("");
+  
 
   const [boxwidth, setBoxwidth] = useState("");
   const [userData, setUserData] = useState({});
@@ -69,7 +69,7 @@ export const Beauty = () => {
     // console.log("30", page);
 
     setLoading(true);
-    if (value === ""||val==="") {
+    if (value === "") {
       await axios
         .get(
           `https://myntradata-39agumdo9-aloki9singh.vercel.app/makeup?_page=${page}&_limit=20`
@@ -83,7 +83,7 @@ export const Beauty = () => {
     } else {
       await axios
         .get(
-          `https://myntradata-39agumdo9-aloki9singh.vercel.app/makeup?_page=${page}&_limit=20&product_type=${value}&brand=${val}`
+          `https://myntradata-39agumdo9-aloki9singh.vercel.app/makeup?_page=${page}&_limit=20&product_type=${value}`
         )
         .then((res) => {
           setLoading(false);
@@ -93,11 +93,11 @@ export const Beauty = () => {
     }
   }
   useEffect(() => {
-    getData(page, value,val);
+    getData(page, value);
     getuserData()
       .then((res) => setUserData(res))
       .catch((err) => console.log(err));
-  }, [page, value,val]);
+  }, [page, value]);
   console.log(data);
 
   const handlePage = (val) => {
@@ -107,7 +107,7 @@ export const Beauty = () => {
   const handleAddToCart = (el) => {
     if (isAuth === true) {
       postUserCartData({ CartPage: [el] })
-        .then((res) => {
+        .then(() => {
           toast({
             title: "Successfully",
             description: "Product added successfully",
@@ -272,113 +272,7 @@ export const Beauty = () => {
             </Box>
             {/* 2nd */}
 
-            <Box border={"1px solid lightgray"} p="10px">
-              <Text color={"black"} textAlign={"start"} mt="5px" mb="10px">
-                <Text as="b">BRAND</Text>
-              </Text>
-              {/* onChange={setValue} value={value} */}
-              <CheckboxGroup>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("nyx");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">NYX</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("dior");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Dior</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("iman");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">IMAN</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("benefit");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Benefit</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("smashbox");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">SmashBox</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("physicians formula");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Physicians Formula</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("pure anada");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Pure Anada</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("maybelline");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Maybelline</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setVal("annabelle");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Annabelle</Text>
-                  </Checkbox>
-                </Box>
-              </CheckboxGroup>
-            </Box>
+           
             {/* / */}
           </Box>
 
@@ -404,7 +298,7 @@ export const Beauty = () => {
                   <> Loading...</>
                 ) : (
                   <>
-                    {data.map((data, i) => (
+                    {data.map((data) => (
                       <Box
                         w={"210px"}
                         key={data.id}

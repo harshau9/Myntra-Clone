@@ -47,7 +47,9 @@ export default function LoginPage() {
 
   const HandleSetNumber = (UserNumber) => {
     if (UserNumber.length == 10) {
-      if (UserNumber === "9572365331" || "7019722654" || "9721085620" || "8318739431" || "9109760078") {
+      if (
+        UserNumber === "9572365331"
+      ) {
         setadminPage(true);
         SetCountinueBtn(true);
         setInterval(() => {
@@ -128,9 +130,8 @@ export default function LoginPage() {
         minH={"100vh"}
         align={"center"}
         justify={"center"}
-        backgroundColor="#fdedf0"
-        border={"none"}
-      >
+        backgroundColor='#fdedf0'
+        border={"none"}>
         <Stack
           spacing={4}
           w={"full"}
@@ -143,24 +144,22 @@ export default function LoginPage() {
             md: "550px",
             lg: "130px",
             xl: "100px",
-          }}
-        >
+          }}>
           <img
-            src="https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg"
-            alt="74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500"
-            border="0"
-          ></img>
-          <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
+            src='https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg'
+            alt='74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500'
+            border='0'></img>
+          <Flex p={6} flexDirection='column' gap={5} paddingBottom='100px'>
             {otherNumber && (
               <Center>
                 <Watch
-                  height="80"
-                  width="80"
-                  radius="48"
-                  color="#4fa94d"
-                  ariaLabel="watch-loading"
+                  height='80'
+                  width='80'
+                  radius='48'
+                  color='#4fa94d'
+                  ariaLabel='watch-loading'
                   wrapperStyle={{}}
-                  wrapperClassName=""
+                  wrapperClassName=''
                   visible={true}
                 />
               </Center>
@@ -169,11 +168,11 @@ export default function LoginPage() {
               <Center>
                 <Blocks
                   visible={true}
-                  height="80"
-                  width="80"
-                  ariaLabel="blocks-loading"
+                  height='80'
+                  width='80'
+                  ariaLabel='blocks-loading'
                   wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
+                  wrapperClass='blocks-wrapper'
                 />
               </Center>
             ) : changeComponent ? (
@@ -188,25 +187,24 @@ export default function LoginPage() {
             {adminPage && <VerifyAdmin />}
             {adminPage && (
               <Center>
-                <Heading fontSize={"sm"} color="red">
+                <Heading fontSize={"sm"} color='red'>
                   This Secret Page will Close in {Count} Seconds and The Page
                   will refresh again
                 </Heading>
               </Center>
             )}
             <Stack>
-              <Text color="gray.500">
+              <Text color='gray.500'>
                 Have Trouble logging in ?{" "}
                 <a
-                  href="https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F"
-                  target={"_blank"}
-                >
+                  href='https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F'
+                  target={"_blank"} rel="noreferrer">
                   <span style={{ color: "red" }}>Get help</span>
                 </a>
               </Text>
             </Stack>
             <Stack>
-              <Text color="gray.500">
+              <Text color='gray.500'>
                 New User ?{" "}
                 <Link to={"/Signup"}>
                   <span style={{ color: "red" }}> Signup</span>

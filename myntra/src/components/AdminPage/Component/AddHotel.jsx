@@ -9,9 +9,6 @@ import {
   useDisclosure,
   Stack,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   useToast,
   Button,
   useColorMode,
@@ -26,7 +23,6 @@ import {
 import {
   HamburgerIcon,
   CloseIcon,
-  Search2Icon,
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
@@ -201,7 +197,7 @@ function AddHotel() {
                     <a
                       href="https://mock-server-trz7.onrender.com/"
                       target={"_blank"}
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       <MenuItem>Your Servers</MenuItem>
                     </a>

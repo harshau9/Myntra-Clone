@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Update from "../../pages/Home&Hotels/Update";
 import {
   Box,
   Flex,
@@ -8,9 +7,6 @@ import {
   useDisclosure,
   Stack,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   useToast,
   Button,
   useColorMode,
@@ -25,7 +21,6 @@ import {
 import {
   HamburgerIcon,
   CloseIcon,
-  Search2Icon,
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
@@ -202,7 +197,7 @@ function AdminNavbar() {
                     <a
                       href="https://mock-server-trz7.onrender.com/"
                       target={"_blank"}
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >
                       <MenuItem>Your Servers</MenuItem>
                     </a>
