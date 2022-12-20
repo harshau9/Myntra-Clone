@@ -25,7 +25,7 @@ Team Members :-
 Database-: myntradata-39agumdo9-aloki9singh.vercel.app
 
 
- 1. Navbar and footer with home page ---> Harsha and Alok 
+ 1. Navbar and footer with home page and Beauty Page ---> Harsha and Alok 
  2. Login functionality and page --> Saurav
  3. Mens & womens  --> Dipratna Sakhare
  4. Logo ,home&living ,Kids --> Pushpendra Singh
@@ -45,5 +45,6 @@ Database-: myntradata-39agumdo9-aloki9singh.vercel.app
    ### Usable components:-
 
            1.Footer.jsx
+           2.Navbar.jsx
            
 
