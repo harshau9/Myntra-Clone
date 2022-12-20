@@ -22,31 +22,47 @@ import { Spinner } from "@chakra-ui/react";
 import MainNavbar from "../../components/Navbar/MainNavbar";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const getuserData = async () => {
+  try {
+    let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
+    return await res.data;
+  } catch (e) {
+    return e;
+  }
+};
 
 export const Beauty = () => {
   const [data, setdata] = useState([]);
   const [value, setValue] = useState("");
 
   const [boxwidth, setBoxwidth] = useState("");
-  // const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({});
   const [Loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [Hover, setHover] = useState(false);
-  // const { id, isAuth } = userData;
-  // const [preferences, setPreferences] = useState({
-  //   lipstick: false,
-  //   eyeliner: false,
-  //   eyeshadow: false,
-  //   mascara: false,
-  //   blush: false,
-  //   foundation: false,
-  //   lip_liner: false,
-  //   lipstick: false,
-  //   bronzer: false,
-  // });
+  const { id, isAuth } = userData;
+  const navigate = useNavigate();
 
   const [CrouselBox, setCrouselBox] = useState(false);
   const toast = useToast();
+  const postUserCartData = async (data) => {
+    try {
+      const res = await axios.patch(
+        `https://mock-server-trz7.onrender.com/User-Data/${id}`,
+        data
+      );
+      return await res.data;
+    } catch (e) {
+      toast({
+        title: "Something went wrong",
+        description: `${e.message}`,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
   // const totalPages = Math.floor(data.length / 25);
   async function getData(page, value) {
     // console.log("30", page);
@@ -61,7 +77,8 @@ export const Beauty = () => {
           setLoading(false);
           setdata(res.data);
           // console.log(res.data);
-        });
+        })
+        .catch((err) => console.log(err));
     } else {
       await axios
         .get(
@@ -76,12 +93,40 @@ export const Beauty = () => {
   }
   useEffect(() => {
     getData(page, value);
+    getuserData()
+      .then((res) => setUserData(res))
+      .catch((err) => console.log(err));
   }, [page, value]);
   console.log(data);
 
   const handlePage = (val) => {
     let value = val + page;
     setPage(value);
+  };
+  const handleAddToCart = (el) => {
+    if (isAuth === true) {
+      postUserCartData({ CartPage: [el] })
+        .then((res) => {
+          toast({
+            title: "Successfully",
+            description: "Product added successfully",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+        })
+        .catch((err) => {
+          toast({
+            title: "Something went wrong",
+            description: `${err.message}`,
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        });
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -109,7 +154,6 @@ export const Beauty = () => {
                 FILTER
               </Text>
               <Spacer />
-              {/* <Text color="red">CLEAR ALL</Text> */}
             </Flex>
           </Box>
         </Flex>
@@ -126,8 +170,6 @@ export const Beauty = () => {
               <CheckboxGroup>
                 <Box textAlign={"start"}>
                   <Checkbox
-                    name="lipstick"
-                    // togglePreference={togglePreference}
                     defaultChecked={false}
                     onChange={() => {
                       setValue("lipstick");
@@ -140,7 +182,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("lip_liner");
                     }}
@@ -152,7 +193,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("foundation");
                     }}
@@ -164,7 +204,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("eyeliner");
                     }}
@@ -176,7 +215,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("eyeshadow");
                     }}
@@ -188,7 +226,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("eyebrow");
                     }}
@@ -200,7 +237,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("blush");
                     }}
@@ -212,7 +248,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("bronzer");
                     }}
@@ -224,7 +259,6 @@ export const Beauty = () => {
                 <Box textAlign={"start"}>
                   <Checkbox
                     defaultChecked={false}
-                    // togglePreference={togglePreference}
                     onChange={() => {
                       setValue("mascara");
                     }}
@@ -336,7 +370,7 @@ export const Beauty = () => {
                                   <Text textAlign={"start"}>
                                     <BsCart color="black" />
                                   </Text>{" "}
-                                  <Text color="black">ADD TO CART</Text>
+                                  <Text color="black" onClick={() => handleAddToCart(data)}>ADD TO CART</Text>
                                 </Button>
                               </Grid>
                             </Box>
