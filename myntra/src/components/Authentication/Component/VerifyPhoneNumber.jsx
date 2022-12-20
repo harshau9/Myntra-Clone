@@ -104,7 +104,7 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
   return (
     <Stack spacing={4}>
       <Center>
-        <Heading lineHeight={1.1} fontSize="xl">
+        <Heading lineHeight={1.1} fontSize='xl'>
           Verify your Phone Number
         </Heading>
       </Center>
@@ -115,27 +115,27 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
         <Center>
           <Blocks
             visible={true}
-            height="80"
-            width="80"
-            ariaLabel="blocks-loading"
+            height='80'
+            width='80'
+            ariaLabel='blocks-loading'
             wrapperStyle={{}}
-            wrapperClass="blocks-wrapper"
+            wrapperClass='blocks-wrapper'
           />
         </Center>
       )}
 
-      <Center fontSize={{ base: "sm", sm: "md" }} fontWeight="bold">
+      <Center fontSize={{ base: "sm", sm: "md" }} fontWeight='bold'>
         {UserNumber}
       </Center>
       {PatchUserloading ? (
         <Center>
           <Blocks
             visible={true}
-            height="80"
-            width="80"
-            ariaLabel="blocks-loading"
+            height='80'
+            width='80'
+            ariaLabel='blocks-loading'
             wrapperStyle={{}}
-            wrapperClass="blocks-wrapper"
+            wrapperClass='blocks-wrapper'
           />
         </Center>
       ) : (
@@ -144,7 +144,7 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
             <HStack>
               <Input
                 onChange={(e) => setPassword(e.target.value)}
-                type="password"
+                type='password'
               />
             </HStack>
           </Center>
@@ -158,8 +158,7 @@ function VerfiyPhoneNumber({ UserNumber, id }) {
             bg: "red.700",
           }}
           disabled={btn}
-          onClick={HandleVerfiyButton}
-        >
+          onClick={HandleVerfiyButton}>
           Verify
         </Button>
       </Stack>

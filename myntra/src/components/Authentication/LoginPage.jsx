@@ -47,9 +47,7 @@ export default function LoginPage() {
 
   const HandleSetNumber = (UserNumber) => {
     if (UserNumber.length == 10) {
-      if (
-        UserNumber === "9572365331"
-      ) {
+      if (UserNumber === "9572365331") {
         setadminPage(true);
         SetCountinueBtn(true);
         setInterval(() => {
@@ -198,7 +196,8 @@ export default function LoginPage() {
                 Have Trouble logging in ?{" "}
                 <a
                   href='https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F'
-                  target={"_blank"} rel="noreferrer">
+                  target={"_blank"}
+                  rel='noreferrer'>
                   <span style={{ color: "red" }}>Get help</span>
                 </a>
               </Text>

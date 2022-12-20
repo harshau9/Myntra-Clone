@@ -17,26 +17,26 @@ function PhoneNumberInput({ HandleSetNumber, ContinueBtn }) {
 
   return (
     <>
-      <Heading lineHeight={1.1} fontSize="20px">
+      <Heading lineHeight={1.1} fontSize='20px'>
         Login or Signup
       </Heading>
 
       <InputGroup>
-        <InputLeftAddon children="+91" />
+        <InputLeftAddon children='+91' />
         <Input
-          type="tel"
-          placeholder="Mobile Number"
+          type='tel'
+          placeholder='Mobile Number'
           onChange={(e) => setnum(e.target.value)}
           required
         />
       </InputGroup>
-      <Text fontSize={{ base: "sm", sm: "md" }} color="gray.500">
+      <Text fontSize={{ base: "sm", sm: "md" }} color='gray.500'>
         By continuing, I agree to the{" "}
-        <a href="https://www.myntra.com/termsofuse" target={"_blank"}>
+        <a href='https://www.myntra.com/termsofuse' target={"_blank"}>
           <span style={{ color: "red" }}>Terms of Use</span>
         </a>{" "}
         &{" "}
-        <a href="https://www.myntra.com/privacypolicy" target={"_blank"}>
+        <a href='https://www.myntra.com/privacypolicy' target={"_blank"}>
           <span style={{ color: "red" }}>Privacy Policy</span>
         </a>
       </Text>
@@ -48,8 +48,7 @@ function PhoneNumberInput({ HandleSetNumber, ContinueBtn }) {
             bg: "red.700",
           }}
           onClick={HandleContinueOnClick}
-          disabled={ContinueBtn}
-        >
+          disabled={ContinueBtn}>
           CONTINUE
         </Button>
       </Stack>

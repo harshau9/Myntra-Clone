@@ -78,45 +78,45 @@ const VerifyAdmin = () => {
   return (
     <Stack>
       <Center>
-        <Heading as="p" fontSize={"18px"} fontFamily="sans-serif">
+        <Heading as='p' fontSize={"18px"} fontFamily='sans-serif'>
           You need to fill Secert Code
         </Heading>
       </Center>
       <FormControl>
         <Center>
-        {loading ? (
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="MagnifyingGlass-loading"
-            wrapperStyle={{}}
-            wrapperClass="MagnifyingGlass-wrapper"
-            glassColor="#c0efff"
-            color="#e15b64"
-          />
-        ):
-          <HStack display={!loading&&"hidden"}>
-            <PinInput otp mask>
-              <PinInputField
-                onChange={(e) => setPinOne(e.target.value)}
-                value={PinOne}
-              />
-              <PinInputField
-                onChange={(e) => setPinTwo(e.target.value)}
-                value={PinTwo}
-              />
-              <PinInputField
-                onChange={(e) => setPinThree(e.target.value)}
-                value={PinThree}
-              />
-              <PinInputField
-                onChange={(e) => setPinFour(e.target.value)}
-                value={PinFour}
-              />
-            </PinInput>
-          </HStack>
-        }
+          {loading ? (
+            <MagnifyingGlass
+              visible={true}
+              height='80'
+              width='80'
+              ariaLabel='MagnifyingGlass-loading'
+              wrapperStyle={{}}
+              wrapperClass='MagnifyingGlass-wrapper'
+              glassColor='#c0efff'
+              color='#e15b64'
+            />
+          ) : (
+            <HStack display={!loading && "hidden"}>
+              <PinInput otp mask>
+                <PinInputField
+                  onChange={(e) => setPinOne(e.target.value)}
+                  value={PinOne}
+                />
+                <PinInputField
+                  onChange={(e) => setPinTwo(e.target.value)}
+                  value={PinTwo}
+                />
+                <PinInputField
+                  onChange={(e) => setPinThree(e.target.value)}
+                  value={PinThree}
+                />
+                <PinInputField
+                  onChange={(e) => setPinFour(e.target.value)}
+                  value={PinFour}
+                />
+              </PinInput>
+            </HStack>
+          )}
         </Center>
       </FormControl>
       <Stack>
@@ -127,14 +127,11 @@ const VerifyAdmin = () => {
             bg: "red.700",
           }}
           onClick={HandleVerify}
-          disabled={btn}
-        >
+          disabled={btn}>
           Verify
         </Button>
       </Stack>
-      <Stack>
-        
-      </Stack>
+      <Stack></Stack>
     </Stack>
   );
 };

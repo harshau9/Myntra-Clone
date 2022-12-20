@@ -172,9 +172,8 @@ export default function SignupPage() {
         minH={"100vh"}
         align={"center"}
         justify={"center"}
-        backgroundColor="#fdedf0"
-        border={"none"}
-      >
+        backgroundColor='#fdedf0'
+        border={"none"}>
         <Stack
           spacing={4}
           w={"full"}
@@ -188,23 +187,21 @@ export default function SignupPage() {
             lg: "200px",
             xl: "100px",
           }}
-          marginTop="25px"
-        >
+          marginTop='25px'>
           <img
-            src="https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg"
-            alt="74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500"
-            border="0"
-          ></img>
-          <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
+            src='https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg'
+            alt='74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500'
+            border='0'></img>
+          <Flex p={6} flexDirection='column' gap={5} paddingBottom='100px'>
             {loading ? (
               <Center>
                 <Blocks
                   visible={true}
-                  height="80"
-                  width="80"
-                  ariaLabel="blocks-loading"
+                  height='80'
+                  width='80'
+                  ariaLabel='blocks-loading'
                   wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
+                  wrapperClass='blocks-wrapper'
                 />
               </Center>
             ) : (
@@ -221,43 +218,43 @@ export default function SignupPage() {
                   <Stack>
                     <HStack>
                       <Box>
-                        <FormControl id="FirstName" isRequired>
+                        <FormControl id='FirstName' isRequired>
                           <FormLabel>First Name</FormLabel>
                           <Input
-                            type="text"
+                            type='text'
                             onChange={(e) => setFirstName(e.target.value)}
                             value={FirstName}
                           />
                         </FormControl>
                       </Box>
                       <Box>
-                        <FormControl id="LastName" isRequired>
+                        <FormControl id='LastName' isRequired>
                           <FormLabel>Last Name</FormLabel>
                           <Input
-                            type="text"
+                            type='text'
                             onChange={(e) => setLastName(e.target.value)}
                             value={LastName}
                           />
                         </FormControl>
                       </Box>
                     </HStack>
-                    <FormControl id="PhoneNumber" isRequired>
+                    <FormControl id='PhoneNumber' isRequired>
                       <FormLabel>Phone Number</FormLabel>
                       <Input
-                        type="number"
+                        type='number'
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         value={PhoneNumber}
                       />
                     </FormControl>
-                    <FormControl id="Email" isRequired>
+                    <FormControl id='Email' isRequired>
                       <FormLabel>Email address</FormLabel>
                       <Input
-                        type="Email"
+                        type='Email'
                         onChange={(e) => setEmail(e.target.value)}
                         value={Email}
                       />
                     </FormControl>
-                    <FormControl id="Password" isRequired>
+                    <FormControl id='Password' isRequired>
                       <FormLabel>Password</FormLabel>
                       <InputGroup>
                         <Input
@@ -270,8 +267,7 @@ export default function SignupPage() {
                             variant={"ghost"}
                             onClick={() =>
                               setShowPassword((showPassword) => !showPassword)
-                            }
-                          >
+                            }>
                             {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                           </Button>
                         </InputRightElement>
@@ -281,26 +277,25 @@ export default function SignupPage() {
                       <Center>
                         <Radio
                           visible={true}
-                          height="80"
-                          width="80"
-                          ariaLabel="radio-loading"
+                          height='80'
+                          width='80'
+                          ariaLabel='radio-loading'
                           wrapperStyle={{}}
-                          wrapperClass="radio-wrapper"
+                          wrapperClass='radio-wrapper'
                         />
                       </Center>
                     ) : (
                       <Stack spacing={10} pt={2}>
                         <Button
-                          loadingText="Submitting"
-                          size="lg"
+                          loadingText='Submitting'
+                          size='lg'
                           bg={"red.500"}
                           color={"white"}
                           _hover={{
                             bg: "red.800",
                           }}
                           onClick={HandleButton}
-                          disabled={btn}
-                        >
+                          disabled={btn}>
                           Sign up
                         </Button>
                       </Stack>
@@ -310,18 +305,17 @@ export default function SignupPage() {
               </Stack>
             )}
             <Stack>
-              <Text color="gray.500">
+              <Text color='gray.500'>
                 Have Trouble logging in ?{" "}
                 <a
-                  href="https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F"
-                  target={"_blank"}
-                >
+                  href='https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F'
+                  target={"_blank"}>
                   <span style={{ color: "red" }}>Get help</span>
                 </a>
               </Text>
             </Stack>
             <Stack>
-              <Text color="gray.500">
+              <Text color='gray.500'>
                 Already a User ?{" "}
                 <Link to={"/login"}>
                   <span style={{ color: "red" }}>Login</span>

@@ -29,11 +29,10 @@ const NavLink = ({ children }) => (
       textDecoration: "underline",
       color: "red",
     }}
-    fontSize="sm"
+    fontSize='sm'
     fontWeight={500}
     href={"#"}
-    textTransform="uppercase"
-  >
+    textTransform='uppercase'>
     {children}
   </Box>
 );
@@ -44,10 +43,9 @@ function Navbar() {
   return (
     <>
       <Box
-        padding="10px"
-        boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px"
-        box
-      >
+        padding='10px'
+        boxShadow='rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px'
+        box>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -59,14 +57,13 @@ function Navbar() {
           <HStack spacing={10} alignItems={"center"}>
             <Box marginLeft={"50px"}>
               <Link to={"/"}>
-                <Image src={Myntralogo} width={16} p="1.5" />
+                <Image src={Myntralogo} width={16} p='1.5' />
               </Link>
             </Box>
             <HStack
               as={"nav"}
               spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
+              display={{ base: "none", md: "flex" }}>
               {navLI.map((link) => (
                 <Link
                   to={
@@ -81,8 +78,7 @@ function Navbar() {
                       : link == "Studio"
                       ? "/ProductPage"
                       : undefined
-                  }
-                >
+                  }>
                   {" "}
                   <NavLink key={link}>{link}</NavLink>
                 </Link>
@@ -93,17 +89,17 @@ function Navbar() {
             <Box display={{ base: "none", xl: "flex", lg: "flex" }}>
               <InputGroup>
                 <InputLeftElement
-                  pointerEvents="none"
-                  children={<Search2Icon color="gray.300" />}
+                  pointerEvents='none'
+                  children={<Search2Icon color='gray.300' />}
                 />
                 <Input
-                  type="text"
-                  placeholder="Search for products"
+                  type='text'
+                  placeholder='Search for products'
                   width={{ lg: "200px", "2xl": "500px" }}
                 />
               </InputGroup>
             </Box>
-            <Flex gap={"1rem"} paddingX="10px" marginRight={{ lg: "50px" }}>
+            <Flex gap={"1rem"} paddingX='10px' marginRight={{ lg: "50px" }}>
               {/* <Box>
                 <IoIosHeartEmpty size={21} />
                 <Heading as={"p"} fontSize="10px">
@@ -113,7 +109,7 @@ function Navbar() {
               <Link to={"/bag"}>
                 <Box>
                   <HiOutlineShoppingBag size={21} />
-                  <Heading as={"p"} fontSize="10px">
+                  <Heading as={"p"} fontSize='10px'>
                     BAG
                   </Heading>
                 </Box>
@@ -127,9 +123,8 @@ function Navbar() {
             <Stack
               as={"nav"}
               spacing={4}
-              alignContent="center"
-              alignItems={"center"}
-            >
+              alignContent='center'
+              alignItems={"center"}>
               {navLI.map((link) => (
                 <Link
                   to={
@@ -144,8 +139,7 @@ function Navbar() {
                       : link == "Studio"
                       ? "/ProductPage"
                       : undefined
-                  }
-                >
+                  }>
                   {" "}
                   <NavLink key={link}>{link}</NavLink>
                 </Link>
