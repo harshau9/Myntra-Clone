@@ -9,6 +9,7 @@ import PrivateRouteAdminPage from "../PrivateRoute/AdminPage";
 import { Mens } from "../../pages/Men/Mens";
 import { Womens } from "../../pages/Women/Womens";
 import { ProductPageApi } from "../../pages/ProductPageFetch/ProductPageApi";
+import {Beauty } from "../../pages/Beauty/Beauty";
 import AdminNavbar from "../AdminPage/Navbar";
 import AddHotel from "../AdminPage/Component/AddHotel";
 import Checkout from "../../pages/Checkout/Checkout";
@@ -24,6 +25,7 @@ export const Allroutes = () => {
       <Route path="/women" element={<Womens />} />
       <Route path="/hotel" element={<Hotel />} />
       <Route path="/kids" element={<Kids />} />
+      <Route path="/beauty" element={<Beauty/>} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/ProductPage" element={<ProductPageApi />} />
