@@ -79,7 +79,7 @@ const Navbar = () => {
                 HOME & LIVING
               </p>
               <p
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/beauty")}
                 onMouseEnter={() => hoverHandler("BEAUTY")}
               >
                 BEAUTY
