@@ -8,9 +8,9 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import MyntraLogo from "../pages/myn.png";
-import { FaRegUser } from "react-icons/fa";
+import { SlHandbag } from "react-icons/sl";
+import { CiUser } from "react-icons/ci";
+import MyntraLogo from "../pages/myn.png"
 import { Link } from "react-router-dom";
 const Links = ["Men", "Women", "Kids", "Home & Living", "BEAUTY", "Studio"];
 
@@ -24,8 +24,8 @@ const NavLink = ({ children }) => (
       textDecoration: "underline",
       cursor: "pointer",
     }}
-    fontSize="md"
-    fontWeight={500}
+    fontSize="sm"
+    fontWeight={400}
     textTransform="uppercase"
   >
     {children}
@@ -84,24 +84,24 @@ export default function Navbar() {
 
           <Flex
             border="0px solid red"
-            gap={"2"}
+            gap={"6"}
             alignItems={"center"}
             justifyContent={"center"}
           >
             <Link to="/bag">
               <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
-                <HiOutlineShoppingBag size={25} />
+                <SlHandbag size={20} />
                 <Heading as={"p"} fontSize="x-small">
-                  BAG
+                  Bag
                 </Heading>
               </Flex>
             </Link>
 
             <Link to="/signup">
               <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
-                <FaRegUser size={25} color="black" />
+                <CiUser size={20} color="black" />
                 <Heading as={"p"} fontSize="x-small">
-                  PROFILE
+                  Profile
                 </Heading>
               </Flex>
             </Link>
