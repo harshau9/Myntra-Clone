@@ -4,7 +4,7 @@ import {
   compose,
   legacy_createStore as createStore,
 } from "redux";
-import { Reducer } from "./reducer";
+import { Reducer } from "./homeHotel/reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({

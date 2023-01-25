@@ -12,15 +12,12 @@ import {
   CheckboxGroup,
   Container,
 } from "@chakra-ui/react";
-import { BsHeart } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 
 import { BsStar } from "react-icons/bs";
 import { Spinner } from "@chakra-ui/react";
 
-import MainNavbar from "../../components/Navbar/MainNavbar";
-import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const getuserData = async () => {
@@ -132,8 +129,7 @@ export const Beauty = () => {
 
   return (
     <>
-      <MainNavbar />
-
+  
       <Box width={"95%"} gap="10px" m={"auto"} bg="white">
         <Box
           p="10px"
@@ -400,7 +396,6 @@ export const Beauty = () => {
           <Button onClick={() => handlePage(1)}>NEXT</Button>
         </Box>
       </Container>
-      <Footer />
     </>
   );
 };

@@ -9,10 +9,8 @@ import {
   Toast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/Footer/Footer";
 import Pagination from "./Pagination";
 import "./Carousel.css";
-import MainNavbar from "../../components/Navbar/MainNavbar";
 import Carousel1 from "./Carousel1";
 let totalPages = 10;
 const Kids = () => {
@@ -83,7 +81,6 @@ const Kids = () => {
   };
   return (
     <>
-      <MainNavbar />
       <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
         {error && (
           <Alert w={"400px"} m={"auto"} status="error">
@@ -157,7 +154,6 @@ const Kids = () => {
         <Box m={"1% 0"} textAlign="center" >
           <Pagination totalPages={totalPages} currentPage={page} handlePageChange={handlePageChange} />
         </Box>
-        <Footer />
       </Box>
     </>
   );

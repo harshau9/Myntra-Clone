@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import { store } from "./pages/Home&Hotels/Redux/store";
+import { store } from "./Redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

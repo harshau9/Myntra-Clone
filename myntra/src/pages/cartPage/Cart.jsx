@@ -10,8 +10,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import MainNavbar from "../../components/Navbar/MainNavbar";
-import Footer from "../../components/Footer/Footer";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -61,7 +59,7 @@ const Cart = () => {
 
   return (
     <div>
-      <MainNavbar />
+     
       <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
         {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
         <Box display={"flex"} justifyContent="space-around" mb={"1%"}>
@@ -137,7 +135,6 @@ const Cart = () => {
             Checkout
           </Button>
         </Box>
-        <Footer />
       </Box>
     </div>
   );

@@ -1,10 +1,8 @@
-import { ReactNode } from "react";
 import {
   Box,
   Container,
   Stack,
   HStack,
-  VStack,
   SimpleGrid,
   Text,
   Link,
@@ -19,13 +17,6 @@ import Google from "./googleplay.png";
 import original from "./original.png";
 import returnh from "./returnh.png";
 
-const ListHeader = ({ children }) => {
-  return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
-  );
-};
 
 const SocialButton = ({ children, label, href }) => {
   return (

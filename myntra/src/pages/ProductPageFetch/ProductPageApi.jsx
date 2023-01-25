@@ -1,7 +1,6 @@
-import { Box, Flex, Spacer, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
-import ApiFetchData from "./pages/ApiCall/ApiFetchData";
 import { Apimintzone } from "./pages/ApiCall/ApiFetchData";
 
 import { FilterBox } from "./pages/FilterBox/FilterBox";
@@ -10,8 +9,6 @@ import { ProductBox } from "./pages/ProductBox/ProductBox";
 import { Spinner } from "@chakra-ui/react";
 
 import { ProductSideFiter } from "./pages/ProductSideFilter/ProductSideFiter";
-import MainNavbar from "../../components/Navbar/MainNavbar";
-import Footer from "../../components/Footer/Footer";
 
 export const ProductPageApi = () => {
   const [data, setdata] = useState([]);
@@ -126,7 +123,6 @@ export const ProductPageApi = () => {
 
   return (
     <>
-    <MainNavbar/>
     <Box width={"95%"} gap="10px" m={"auto"} bg="white">
       <Box
         p="10px"
@@ -172,7 +168,6 @@ export const ProductPageApi = () => {
         )}
       </Flex>
     </Box>
-    <Footer/>
     </>
   );
 };

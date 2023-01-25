@@ -1,13 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Box, Spinner, useToast, Image, Heading, Button, Text, SimpleGrid, filter } from "@chakra-ui/react";
+import { Box, Spinner, useToast, Heading, Button, Text, SimpleGrid } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import MainNavbar from '../../components/Navbar/MainNavbar';
-import Footer from '../../components/Footer/Footer';
-import CartItem from './CartItem';
 
-import CheckoutBox from "./CheckoutBox"
-import MyCartLength from './MyCartLength';
 import MainCartPage from './MainCartPage';
 
 const ProductCart = () => {
@@ -49,7 +44,7 @@ const ProductCart = () => {
            setCartData(update)
     
         postUserCartData({CartPage2: update})
-        .then(res => {toast({
+        .then(() => {toast({
           title: 'Succesfull',
           description: 'Remove Succesfull',
           status: 'success',
@@ -97,7 +92,6 @@ const ProductCart = () => {
 
     return (
         <div>
-           <MainNavbar />
             <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
                 {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" /> }
                 <Box display={"flex"} justifyContent="space-around" mb={"1%"}>
@@ -113,7 +107,6 @@ const ProductCart = () => {
                 <Box display={"flex"} justifyContent="center" alignItems={"center"}>
                     <Button variant="solid" colorScheme={"teal"} m={"1rem 0"} w="100px"  onClick={handleCheckout}>Checkout</Button>
                 </Box>
-                <Footer />
             </Box>
         </div>
     );

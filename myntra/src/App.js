@@ -1,11 +1,12 @@
-import MainNavbar from "./components/Navbar/MainNavbar";
-import { Allroutes } from "./components/Routes/Allroutes";
-import Checkout from "./pages/Checkout/Checkout";
-
+import { Allroutes } from "./Routes/Allroutes";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div>
+      <Navbar/>
       <Allroutes />
+      <Footer/>
     </div>
   );
 }

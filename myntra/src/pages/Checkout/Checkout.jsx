@@ -6,8 +6,6 @@ import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Img } from '@chakra-ui/image';
 import CheckoutAlert from './CheckoutAlert';
-import MainNavbar from '../../components/Navbar/MainNavbar';
-import Footer from '../../components/Footer/Footer';
 
 const Checkout = () => {
     const nevigate = useNavigate();
@@ -22,7 +20,7 @@ const Checkout = () => {
     console.log(imageSrc);
     return (
         <Box>
-            <MainNavbar />
+        
 
             <Box mt={"5%"}>
                 {imageSrc === true ? <CheckoutAlert /> :
@@ -57,7 +55,7 @@ const Checkout = () => {
                         </Box>
                     </Box>}
             </Box>
-            <Footer />
+         
         </Box>
     );
 }

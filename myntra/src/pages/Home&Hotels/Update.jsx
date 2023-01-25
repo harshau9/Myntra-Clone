@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { addProduct, deleteProduct, getProduct, updateProduct } from "./Redux/actions";
+import { addProduct, deleteProduct, getProduct, updateProduct } from "../../Redux/homeHotel/actions";
 
 const initialValue = {
   category: "",

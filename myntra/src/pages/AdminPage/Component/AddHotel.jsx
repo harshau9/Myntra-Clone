@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Update from "../../Home&Hotels/Update";
+
 import {
   Box,
   Flex,
@@ -24,12 +26,11 @@ import {
   MoonIcon,
   SunIcon,
 } from "@chakra-ui/icons";
-import myntralogo from "../../components/Navbar/NavFolder/myn.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { GetUserData } from "../Authentication/LoginPage";
+import { GetUserData } from "../../Authentication/LoginPage";
 import { Blocks } from "react-loader-spinner";
-import TableComponent from "./Component/Table";
+import myntralogo from "../../myn.png";
 const navLI = ["Men", "Women", "kids", "Home Living", "Studio"];
 
 const PostRequest = async () => {
@@ -67,7 +68,7 @@ const NavLink = ({ children }) => (
   </Box>
 );
 
-function AdminNavbar() {
+function AddHotel() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -139,7 +140,7 @@ function AdminNavbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={10} alignItems={"center"}>
-            <Box marginLeft={"80px"}>
+            <Box marginLeft={"50px"}>
               <Link to={"/"}>
                 <Image src={myntralogo} width={20} p="1.5" />
               </Link>
@@ -162,7 +163,6 @@ function AdminNavbar() {
                 <Button onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
-
                 <Menu>
                   <MenuButton
                     as={Button}
@@ -236,11 +236,9 @@ function AdminNavbar() {
           />
         </Center>
       )}
-      {Page === navLI[3]
-        ? navigate("/AdminPage/AddHotel")
-        : TableComponent(data)}
+      {Update()}
     </>
   );
 }
 
-export default AdminNavbar;
+export default AddHotel;

@@ -1,10 +1,8 @@
 import { Select, Flex, Heading, Box, Image, Button, Container, Alert, AlertIcon } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterData, getProduct, sortData, getData } from "./Redux/actions";
+import { filterData, getProduct, sortData, getData } from "../../Redux/homeHotel/actions";
 import { Spinner } from '@chakra-ui/react';
-import Footer from "../../components/Footer/Footer";
-import MainNavbar from "../../components/Navbar/MainNavbar";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
@@ -123,7 +121,7 @@ export default function Hotel() {
 
   return (
     <>
-      <MainNavbar />
+   
       <Box mt="5%">
         {error && <Alert w={"400px"} m={"auto"} status='error'>
           <AlertIcon />
@@ -199,7 +197,7 @@ export default function Hotel() {
             })}
           </Box>
         </Flex>
-        <Footer />
+ 
       </Box>
 
     </>

@@ -4,8 +4,6 @@ import { ImagesBox } from "./Pages/FirstSlideBox/ImagesBox";
 import { SingleNameBox } from "./Pages/SecondImageBox.jsx/SingleNameBox";
 import { ImageProductBox } from "./Pages/SecondImageBox.jsx/ImageProductBox";
 import { ImageBoxGrid } from "./Pages/SecondImageBox.jsx/ImageBoxGrid";
-import Footer from "../../components/Footer/Footer";
-import MainNavbar from "../../components/Navbar/MainNavbar";
 import Carousel1 from "./Carousel1";
 import { useNavigate } from "react-router-dom";
 
@@ -116,7 +114,7 @@ export const Mens = () => {
   ];
   return (
     <>
-    <MainNavbar/>
+    
     <Box pt={"80px"}>
       <Carousel1  />
       <Flex>
@@ -178,7 +176,7 @@ export const Mens = () => {
           ))}
         </Flex>
       </Box>
-      <Footer />
+    
     </Box>
     </>
   );

@@ -12,7 +12,6 @@ import VerifyPhoneNumber from "./Component/VerifyPhoneNumber";
 import VerifyAdmin from "./Component/VerifyAdmin";
 import PhoneNumberInput from "./Component/PhoneNumberInput";
 import axios from "axios";
-import Navbar from "./Navbar";
 import { useNavigate, Link } from "react-router-dom";
 import { Blocks, Watch } from "react-loader-spinner";
 
@@ -122,8 +121,6 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <>
-      {<Navbar />}
       <Flex
         minH={"100vh"}
         align={"center"}
@@ -213,6 +210,6 @@ export default function LoginPage() {
           </Flex>
         </Stack>
       </Flex>
-    </>
+   
   );
 }
