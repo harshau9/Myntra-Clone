@@ -99,7 +99,7 @@ export default function Navbar() {
               xl: "row",
             }}
             marginTop={{
-              base: "16",
+              base: "10",
               sm: "unset",
               md: "unset",
               lg: "unset",
