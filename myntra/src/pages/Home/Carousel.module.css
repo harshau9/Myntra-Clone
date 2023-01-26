@@ -8,7 +8,7 @@
 .eachslide > div {
   align-items: center;
   justify-content: center;
-  background-size: contain;
+  background-size:contain;
   height: 400px;
 }
 
@@ -17,4 +17,63 @@
   font-size: 20px;
   background: #efefef;
   text-align: center;
+}
+@media (min-width: 1001px) and (max-width: 1100px) {
+  .slidecontainer {
+    width: 85%;
+  }
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:contain;
+    height: 232px;
+  }
+}
+@media (min-width: 901px) and (max-width: 1000px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:contain;
+    height: 219px;
+  }
+}
+@media (min-width: 800px) and (max-width: 900px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:cover;
+    height: 200px;
+  }
+}
+@media (min-width: 700px) and (max-width: 799px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:cover;
+    height: 190px;
+  }
+}
+@media (min-width: 501px) and (max-width: 699px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:cover;
+    height: 144px;
+  }
+}
+@media (min-width: 401px) and (max-width: 500px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:cover;
+    height: 116px;
+  }
+}
+@media (min-width: 10px) and (max-width: 400px) {
+  .eachslide > div {
+    align-items: center;
+    justify-content: center;
+    background-size:contain;
+    height: 65px;
+  }
 }
