@@ -51,8 +51,6 @@ export const AddToCartBox = ({data}) => {
   };
 
 
-
-
   const HandelAddToCart = (data) => {
     data.id = Date.now()
     data.isAuth = true
@@ -64,6 +62,7 @@ export const AddToCartBox = ({data}) => {
     postUserCartData({CartPage2: arr})
     .then(res => {toast({
       title: 'Succesfull',
+      position: 'top',
       description: 'Product Added Succesfull',
       status: 'success',
       duration: 3000,
@@ -71,7 +70,7 @@ export const AddToCartBox = ({data}) => {
     })})
     .catch(err => console.log(err))
    }else{
-    navigate('/login')
+    // navigate('/login')
    }
 
 
@@ -88,12 +87,8 @@ export const AddToCartBox = ({data}) => {
         })
   }
 
-
-
-
-
-
     data.size.length = 5 
+
   return (
     <Grid gap="1" pt="5px">
               <Button
@@ -116,6 +111,7 @@ export const AddToCartBox = ({data}) => {
                 w="100%"
                 border={"1px solid black"}
                 gap="3"
+                disabled={data.count == 1}
                 onClick={()=>HandelAddToCart(data)}
               >
                 <Text textAlign={"start"}>

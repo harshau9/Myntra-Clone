@@ -7,7 +7,7 @@ export const SelectBtn = ({Sortfunction}) => {
     "Better Discount",
     "Price High to Low",
     "Price Low to High",
-    "Costomer Rating",
+    "Customer Rating",
   ];
 
   const handelselect = (e) => {

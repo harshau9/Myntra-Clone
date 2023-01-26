@@ -17,6 +17,7 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [arr, setArr] = useState([]);
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     getData();
@@ -33,6 +34,13 @@ const Cart = () => {
       );
       setCartData(await res.data[0]["CartPage"]);
       setCartData(JSON.parse(localStorage.getItem("cart")));
+      let Total = 0;
+      for (let ele of cartData) {
+        total += ele.cost;
+      }
+      setTotal(Total)
+      localStorage.setItem("MyntShopHotelTotal", JSON.stringify(total))
+    
     } catch (e) {
       toast({
         title: "Something went wrong",
@@ -48,11 +56,7 @@ const Cart = () => {
     navigate("/checkout");
   };
 
-  let total = 0;
-  for (let ele of cartData) {
-    total += ele.cost;
-  }
-
+ 
   const handleRemove = (index) => {
     cartData.splice(index, 1);
     setArr(cartData);

@@ -21,13 +21,12 @@ export const ProductSideFiter = ({Sortfunction}) => {
   const ListFilter = [
     { name: "Age", data: ["0M-3M", "3M-6M", "6m-9M", "9M-12M", "12M-18M", "2Y-4Y", "4Y-6Y", "6Y-9Y", "9Y-12Y", "12Y-18Y", "18Y-24Y", "Newborn"] },
     { name: "Bundles", data: ["Bundels", "Single Styles"] },
-    { name: "Country Of Origin", data: ["All Countries", "India", "USA", "New York"] },
-    { name: "Size", data: ["XL", "S", "M", "L", "XL", "XXL", "3XL", "4XL"] }];
+  ]
   return (
     <Box w="70%"
       m="auto"p="3">
       <Flex gap="25px" display={["none", "flex", "flex", "flex"]}>
-        {ListFilter.map((ele, i) => {
+        {/* {ListFilter.map((ele, i) => {
           return (
             <Menu key={i+Date.now()}>
               <MenuButton rightIcon={<ChevronDownIcon />}>
@@ -55,7 +54,7 @@ export const ProductSideFiter = ({Sortfunction}) => {
               </MenuList>
             </Menu>
           );
-        })}
+        })} */}
         <Spacer  display={["none", "flex", "flex", "flex"]} />
 
         <SelectBtn Sortfunction={Sortfunction} />

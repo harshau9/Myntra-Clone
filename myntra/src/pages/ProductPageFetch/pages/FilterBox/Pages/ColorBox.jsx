@@ -34,6 +34,7 @@ export const ColorBox = () => {
                 bg={bg}
                 borderRadius="100%"
                 w="1.5rem"
+                h="1.5rem"
               ></Box>
               <Box>
                 <Text color="black">{color}</Text>
