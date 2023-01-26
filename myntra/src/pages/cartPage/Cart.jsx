@@ -32,6 +32,7 @@ const Cart = () => {
         `https://mock-server-trz7.onrender.com/User-Data`
       );
       setCartData(await res.data[0]["CartPage"]);
+      setCartData(JSON.parse(localStorage.getItem("cart")));
     } catch (e) {
       toast({
         title: "Something went wrong",

@@ -10,18 +10,15 @@ import CheckoutAlert from './CheckoutAlert';
 const Checkout = () => {
     const nevigate = useNavigate();
     const [imageSrc, setImageSrc] = useState(false);
-
     const handleCheckout = () => {
         setImageSrc(true);
         setTimeout(() => {
             nevigate("/")
         }, 4000);
     }
-    console.log(imageSrc);
+    // console.log(imageSrc);
     return (
         <Box>
-        
-
             <Box mt={"5%"}>
                 {imageSrc === true ? <CheckoutAlert /> :
                     <Box id="master">
