@@ -6,11 +6,11 @@ import { Spinner } from '@chakra-ui/react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
+import hotel_base_url from '../../Redux/homeHotel/home&Hotel';
 
 
-
-let totalPages = 5;
-let arr=[];
+let totalPages = 3;
+let arr = [];
 export default function Hotel() {
   const [page, setPage] = useState(1);
   const [flag, setFlag] = useState(false);
@@ -21,7 +21,6 @@ export default function Hotel() {
   const { id, isAuth } = userData;
   const navigate = useNavigate();
   const toast = useToast();
-  // const [cartData, setCartData] = useState();
 
 
   useEffect(() => {
@@ -41,10 +40,10 @@ export default function Hotel() {
     }, 200);
     let value = e.target.value;
     if (value === "") {
-      let res = await fetch(`https://render-si4e.onrender.com/rooms`);
+      let res = await fetch(`${hotel_base_url}`);
       res = await res.json().then((res) => dispatch(getData(res)));
     } else {
-      let res = await fetch(`https://render-si4e.onrender.com/rooms?category=${value}`);
+      let res = await fetch(`${hotel_base_url}?category=${value}`);
       res = await res.json().then((res) => dispatch(filterData(res)));
     }
   };
@@ -69,7 +68,7 @@ export default function Hotel() {
     dispatch(sortData(sortedData));
   };
 
- const getuserData = async () => {
+  const getuserData = async () => {
     try {
       let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
       return await res.data;
@@ -95,9 +94,12 @@ export default function Hotel() {
 
   /*Add to Cart Functions */
   const handleAddToCart = (el) => {
-    arr.push(el)
+    arr.push(el);
+    // console.log(arr);
+    localStorage.setItem('cart', JSON.stringify(arr));
     if (isAuth === true) {
-      postUserCartData({CartPage: arr}).then((res) => {
+      postUserCartData({ CartPageRoom: arr }).then((res) => {
+        // console.log(res);
         toast({
           title: 'Successfully',
           description: "Product added successfully",
@@ -121,7 +123,7 @@ export default function Hotel() {
 
   return (
     <>
-   
+
       <Box mt="5%">
         {error && <Alert w={"400px"} m={"auto"} status='error'>
           <AlertIcon />
@@ -154,7 +156,7 @@ export default function Hotel() {
             <Box display={"flex"} justifyContent="space-between" color={"green"} gap="5px">
               <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(1)}>First</Button>
               <Button bg={"teal"} color="black" variant={"outline"} disabled={page <= 1} onClick={() => handlePage(-1)}>PREV</Button>
-              <Button  color="red" fontSize={"23px"} variant={"outline"} border={"2px solid blue"} w="10px" disabled>{page}</Button>
+              <Button color="red" fontSize={"23px"} variant={"outline"} border={"2px solid blue"} w="10px" disabled>{page}</Button>
               <Button bg={"teal"} color="black" variant={"outline"} disabled={page === totalPages} onClick={() => handlePage(1)}>NEXT</Button>
               <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(totalPages)}>Last</Button>
               <Select w="100px" onChange={(e) => setLimit(e.target.value)}>
@@ -197,9 +199,7 @@ export default function Hotel() {
             })}
           </Box>
         </Flex>
- 
       </Box>
-
     </>
   );
 }

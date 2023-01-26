@@ -14,7 +14,6 @@ export const ProductPageApi = () => {
   const [data, setdata] = useState([]);
   const [Listmintdata, setListmintdata] = useState([]);
   const [Loading, setLoading] = useState(false);
-
   const [demo, setdemo] = useState([]);
 
   useEffect(() => {
