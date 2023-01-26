@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
-import { ProductSideFiter } from "../ProductSideFilter/ProductSideFiter";
+// import { ProductSideFiter } from "../ProductSideFilter/ProductSideFiter";
 import { SigleProductPage } from "./pages/SigleProductPage";
 
 export const ProductBox = ({data}) => {

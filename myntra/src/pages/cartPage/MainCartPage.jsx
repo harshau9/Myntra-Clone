@@ -4,13 +4,15 @@ import MyCartLength from "./MyCartLength";
 import CartItem from "./CartItem";
 import CheckoutBox from "./CheckoutBox";
 
-const MainCartPage = ({ele, handelDelete, cartData, setTotal}) => {
+const MainCartPage = ({ ele, handelDelete, cartData, setTotal }) => {
   return (
     <Box>
-    
-          <CartItem ele={ele} setTotal={setTotal} handelDelete={handelDelete} cartData={cartData} />
-
-      
+      <CartItem
+        ele={ele}
+        setTotal={setTotal}
+        handelDelete={handelDelete}
+        cartData={cartData}
+      />
     </Box>
   );
 };
