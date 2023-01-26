@@ -33,7 +33,7 @@ function VerfiyPhoneNumber() {
   );
   const VerifyUser = () => {
     if (password) {
-      const VerifyUser = userData.filter((el) => el.Password === password);
+      const VerifyUser = userData.filter((el) => el.password === password);
       if (VerifyUser.length > 0) {
         dispatch({ type: "VerifedUser", payload: VerifyUser[0] });
         toast({

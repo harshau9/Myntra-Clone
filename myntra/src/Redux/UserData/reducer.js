@@ -50,7 +50,7 @@ const dataReducer = (state = initialState, { type, payload }) => {
         Admin = true;
       } else {
         const VerifyUser = state.userData.filter(
-          (el) => el.PhoneNumber === payload
+          (el) => el.phoneNumber === payload
         );
         if (VerifyUser.length > 0) {
           User = true;
