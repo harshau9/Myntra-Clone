@@ -5,6 +5,7 @@ import { Text, Button, Grid} from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {  useSelector } from "react-redux";
 
 let arr = []
 
@@ -12,9 +13,15 @@ let arr = []
 export const AddToCartBox = ({data}) => {
 
   const [UserData, setUserData] = useState({})
-  const {id, isAuth} = UserData
   let navigate = useNavigate()
   const toast = useToast()
+
+
+
+
+  const { currentUserData, isAuth } = useSelector((store) => store.dataReducer);
+  const { id } = currentUserData;
+
 
   const GetUserData = async () => {
     try{
@@ -37,7 +44,7 @@ export const AddToCartBox = ({data}) => {
 
   const postUserCartData = async (data) => {
     try {
-      const res = await axios.patch(`https://mock-server-trz7.onrender.com/User-Data/${id}`, data)
+      const res = await axios.put(`https://mock-server-trz7.onrender.com/User-Data/${id}`, data)
       return await res.data;
     } catch (e) {
       toast({
@@ -50,32 +57,35 @@ export const AddToCartBox = ({data}) => {
     }
   };
 
-
-  const HandelAddToCart = (data) => {
+  const HandelAddToCart = (el) => {
     data.id = Date.now()
     data.isAuth = true
     data.count = 1
     
-    arr.push(data)
+    arr.push(el);
+    if (isAuth === true) {
+      postUserCartData({ CartPageProduct: arr }).then((res) => {
+        toast({
+          title: 'Successfully',
+          description: "Product added successfully",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+      }).catch((err) => {
+        toast({
+          title: 'Something went wrong',
+          description: `${err.message}`,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+      })
+    } else {
+      navigate("/login");
+    }
+  };
 
-   if(isAuth== true){
-    postUserCartData({CartPage2: arr})
-    .then(res => {toast({
-      title: 'Succesfull',
-      position: 'top',
-      description: 'Product Added Succesfull',
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    })})
-    .catch(err => console.log(err))
-   }else{
-    // navigate('/login')
-   }
-
-
- 
-  }
 
   const HandelAddToWishList = () => {
     toast({

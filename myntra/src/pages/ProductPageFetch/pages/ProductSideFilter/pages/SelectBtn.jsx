@@ -1,4 +1,4 @@
-import { Box, Select, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 export const SelectBtn = ({Sortfunction}) => {
