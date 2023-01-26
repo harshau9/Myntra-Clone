@@ -54,6 +54,7 @@ const Cart = () => {
   for (let ele of cartData) {
     total += ele.cost;
   }
+  localStorage.setItem("roomcarttotal", total);
 
   const handleRemove = (index) => {
     cartData.splice(index, 1);

@@ -92,7 +92,7 @@ const Checkout = () => {
 
   useEffect(() => {
     let x = JSON.parse(localStorage.getItem("MyntShopCartTotal"))
-    let y = JSON.parse(localStorage.getItem("MyntShopHotelTotal"))
+    let y = JSON.parse(localStorage.getItem("roomcarttotal"))
     setTotalProduct(x)
     setTotalRoom(y)
   }, []);
