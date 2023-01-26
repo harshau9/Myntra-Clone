@@ -14,6 +14,7 @@ export const ProductPageApi = () => {
   const [data, setdata] = useState([]);
   const [Listmintdata, setListmintdata] = useState([]);
   const [Loading, setLoading] = useState(false);
+
   const [demo, setdemo] = useState([]);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export const ProductPageApi = () => {
         res = res.filter((ele) => ele.images.length > 2);
         setdata(res);
         let mens = res.filter((ele) => ele.category === "Mens");
+        mens.length = 20
         setListmintdata(mens);
       })
       .catch((err) => console.log(err));
@@ -103,9 +105,7 @@ export const ProductPageApi = () => {
 
 
 
-  function cheakBox(prop){
-    console.log(prop, "sdf")
-    
+  function cheakBox(prop){    
    const  ans = prop.split(",")
      
       let update = Listmintdata.filter(ele => ele.discounted_price >= ans[0] && ele.discounted_price <= ans[1])
