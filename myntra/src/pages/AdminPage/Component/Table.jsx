@@ -28,7 +28,7 @@ const DeleteRequest = async (id) => {
   }
 };
 
-const TableComponent = (data) => {
+const TableComponent = (data = []) => {
   const toast = useToast();
   const [update, setUpdate] = useState(false);
 
@@ -85,7 +85,7 @@ const TableComponent = (data) => {
                 Wishlist,
               }) => {
                 return (
-                  <Tr>
+                  <Tr key={id}>
                     <Td>{id}</Td>
                     <Td>{PhoneNumber}</Td>
                     <Td>{FirstName}</Td>

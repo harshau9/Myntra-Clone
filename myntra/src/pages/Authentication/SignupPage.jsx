@@ -11,323 +11,278 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
   useToast,
   Center,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { GetUserData } from "./LoginPage";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Blocks, Radio } from "react-loader-spinner";
 
-const PostRequest = async (data) => {
-  try {
-    let response = await axios.post(
-      `https://mock-server-trz7.onrender.com/User-Data`,
-      data,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Blocks } from "react-loader-spinner";
 
-    return response;
-  } catch (err) {
-    return err;
-  }
-};
+import getData from "../../Redux/UserData/action";
+import { signup } from "../../Redux/Authentication/action";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const [PhoneNumber, setPhoneNumber] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [btn, setBtn] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-  const [PostLoading, setPostLoading] = useState(false);
-  let flag;
-  const UserData = {
-    FirstName,
-    LastName,
-    PhoneNumber,
-    Email,
-    Password,
-    CartPage: [],
-    Wishlist: [],
-    PaymentDetail: [],
-  };
+  const dispatch = useDispatch();
 
-  const HandleButton = () => {
+  const { signuploading, signupError } = useSelector(
+    (store) => store.authReducer
+  );
+
+  const data = useSelector((store) => store.signupReducer);
+
+  const { userData, loading, error } = useSelector(
+    (store) => store.dataReducer
+  );
+
+  const handleSignup = () => {
     if (
-      FirstName == "" ||
-      LastName == "" ||
-      PhoneNumber == "" ||
-      Email == "" ||
-      Password == ""
+      data.firstName &&
+      data.lastName &&
+      data.email &&
+      data.password &&
+      data.phoneNumber
     ) {
-      toast({
-        title: "Please Fill the Required Detail",
-        status: "warning",
-        duration: 4000,
-        isClosable: true,
-        position: "bottom",
-      });
-    }
-
-    if (PhoneNumber.length == 10) {
-      data.map((item) => {
-        if (item.PhoneNumber == PhoneNumber) {
-          flag = true;
-        }
-      });
-      setBtn(true);
-      if (flag) {
-        toast({
-          title: `You are already existing user`,
-          description: "after few seconds You will redirect to login Page",
-          status: "warning",
-          duration: 4000,
-          isClosable: true,
-          variant: "left-accent",
-          position: "top",
-        });
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      }
-
-      if (!flag) {
-        setPostLoading(true);
-        PostRequest(UserData)
-          .then((res) => {
-            toast({
-              title: `Signup Successfully`,
-              description: "after few seconds You will redirect to Login Page",
-              status: "success",
-              duration: 4000,
-              isClosable: true,
-              variant: "left-accent",
-              position: "top",
-            });
-            setTimeout(() => {
-              navigate("/login");
-              setPostLoading(false);
-            }, 2000);
-          })
-          .catch((err) => {
-            toast({
-              title: "Something went wrong",
-              description: `${err.message}`,
-              status: "error",
-              duration: 4000,
-              isClosable: true,
-              variant: "top-accent",
-              position: "top",
-            });
+      if (data.password.length >= 8) {
+        const verifyUser = userData.filter(
+          (el) => el.phoneNumber === data.phoneNumber
+        );
+        if (verifyUser.length > 0) {
+          toast({
+            title: "already registered",
+            status: "info",
+            duration: 5000,
+            isClosable: true,
           });
+          dispatch({ type: "initialState" });
+        } else {
+          dispatch(signup(data));
+          navigate("/login");
+          toast({
+            title: "success",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      } else {
+        toast({
+          title: "Password must be at least 8 characters long",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+        });
       }
     } else {
       toast({
-        title: "Please Enter 10 digit Phone Number",
-        status: "warning",
-        duration: 3000,
+        title: "Please fill all the fields",
+        status: "error",
+        duration: 5000,
         isClosable: true,
-        position: "top",
       });
     }
   };
 
   useEffect(() => {
-    setLoading(true);
-    GetUserData()
-      .then((res) => {
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        toast({
-          title: "Something Went Wrong",
-          description: `${err.message}`,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom-right",
-        });
+    dispatch(getData());
+    if (signupError === true) {
+      toast({
+        title: "Something went wrong",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
       });
+    }
   }, []);
 
+   if (error) {
+     return <Navigate to="/error" replace={true} />;
+   }
+
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      backgroundColor="#fdedf0"
-      border={"none"}
-    >
-      <Stack
-        spacing={4}
-        w={"full"}
-        maxW={"sm"}
-        bg={useColorModeValue("white", "gray.700")}
-        boxShadow={"lg"}
-        marginBottom={{
-          base: "250px",
-          sm: "250px",
-          md: "500px",
-          lg: "200px",
-          xl: "100px",
-        }}
-        marginTop="25px"
-      >
-        <img
-          src="https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg"
-          alt="74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500"
-          border="0"
-        ></img>
-        <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
-          {loading ? (
-            <Center>
-              <Blocks
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-              />
-            </Center>
-          ) : (
-            <Stack>
-              <Stack align={"center"}>
-                <Heading fontSize={"3xl"} textAlign={"center"}>
-                  Sign up
-                </Heading>
-                <Text fontSize={"lg"} color={"gray.600"}>
-                  to enjoy all of our cool Products ✌️
-                </Text>
-              </Stack>
-              <Box>
-                <Stack>
-                  <HStack>
-                    <Box>
-                      <FormControl id="FirstName" isRequired>
-                        <FormLabel>First Name</FormLabel>
-                        <Input
-                          type="text"
-                          onChange={(e) => setFirstName(e.target.value)}
-                          value={FirstName}
-                        />
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <FormControl id="LastName" isRequired>
-                        <FormLabel>Last Name</FormLabel>
-                        <Input
-                          type="text"
-                          onChange={(e) => setLastName(e.target.value)}
-                          value={LastName}
-                        />
-                      </FormControl>
-                    </Box>
-                  </HStack>
-                  <FormControl id="PhoneNumber" isRequired>
-                    <FormLabel>Phone Number</FormLabel>
-                    <Input
-                      type="number"
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      value={PhoneNumber}
-                    />
-                  </FormControl>
-                  <FormControl id="Email" isRequired>
-                    <FormLabel>Email address</FormLabel>
-                    <Input
-                      type="Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={Email}
-                    />
-                  </FormControl>
-                  <FormControl id="Password" isRequired>
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup>
+    <>
+      {loading ? (
+        <Center>
+          <Blocks
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+          />
+        </Center>
+      ) : (
+        <Flex
+          align={"center"}
+          justify={"center"}
+          backgroundColor="#fdedf0"
+          border={"none"}
+        >
+          <Stack
+            spacing={4}
+            w={"full"}
+            maxW={"sm"}
+            bg={"white"}
+            boxShadow={"lg"}
+            marginBottom={{
+              base: "250px",
+              sm: "250px",
+              md: "500px",
+              lg: "200px",
+              xl: "100px",
+            }}
+            marginTop="25px"
+          >
+            <img
+              src="https://i.ibb.co/WsvGqWS/74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500.jpg"
+              alt="74786f11-eb3b-4677-9069-bb2e880263f91670575018339-offer-banner-500-600x240-code-MYNTRA500"
+              border="0"
+            ></img>
+            <Flex p={6} flexDirection="column" gap={5} paddingBottom="100px">
+              <Stack>
+                <Stack align={"center"}>
+                  <Heading fontSize={"3xl"} textAlign={"center"}>
+                    Sign up
+                  </Heading>
+                  <Text fontSize={"lg"} color={"gray.600"}>
+                    to enjoy all of our cool Products ✌️
+                  </Text>
+                </Stack>
+                <Box>
+                  <Stack>
+                    <HStack>
+                      <Box>
+                        <FormControl id="FirstName" isRequired={true}>
+                          <FormLabel>First Name</FormLabel>
+                          <Input
+                            type="text"
+                            value={data.firstName}
+                            onChange={(e) =>
+                              dispatch({
+                                type: "firstName",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl id="LastName" isRequired>
+                          <FormLabel>Last Name</FormLabel>
+                          <Input
+                            type="text"
+                            value={data.lastName}
+                            onChange={(e) =>
+                              dispatch({
+                                type: "lastName",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </FormControl>
+                      </Box>
+                    </HStack>
+                    <FormControl id="PhoneNumber" isRequired>
+                      <FormLabel>Phone Number</FormLabel>
                       <Input
-                        type={showPassword ? "text" : "Password"}
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={Password}
+                        type="number"
+                        value={data.phoneNumber}
+                        onChange={(e) =>
+                          dispatch({
+                            type: "phoneNumber",
+                            payload: e.target.value,
+                          })
+                        }
                       />
-                      <InputRightElement h={"full"}>
-                        <Button
-                          variant={"ghost"}
-                          onClick={() =>
-                            setShowPassword((showPassword) => !showPassword)
+                    </FormControl>
+                    <FormControl id="Email" isRequired>
+                      <FormLabel>Email address</FormLabel>
+                      <Input
+                        type="Email"
+                        value={data.email}
+                        onChange={(e) =>
+                          dispatch({
+                            type: "email",
+                            payload: e.target.value,
+                          })
+                        }
+                      />
+                    </FormControl>
+                    <FormControl id="Password" isRequired>
+                      <FormLabel>Password</FormLabel>
+                      <InputGroup>
+                        <Input
+                          type={showPassword ? "text" : "Password"}
+                          value={data.password}
+                          onChange={(e) =>
+                            dispatch({
+                              type: "password",
+                              payload: e.target.value,
+                            })
                           }
-                        >
-                          {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        </Button>
-                      </InputRightElement>
-                    </InputGroup>
-                  </FormControl>
-                  {PostLoading ? (
-                    <Center>
-                      <Radio
-                        visible={true}
-                        height="80"
-                        width="80"
-                        ariaLabel="radio-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="radio-wrapper"
-                      />
-                    </Center>
-                  ) : (
+                        />
+                        <InputRightElement h={"full"}>
+                          <Button
+                            variant={"ghost"}
+                            onClick={() =>
+                              setShowPassword((showPassword) => !showPassword)
+                            }
+                          >
+                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                    </FormControl>
+
                     <Stack spacing={10} pt={2}>
                       <Button
+                        isLoading={signuploading}
                         loadingText="Submitting"
                         size="lg"
                         bg={"red.500"}
                         color={"white"}
                         _hover={{
-                          bg: "red.800",
+                          bg: "red.500",
                         }}
-                        onClick={HandleButton}
-                        disabled={btn}
+                        onClick={handleSignup}
                       >
                         Sign up
                       </Button>
                     </Stack>
-                  )}
-                </Stack>
-              </Box>
-            </Stack>
-          )}
-          <Stack>
-            <Text color="gray.500">
-              Have Trouble logging in ?{" "}
-              <a
-                href="https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F"
-                target={"_blank"}
-                rel="noreferrer"
-              >
-                <span style={{ color: "red" }}>Get help</span>
-              </a>
-            </Text>
-          </Stack>
-          <Stack>
-            <Text color="gray.500">
-              Already a User ?{" "}
-              <Link to={"/login"}>
-                <span style={{ color: "red" }}>Login</span>
-              </Link>
-            </Text>
+                  </Stack>
+                </Box>
+              </Stack>
+
+              <Stack>
+                <Text color="gray.500">
+                  Have Trouble logging in ?{" "}
+                  <a
+                    href="https://www.myntra.com/recovery?referer=https%3A%2F%2Fwww.myntra.com%2F"
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    <span style={{ color: "red" }}>Get help</span>
+                  </a>
+                </Text>
+              </Stack>
+              <Stack>
+                <Text color="gray.500">
+                  Already a User ?{" "}
+                  <Link to={"/login"}>
+                    <span style={{ color: "red" }}>Login</span>
+                  </Link>
+                </Text>
+              </Stack>
+            </Flex>
           </Stack>
         </Flex>
-      </Stack>
-    </Flex>
+      )}
+    </>
   );
 }

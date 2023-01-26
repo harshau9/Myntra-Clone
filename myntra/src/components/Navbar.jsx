@@ -6,12 +6,14 @@ import {
   Stack,
   Image,
   Heading,
+  Button,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { SlHandbag } from "react-icons/sl";
-import { CiUser } from "react-icons/ci";
-import MyntraLogo from "../pages/myn.png"
-import { Link } from "react-router-dom";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import MyntraLogo from "../pages/myn.png";
+import { FaRegUser } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 const Links = ["Men", "Women", "Kids", "Home & Living", "BEAUTY", "Studio"];
 
 const NavLink = ({ children }) => (
@@ -24,8 +26,8 @@ const NavLink = ({ children }) => (
       textDecoration: "underline",
       cursor: "pointer",
     }}
-    fontSize="sm"
-    fontWeight={400}
+    fontSize="md"
+    fontWeight={500}
     textTransform="uppercase"
   >
     {children}
@@ -34,7 +36,9 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuth } = useSelector((store) => store.dataReducer);
   return (
     <>
       <Box boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px">
@@ -57,7 +61,7 @@ export default function Navbar() {
               <Image src={MyntraLogo} alt="MyntraLogo" width="16" height="" />
             </Link>
             <Box display={{ base: "none", md: "flex" }}>
-              {Links.map((link) => (
+              {Links.map((link, i) => (
                 <Link
                   to={
                     link === "Men"
@@ -76,7 +80,7 @@ export default function Navbar() {
                   }
                 >
                   {" "}
-                  <NavLink key={link}>{link}</NavLink>
+                  <NavLink key={i}>{link}</NavLink>
                 </Link>
               ))}
             </Box>
@@ -84,27 +88,62 @@ export default function Navbar() {
 
           <Flex
             border="0px solid red"
-            gap={"6"}
+            gap={"5"}
             alignItems={"center"}
             justifyContent={"center"}
+            flexDirection={{
+              base: "column",
+              sm: "row",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+            marginTop={{
+              base: "16",
+              sm: "unset",
+              md: "unset",
+              lg: "unset",
+              xl: "unset",
+            }}
           >
-            <Link to="/bag">
-              <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
-                <SlHandbag size={20} />
-                <Heading as={"p"} fontSize="x-small">
-                  Bag
-                </Heading>
-              </Flex>
-            </Link>
+            <Flex gap="5">
+              <Link to="/bag">
+                <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
+                  <HiOutlineShoppingBag size={25} />
+                  <Heading as={"p"} fontSize="x-small">
+                    BAG
+                  </Heading>
+                </Flex>
+              </Link>
 
-            <Link to="/signup">
-              <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
-                <CiUser size={20} color="black" />
-                <Heading as={"p"} fontSize="x-small">
-                  Profile
-                </Heading>
-              </Flex>
-            </Link>
+              <Link to="/login">
+                <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
+                  <FaRegUser size={25} color="black" />
+                  <Heading as={"p"} fontSize="x-small">
+                    PROFILE
+                  </Heading>
+                </Flex>
+              </Link>
+            </Flex>
+
+            <Flex>
+              {isAuth && (
+                <Button
+                  onClick={() => {
+                    dispatch({ type: "logout" });
+                    dispatch({ type: "initialValue" });
+                    navigate("/");
+                  }}
+                  bg={"red.500"}
+                  color={"white"}
+                  _hover={{
+                    bg: "red.500",
+                  }}
+                >
+                  Logout
+                </Button>
+              )}
+            </Flex>
           </Flex>
         </Flex>
 
@@ -116,7 +155,7 @@ export default function Navbar() {
               justifyContent="center"
               alignItems="center"
             >
-              {Links.map((link) => (
+              {Links.map((link, i) => (
                 <Link
                   to={
                     link === "Men"
@@ -135,7 +174,7 @@ export default function Navbar() {
                   }
                 >
                   {" "}
-                  <NavLink key={link}>{link}</NavLink>
+                  <NavLink key={i}>{link}</NavLink>
                 </Link>
               ))}
             </Stack>
