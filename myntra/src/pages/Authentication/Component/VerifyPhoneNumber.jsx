@@ -5,164 +5,128 @@ import {
   FormControl,
   HStack,
   Center,
-  useToast,
   Input,
+  useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Blocks } from "react-loader-spinner";
-import { useNavigate } from "react-router";
-import { GetUserData } from "../LoginPage";
+import { BiArrowBack } from "react-icons/bi";
+import getData from "../../../Redux/UserData/action.js";
+import { Navigate, useNavigate } from "react-router-dom";
 
-function VerfiyPhoneNumber({ UserNumber, id }) {
-  const [data, setData] = useState([]);
-  const [btn, setbtn] = useState(false);
-  const [loading, setLoading] = useState(false);
+function VerfiyPhoneNumber() {
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
-  const [Password, setPassword] = useState("");
-  const [PatchUserloading, setPathUserLoading] = useState(false);
-  let flag;
 
-  const PatchUser = async () => {
-    setPathUserLoading(true);
-    try {
-      await axios
-        .patch("https://mock-server-trz7.onrender.com/User", {
-          id: id,
-          isAuth: true,
-        })
-        .then((res) => {
-          toast({
-            title: "Login SuccessFully",
-            description: "Welcome to Mynta",
-            status: "success",
-            duration: 4000,
-            isClosable: true,
-            variant: "top-accent",
-            position: "top",
-          });
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
-          setPathUserLoading(false);
-        });
-    } catch (err) {
-      setPathUserLoading(true);
-      toast({
-        title: "Something went wrong",
-        description: `${err.message}`,
-        status: "error",
-        duration: 4000,
-        isClosable: true,
-        variant: "top-accent",
-        position: "top",
-      });
-    }
+  const backButton = () => {
+    navigate("/login");
+    dispatch({ type: "Back" });
+    dispatch({ type: "initialValue" });
   };
 
-  const HandleVerfiyButton = () => {
-    data.map((item) => {
-      if (item.Password === Password) {
-        flag = true;
-      }
-    });
-    setbtn(true);
-    if (flag) {
-      PatchUser();
-    }
-    if (!flag) {
-      setbtn(false);
-      toast({
-        title: `Incorrect Password`,
-        status: "warning",
-        duration: 3000,
-        isClosable: true,
-        variant: "left-accent",
-        position: "top",
-      });
-    }
-  };
-  useEffect(() => {
-    setLoading(true);
-    GetUserData()
-      .then((res) => {
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
+  const { number } = useSelector((store) => store.loginReducer);
+  const { loading, userData, error } = useSelector(
+    (store) => store.dataReducer
+  );
+  const VerifyUser = () => {
+    if (password) {
+      const VerifyUser = userData.filter((el) => el.Password === password);
+      if (VerifyUser.length > 0) {
+        dispatch({ type: "VerifedUser", payload: VerifyUser[0] });
         toast({
-          title: "Something Went Wrong",
-          description: `${err.message}`,
-          status: "error",
-          duration: 4000,
+          title: "Login Successful",
+          description: "You have successfully Logged in",
+          status: "success",
+          duration: 5000,
           isClosable: true,
-          position: "bottom-right",
         });
+        navigate("/");
+      } else {
+        toast({
+          title: "Wrong Password",
+          description: "Please enter correct password",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    } else {
+      toast({
+        title: "Please Enter Password",
+        description: "Please enter password",
+        status: "info",
+        duration: 5000,
+        isClosable: true,
       });
-  }, []);
-  return (
-    <Stack spacing={4}>
-      <Center>
-        <Heading lineHeight={1.1} fontSize='xl'>
-          Verify your Phone Number
-        </Heading>
-      </Center>
-      <Center fontSize={{ base: "sm", sm: "md" }}>
-        Please Enter Your Password
-      </Center>
-      {loading && (
-        <Center>
-          <Blocks
-            visible={true}
-            height='80'
-            width='80'
-            ariaLabel='blocks-loading'
-            wrapperStyle={{}}
-            wrapperClass='blocks-wrapper'
-          />
-        </Center>
-      )}
+    }
+  };
 
-      <Center fontSize={{ base: "sm", sm: "md" }} fontWeight='bold'>
-        {UserNumber}
-      </Center>
-      {PatchUserloading ? (
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
+
+  if (error) {
+    return <Navigate to="/error" replace={true} />;
+  }
+
+  return (
+    <>
+      {loading ? (
         <Center>
           <Blocks
             visible={true}
-            height='80'
-            width='80'
-            ariaLabel='blocks-loading'
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
             wrapperStyle={{}}
-            wrapperClass='blocks-wrapper'
+            wrapperClass="blocks-wrapper"
           />
         </Center>
       ) : (
-        <FormControl>
+        <Stack spacing={4}>
           <Center>
-            <HStack>
-              <Input
-                onChange={(e) => setPassword(e.target.value)}
-                type='password'
-              />
-            </HStack>
+            <Heading lineHeight={1.1} fontSize="xl">
+              Verify your Phone Number
+            </Heading>
           </Center>
-        </FormControl>
+          <Center fontSize={{ base: "sm", sm: "md" }}>
+            Please Enter Your Password
+          </Center>
+          <Center gap="1" onClick={backButton} cursor="pointer">
+            <BiArrowBack /> Back
+          </Center>
+          <Center fontSize={{ base: "sm", sm: "md" }} fontWeight="bold">
+            {number}
+          </Center>
+          <FormControl>
+            <Center>
+              <HStack>
+                <Input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
+              </HStack>
+            </Center>
+          </FormControl>
+          <Stack spacing={6}>
+            <Button
+              bg={"red.500"}
+              color={"white"}
+              _hover={{
+                bg: "red.700",
+              }}
+              onClick={VerifyUser}
+            >
+              Verify
+            </Button>
+          </Stack>
+        </Stack>
       )}
-      <Stack spacing={6}>
-        <Button
-          bg={"red.500"}
-          color={"white"}
-          _hover={{
-            bg: "red.700",
-          }}
-          disabled={btn}
-          onClick={HandleVerfiyButton}>
-          Verify
-        </Button>
-      </Stack>
-    </Stack>
+    </>
   );
 }
 
