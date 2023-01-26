@@ -66,7 +66,6 @@ const dataReducer = (state = initialState, { type, payload }) => {
         needToSignup: needToSignup,
       };
     }
-
     case "Back": {
       return {
         ...state,

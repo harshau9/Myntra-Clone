@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -17,7 +18,8 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [arr, setArr] = useState([]);
-  const [total, setTotal] = useState(0)
+  const { currentUserData } = useSelector((store) => store.dataReducer);
+  const { id } = currentUserData;
 
   useEffect(() => {
     getData();
@@ -30,17 +32,9 @@ const Cart = () => {
         setLoading(false);
       }, 2000);
       let res = await axios.get(
-        `https://mock-server-trz7.onrender.com/User-Data`
+        `https://mock-server-trz7.onrender.com/User-Data/${id}`
       );
-      setCartData(await res.data[0]["CartPage"]);
-      setCartData(JSON.parse(localStorage.getItem("cart")));
-      let Total = 0;
-      for (let ele of cartData) {
-        total += ele.cost;
-      }
-      setTotal(Total)
-      localStorage.setItem("MyntShopHotelTotal", JSON.stringify(total))
-    
+      setCartData(await res.data["CartPageRoom"]);
     } catch (e) {
       toast({
         title: "Something went wrong",
@@ -56,7 +50,11 @@ const Cart = () => {
     navigate("/checkout");
   };
 
- 
+  let total = 0;
+  for (let ele of cartData) {
+    total += ele.cost;
+  }
+
   const handleRemove = (index) => {
     cartData.splice(index, 1);
     setArr(cartData);
@@ -64,7 +62,6 @@ const Cart = () => {
 
   return (
     <div>
-     
       <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
         {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
         <Box display={"flex"} justifyContent="space-around" mb={"1%"}>
