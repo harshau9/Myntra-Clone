@@ -16,16 +16,14 @@ export default function Hotel() {
   const [flag, setFlag] = useState(false);
   const [limit, setLimit] = useState(3);
   const dispatch = useDispatch();
-  const [userData, setUserData] = useState({});
   const { error, loading, rooms } = useSelector((store) => store.Reducer);
-  const { id, isAuth } = userData;
   const navigate = useNavigate();
   const toast = useToast();
-
+  const { currentUserData, isAuth } = useSelector((store) => store.dataReducer);
+  const { id } = currentUserData;
 
   useEffect(() => {
     dispatch(getProduct(page, limit));
-    getuserData().then((res) => setUserData(res)).catch((err) => console.log(err))
   }, [page, limit]);
 
   const handlePage = (val) => {
@@ -68,18 +66,9 @@ export default function Hotel() {
     dispatch(sortData(sortedData));
   };
 
-  const getuserData = async () => {
-    try {
-      let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
-      return await res.data;
-    } catch (e) {
-      return e;
-    }
-  };
-
   const postUserCartData = async (data) => {
     try {
-      const res = await axios.patch(`https://mock-server-trz7.onrender.com/User-Data/${id}`, data)
+      const res = await axios.put(`https://mock-server-trz7.onrender.com/User-Data/${id}`, data)
       return await res.data;
     } catch (e) {
       toast({
@@ -95,11 +84,8 @@ export default function Hotel() {
   /*Add to Cart Functions */
   const handleAddToCart = (el) => {
     arr.push(el);
-    // console.log(arr);
-    localStorage.setItem('cart', JSON.stringify(arr));
     if (isAuth === true) {
       postUserCartData({ CartPageRoom: arr }).then((res) => {
-        // console.log(res);
         toast({
           title: 'Successfully',
           description: "Product added successfully",
