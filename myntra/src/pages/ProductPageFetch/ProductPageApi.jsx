@@ -128,22 +128,27 @@ export const ProductPageApi = () => {
         textAlign={"start"}
         onClick={() => Sortfunction("Price High to Low")}
       >
-        <Text color="black">Home/ Footware /Crocs</Text>
+        <Text color="black">Home / Products </Text>
       </Box>
+      <Box  display={["flex", "none", "none"]}>
+          <Spacer />
+        <ProductSideFiter Sortfunction={Sortfunction} />
+        </Box>
       <Box p="10px" textAlign={"start"}>
-        <Text as="b" color="black">
+        <Text display={["none", "flex", "flex"]} as="b" color="black">
           Crocs - {Listmintdata.length} items
         </Text>
+      
       </Box>
 
       <Flex display={["none", "flex", "Flex"]}>
-        <Box w="20%" p="3">
+        <Box w="20%" p="3" display={["none", "flex", "Flex"]}>
           <Flex p="10px">
             <Text color={"black"} as="b">
               FILTER
             </Text>
             <Spacer />
-            <Text color="red">CLEAR ALL</Text>
+            <Text pl="15px" color="red">CLEAR ALL</Text>
           </Flex>
         </Box>
         <ProductSideFiter Sortfunction={Sortfunction} />

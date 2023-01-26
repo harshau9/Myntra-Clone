@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Flex, Box, Image, Button, Heading } from "@chakra-ui/react";
-import { FcPlus } from "react-icons/fc";
-import { TbTruckDelivery } from "react-icons/tb";
+
 
 const CartItem = ({ ele, handelDelete, cartData, setTotal }) => {
   const [count, setquantity] = useState(1);

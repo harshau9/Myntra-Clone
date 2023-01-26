@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Box, Image, Button, SimpleGrid, Grid } from "@chakra-ui/react";
+import { Flex, Text, Box, SimpleGrid, Grid } from "@chakra-ui/react";
 import { BsStar } from "react-icons/bs"
 export const NameBox = ({data}) => {
 

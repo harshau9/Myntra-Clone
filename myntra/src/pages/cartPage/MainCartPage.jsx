@@ -1,8 +1,6 @@
 import React from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import MyCartLength from "./MyCartLength";
+import { Box } from "@chakra-ui/react";
 import CartItem from "./CartItem";
-import CheckoutBox from "./CheckoutBox";
 
 const MainCartPage = ({ ele, handelDelete, cartData, setTotal }) => {
   return (
