@@ -23,6 +23,7 @@ import { Spinner } from "@chakra-ui/react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const getuserData = async () => {
   try {
     let res = await axios.get(`https://mock-server-trz7.onrender.com/User`);
@@ -35,39 +36,21 @@ const getuserData = async () => {
 export const Beauty = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
-
+  const { currentUserData, isAuth } = useSelector((store) => store.dataReducer);
   const [boxwidth, setBoxwidth] = useState("");
   const [userData, setUserData] = useState({});
   const [Loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [Hover, setHover] = useState(false);
-  const { id, isAuth } = userData;
   const navigate = useNavigate();
   const [val, setVal] = React.useState("");
   const [val2, setVal2] = React.useState("");
   const [val3, setVal3] = React.useState("");
-
+  const { id } = currentUserData;
   const [CrouselBox, setCrouselBox] = useState(false);
   const toast = useToast();
-  const postUserCartData = async (data) => {
-    try {
-      const res = await axios.patch(
-        `https://mock-server-trz7.onrender.com/User-Data/${id}`,
-        data
-      );
-      return await res.data;
-    } catch (e) {
-      toast({
-        title: "Something went wrong",
-        description: `${e.message}`,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
   // const totalPages = Math.floor(data.length / 25);
-
+  let arr = [];
   async function getData(page, val, val2, val3) {
     // console.log("30", page);
     if (val) {
@@ -121,27 +104,40 @@ export const Beauty = () => {
     let value = val + page;
     setPage(value);
   };
+  const postUserCartData = async (data) => {
+    try {
+      const res = await axios.put(`https://mock-server-trz7.onrender.com/User-Data/${id}`, data)
+      return await res.data;
+    } catch (e) {
+      toast({
+        title: 'Something went wrong',
+        description: `${e.message}`,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  };
   const handleAddToCart = (el) => {
+    arr.push(el);
     if (isAuth === true) {
-      postUserCartData({ CartPage: [el] })
-        .then(() => {
-          toast({
-            title: "Successfully",
-            description: "Product added successfully",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
+      postUserCartData({ CartPageRoom: arr }).then((res) => {
+        toast({
+          title: 'Successfully',
+          description: "Product added successfully",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
         })
-        .catch((err) => {
-          toast({
-            title: "Something went wrong",
-            description: `${err.message}`,
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-          });
-        });
+      }).catch((err) => {
+        toast({
+          title: 'Something went wrong',
+          description: `${err.message}`,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+      })
     } else {
       navigate("/login");
     }
@@ -484,7 +480,7 @@ export const Beauty = () => {
                                                   handleAddToCart(e)
                                                 }
                                               >
-                                                WISHLIST
+                                               Add to cart
                                               </Text>
                                             </Button>
                                             <Text fontSize={"14px"}>
