@@ -11,7 +11,10 @@ import {
   Checkbox,
   CheckboxGroup,
   Container,
+  HStack,
+  Stack,
 } from "@chakra-ui/react";
+import { BsHeart, BsImage } from "react-icons/bs";
 import { BsCart } from "react-icons/bs";
 import React, { useEffect, useState } from "react";
 
@@ -30,9 +33,8 @@ const getuserData = async () => {
 };
 
 export const Beauty = () => {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const [value, setValue] = useState("");
-  
 
   const [boxwidth, setBoxwidth] = useState("");
   const [userData, setUserData] = useState({});
@@ -41,6 +43,9 @@ export const Beauty = () => {
   const [Hover, setHover] = useState(false);
   const { id, isAuth } = userData;
   const navigate = useNavigate();
+  const [val, setVal] = React.useState("");
+  const [val2, setVal2] = React.useState("");
+  const [val3, setVal3] = React.useState("");
 
   const [CrouselBox, setCrouselBox] = useState(false);
   const toast = useToast();
@@ -62,40 +67,55 @@ export const Beauty = () => {
     }
   };
   // const totalPages = Math.floor(data.length / 25);
-  async function getData(page, value,val) {
-    // console.log("30", page);
 
-    setLoading(true);
-    if (value === "") {
-      await axios
-        .get(
-          `https://myntradata-39agumdo9-aloki9singh.vercel.app/makeup?_page=${page}&_limit=20`
-        )
+  async function getData(page, val, val2, val3) {
+    // console.log("30", page);
+    if (val) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&category=${val}`
+      )
+        .then((res) => res.json())
         .then((res) => {
           setLoading(false);
-          setdata(res.data);
-          // console.log(res.data);
-        })
-        .catch((err) => console.log(err));
+          setData(res);
+          console.log(res);
+        });
+    } else if (val2) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&subcategory=${val2}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
+    } else if (val3) {
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50&color=${val3}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          setData(res);
+          console.log(res);
+        });
     } else {
-      await axios
-        .get(
-          `https://myntradata-39agumdo9-aloki9singh.vercel.app/makeup?_page=${page}&_limit=20&product_type=${value}`
-        )
+      await fetch(
+        `https://zany-red-hen-kilt.cyclic.app/beauty?_page=${page}&_limit=50`
+      )
+        .then((res) => res.json())
         .then((res) => {
           setLoading(false);
-          setdata(res.data);
-          console.log(res.data);
+          setData(res);
+          console.log(res);
         });
     }
   }
+
   useEffect(() => {
-    getData(page, value);
-    getuserData()
-      .then((res) => setUserData(res))
-      .catch((err) => console.log(err));
-  }, [page, value]);
-  console.log(data);
+    getData(page, val, val2, val3);
+  }, [page, val, val2, val3]);
 
   const handlePage = (val) => {
     let value = val + page;
@@ -129,13 +149,8 @@ export const Beauty = () => {
 
   return (
     <>
-  
-      <Box width={"95%"} gap="10px" m={"auto"} bg="white">
-        <Box
-          p="10px"
-          textAlign={"start"}
-          // onClick={() => Sortfunction("Price High to Low")}
-        >
+      <Box width={"97%"}  gap="2px" m={"auto"} bg="white">
+        <Box p="10px" textAlign={"start"}>
           <Text color="black">Home/ Personal Care</Text>
         </Box>
         <Box p="10px" textAlign={"start"}>
@@ -144,251 +159,384 @@ export const Beauty = () => {
           </Text>
         </Box>
 
-        <Flex display={["none", "flex", "Flex"]}>
-          <Box w="25%" p="3">
-            <Flex p="10px">
-              <Text color={"black"} as="b">
-                FILTER
-              </Text>
-              <Spacer />
+        <hr style={{ paddingBottom: "40px" }} />
+        {/* ------------------------------ */}
+        <Box display={"flex"}>
+          <Box w="22%" p="1">
+            <Text color={"black"} as="b">
+              FILTERS
+            </Text>
+            <Stack p="5px" pt={5} pb={5}>
+              <hr />
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="Men"
+                  checked={val === "Men"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text fontSize={"14px"}>Men</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="Women"
+                  checked={val === "Women"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text fontSize={"14px"}>Women</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="Boys"
+                  checked={val === "Boys"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text fontSize={"14px"}>Boys</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="Girls"
+                  checked={val === "Girls"}
+                  onChange={(e) => setVal(e.target.value)}
+                />
+                <Text fontSize={"14px"}>Girls</Text>
+              </HStack>
+            </Stack>
+            {/* =========================== */}
+            <hr style={{ paddingTop: "5px", paddingBottom: "5px" }} />
+
+            <br />
+            {/* ------------------------------ */}
+
+            <Text color={"black"} as="b" p={"5px"} pb={5}>
+              CATEGORIES
+            </Text>
+
+            <Stack pl={1} mt={1} spacing={1}>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Lipstick"
+                  checked={val2 === "Lipstick"}
+                />
+
+                <Text fontSize={"14px"} > Lipstick</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Nail Polish"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Nail Polish"
+                />
+
+                <Text fontSize={"14px"}> Nail Polish</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Perfume and Body Mist"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Perfume and Body Mist"
+                />
+
+                <Text fontSize={"14px"} > Perfume and Body Mist</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Beauty Accessory"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Beauty Accessory"
+                />
+
+                <Text fontSize={"14px"}>Beauty Accessory</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Body Wash and Scrub"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Body Wash and Scrub"
+                />
+
+                <Text fontSize={"14px"}> Body Wash and Scrub</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Body Oil"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Body Oil"
+                />
+
+                <Text fontSize={"14px"}> Body Oil</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Shampoo and Conditioner"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Shampoo and Conditioner"
+                />
+
+                <Text fontSize={"14px"}> Shampoo and Conditioner</Text>
+              </HStack>
+              <HStack width={"30%"}>
+                <input
+                  type="checkbox"
+                  checked={val2 === "Face Wash and Cleanser"}
+                  onChange={(e) => setVal2(e.target.value)}
+                  value="Face Wash and Cleanser"
+                />
+
+                <Text fontSize={"14px"}>Face Wash and Cleanser</Text>
+              </HStack>
+            </Stack>
+
+
+            {/* =========================== */}
+            <hr style={{ paddingTop: "5px", paddingBottom: "5px" }} />
+            <Text color={"black"} as="b" p={"5px"} pb={5}>
+              COLOR
+            </Text>
+
+            <Stack pl={1} mt={1} spacing={1}>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "White"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="White"
+                />
+
+                <Text fontSize={"14px"}> White</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Black"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Black"
+                />
+
+                <Text fontSize={"14px"}> Black</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Pink"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Pink"
+                />
+
+                <Text fontSize={"14px"}> Pink</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Multi"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Multi"
+                />
+
+                <Text fontSize={"14px"}>Multi</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Brown"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Brown"
+                />
+
+                <Text fontSize={"14px"}> Brown</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Green"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Green"
+                />
+
+                <Text fontSize={"14px"}> Green</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="checkbox"
+                  checked={val3 === "Red"}
+                  onChange={(e) => setVal3(e.target.value)}
+                  value="Red"
+                />
+
+                <Text fontSize={"14px"}> Red</Text>
+              </HStack>
+            </Stack>
+            {/* ------------- */}
+          </Box>
+          {/* --------------- */}
+          <Box>
+            <Flex display={["none", "flex", "Flex"]}>
+              <Flex>
+                {/* <FilterBox /> */}
+                {Loading || data.length == 0 ? (
+                  <Box m="auto" justifyContent={"center"}>
+                    {" "}
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Box>
+                ) : (
+                  <Box w="90%" m="auto">
+                    <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={5}>
+                      {data.length == 0 ? (
+                        <Box m="auto" w={"100%"} justifyContent={"center"}>
+                          {" "}
+                          <Spinner
+                            thickness="4px"
+                            speed="0.65s"
+                            emptyColor="gray.200"
+                            color="blue.500"
+                            size="xl"
+                          />
+                        </Box>
+                      ) : (
+                        <>
+                          {data.map((e, i) => {
+                            return (
+                              <Box
+                                key={i / Date.now()}
+                                boxShadow="lg"
+                                rounded="md"
+                                bg="white"
+                                onMouseEnter={() => setHover(false)}
+                                onMouseLeave={() => setHover(true)}
+                              >
+                                <Box bg="white" h={["26rem", "26rem", "26rem"]}>
+                                  <Box
+                                    h="13.5rem"
+                                    overflow="hidden"
+                                    // onClick={() =>
+                                    //   handleClick(e._id, e.product)
+                                    // }
+                                  >
+                                    {/* <CrousalBox data={product} CrouselBox={CrouselBox} /> */}
+                                    <Image src={e.image} />
+                                  </Box>
+                                  <Box p="15px" pt={["34px", "20px", "20px"]}>
+                                    <Box pb="18px" mb="40px">
+                                      <Grid gap="1">
+                                        <Text textAlign={"start"}>
+                                          <Text as="b" color="black">
+                                            {e.brand}
+                                          </Text>
+                                          <Text color="black" fontSize={13}>
+                                            {e.product}
+                                          </Text>
+                                        </Text>
+                                        <Text color="black">
+                                          {" "}
+                                          <Flex gap="3">
+                                            <Box w="25px" mt="3px">
+                                              {e.rating ? <BsStar /> : ""}
+                                            </Box>
+                                            <Text fontSize={"14px"}>
+                                              {e.rating} {e.separator}{" "}
+                                              {e.ratingCount}
+                                            </Text>
+                                          </Flex>
+                                        </Text>
+                                        {Hover ? (
+                                          <></>
+                                        ) : (
+                                          <>
+                                            <Button
+                                              mb="2"
+                                              borderRadius={"0px"}
+                                              w="100%"
+                                              border={"1px solid black"}
+                                              gap="3"
+                                            >
+                                              <Text textAlign={"start"}>
+                                                <BsHeart color="black" />
+                                              </Text>{" "}
+                                              <Text
+                                                color="black"
+                                                // onClick={() => {
+                                                //   let item = e;
+                                                //   addWishlist(
+                                                //     // e.brand,
+                                                //     // e.discountPercentage,
+                                                //     // e.discountedPrice
+                                                //     item
+                                                //   );
+                                                // }}
+                                                onClick={() =>
+                                                  handleAddToCart(e)
+                                                }
+                                              >
+                                                WISHLIST
+                                              </Text>
+                                            </Button>
+                                            <Text fontSize={"14px"}>
+                                              Size:- {e.size}
+                                            </Text>
+                                          </>
+                                        )}
+                                        <SimpleGrid columns={3} spacing={[0]}>
+                                          <Text
+                                            fontSize={["sm", "sm", "sm"]}
+                                            textAlign={"start"}
+                                          >
+                                            <Text as="b" color="black">
+                                              {e.discountedPrice
+                                                ? `Rs. ${e.discountedPrice}`
+                                                : ""}
+                                            </Text>
+                                          </Text>
+                                          <Text
+                                            fontSize={["sm", "sm", "sm"]}
+                                            color="black"
+                                            as="del"
+                                          >
+                                            {e.strike ? `Rs. ${e.strike}` : ""}
+                                          </Text>
+                                          <Text
+                                            fontSize={["sm", "sm", "sm"]}
+                                            color="orange"
+                                          >
+                                            {e.discountPercentage}
+                                          </Text>
+                                        </SimpleGrid>{" "}
+                                      </Grid>
+                                    </Box>
+                                  </Box>
+                                </Box>
+                              </Box>
+                            );
+                          })}
+                        </>
+                      )}
+                    </SimpleGrid>
+                  </Box>
+                )}
+              </Flex>
             </Flex>
           </Box>
-        </Flex>
-
-        <Flex>
-          {/* left */}
-
-          <Box w="18%" display={["none", "initial", "initial", "initial"]}>
-            <Box border={"1px solid lightgray"} p="10px">
-              <Text color={"black"} textAlign={"start"} mt="5px" mb="10px">
-                <Text as="b">CATEGORIES</Text>
-              </Text>
-              {/* onChange={setValue} value={value} */}
-              <CheckboxGroup>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("lipstick");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Lipstick</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("lip_liner");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Lip Liner</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("foundation");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Foundation</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("eyeliner");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">EyeLiner</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("eyeshadow");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">EyeShadow</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("eyebrow");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Eyebrow</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("blush");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Blush</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("bronzer");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Bronzer</Text>
-                  </Checkbox>
-                </Box>
-                <Box textAlign={"start"}>
-                  <Checkbox
-                    defaultChecked={false}
-                    onChange={() => {
-                      setValue("mascara");
-                    }}
-                    colorScheme="red"
-                  >
-                    <Text color="black">Mascara</Text>
-                  </Checkbox>
-                </Box>
-              </CheckboxGroup>
-            </Box>
-            {/* 2nd */}
-
-           
-            {/* / */}
-          </Box>
-
-          {/* right */}
-          {Loading ? (
-            <Box m="auto">
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
-              />
-            </Box>
-          ) : (
-            <Box w="80%" m="auto">
-              {/* <select>
-                <option value={"asc"}>Low to high</option>
-                <option value={"desc"}>High to low</option>
-              </select> */}
-              <SimpleGrid columns={[1, 2, 3, 4, 5]} spacing={5} rowGap={9}>
-                {data.length == 0 ? (
-                  <> Loading...</>
-                ) : (
-                  <>
-                    {data.map((data) => (
-                      <Box
-                        w={"210px"}
-                        key={data.id}
-                        boxShadow="lg"
-                        rounded="md"
-                        bg="white"
-                      >
-                        <Box bg="white" h={["26rem", "26rem", "26rem"]}>
-                          <Box
-                            // onMouseEnter={() => }
-                            // onMouseLeave={() => setCrouselBox(false)}
-                            h="13.5rem"
-                            overflow="hidden"
-                          >
-                            <Box h="13.5rem">
-                              <Image src={data.api_featured_image} />
-                            </Box>
-                          </Box>
-                          <Box
-                            p="15px"
-                            pt={["34px", "20px", "20px"]}
-                            // onMouseEnter={() => setHover(true)}
-                            // onMouseLeave={() => setHover(false)}
-                          >
-                            <Box pb="18px" mb="40px" h={"100px"}>
-                              <Grid gap="1">
-                                <Text textAlign={"start"}>
-                                  <Text as="b" color="black">
-                                    {data.name}
-                                  </Text>
-                                </Text>
-                                <Text color="black">{data.product_type}</Text>
-                                <Text color="black">
-                                  <Flex gap="3">
-                                    <Text>{data.rating}</Text>
-                                    <Box w="25px" mt="3px">
-                                      <BsStar />
-                                    </Box>
-                                  </Flex>
-                                </Text>
-
-                                <SimpleGrid columns={2} spacing={[0]}>
-                                  <Text
-                                    fontSize={["sm", "sm", "sm"]}
-                                    textAlign={"start"}
-                                  >
-                                    <Text as="b" color="black">
-                                      {data.price_sign} {data.price}
-                                    </Text>
-                                  </Text>
-                                  <Text
-                                    fontSize={["sm", "sm", "sm"]}
-                                    color="black"
-                                    // as="del"
-                                  >
-                                    {data.category}
-                                  </Text>
-                                  <Text
-                                    fontSize={["sm", "sm", "sm"]}
-                                    color="orange"
-                                  >
-                                    {/* {data.brand} */}
-                                  </Text>
-                                </SimpleGrid>
-                                <Button
-                                  bg="#F167AE"
-                                  on
-                                  _hover={"none"}
-                                  borderRadius={"0px"}
-                                  w="100%"
-                                  border={"1px solid black"}
-                                  gap="3"
-                                >
-                                  <Text textAlign={"start"}>
-                                    <BsCart color="black" />
-                                  </Text>{" "}
-                                  <Text color="black" onClick={() => handleAddToCart(data)}>ADD TO CART</Text>
-                                </Button>
-                              </Grid>
-                            </Box>
-                          </Box>
-                        </Box>
-                      </Box>
-                    ))}
-                  </>
-                )}
-              </SimpleGrid>
-            </Box>
-          )}
-        </Flex>
+        </Box>
       </Box>
 
-      <Container mt={"30px"} w={"300px"} mb="5">
-        <Box display={"flex"} justifyContent="space-between" color={"pink.500"}>
+      <Container mt={"30px"} w={"400px"} mb="5">
+        <Box display={"flex"} justifyContent="space-between" gap={4} color={"pink.500"}>
           <Button disabled={page == 1} onClick={() => handlePage(-1)}>
             PREV
           </Button>
