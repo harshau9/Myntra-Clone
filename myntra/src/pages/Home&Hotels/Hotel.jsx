@@ -142,7 +142,7 @@ export default function Hotel() {
             <Box display={"flex"} justifyContent="space-between" color={"green"} gap="5px">
               <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(1)}>First</Button>
               <Button bg={"teal"} color="black" variant={"outline"} disabled={page <= 1} onClick={() => handlePage(-1)}>PREV</Button>
-              <Button color="red" fontSize={"23px"} variant={"outline"} border={"2px solid blue"} w="10px" disabled>{page}</Button>
+              <Button color="red" fontSize={"23px"} variant={"outline"} border={"2px solid blue"} w="10px" disabled={true}>{page}</Button>
               <Button bg={"teal"} color="black" variant={"outline"} disabled={page === totalPages} onClick={() => handlePage(1)}>NEXT</Button>
               <Button bg={"teal"} color="black" variant={"outline"} onClick={() => setPage(totalPages)}>Last</Button>
               <Select w="100px" onChange={(e) => setLimit(e.target.value)}>
@@ -154,7 +154,7 @@ export default function Hotel() {
           </Container>
 
           <Box display={"grid"} gridTemplateColumns={{ base: "repeat(3,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)", xl: "repeat(3,1fr)" }} textAlign="center">
-            {rooms && rooms.map((el) => {
+            {loading || rooms && rooms.map((el) => {
               return (
                 <Box
                   boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}

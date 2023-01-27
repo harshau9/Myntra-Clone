@@ -50,7 +50,7 @@ const CartItem = ({ ele, handelDelete, cartData, setTotal }) => {
             </Button>
             <Button
               backgroundColor={"white"}
-              disabled="true"
+              disabled={true}
               fontWeight={"bold"}
             >
               {count}

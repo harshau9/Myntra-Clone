@@ -4,7 +4,7 @@ import React from 'react'
 export const ImageProductBox = ({data}) => {
   return (
     <Flex>
-    {data.map((Src)=><Box><Image src={Src} /></Box>)}
+    {data.map((Src,i)=><Box key={i}><Image src={Src} /></Box>)}
     </Flex>
   )
 }

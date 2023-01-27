@@ -3,7 +3,6 @@ import { Flex, Text, Box, SimpleGrid, Grid } from "@chakra-ui/react";
 import { BsStar } from "react-icons/bs"
 export const NameBox = ({data}) => {
 
-  console.log(data)
   return (
     <Box pb="18px" mb="40px">
     <Grid gap="1" >

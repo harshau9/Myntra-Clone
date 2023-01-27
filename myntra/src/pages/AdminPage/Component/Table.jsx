@@ -63,8 +63,9 @@ const TableComponent = (data = []) => {
               <Th>LastName</Th>
               <Th>Email</Th>
               <Th isNumeric>Password</Th>
-              <Th isNumeric>Cart items</Th>
-              <Th isNumeric>Wishlist itmes</Th>
+              <Th>Delete</Th>
+              {/* <Th isNumeric>Cart items</Th>
+              <Th isNumeric>Wishlist itmes</Th> */}
             </Tr>
           </Thead>
           <Tbody>
@@ -81,8 +82,8 @@ const TableComponent = (data = []) => {
                 LastName,
                 Email,
                 Password,
-                CartPage,
-                Wishlist,
+                // CartPageRoom,
+                // Wishlist,
               }) => {
                 return (
                   <Tr key={id}>
@@ -92,8 +93,8 @@ const TableComponent = (data = []) => {
                     <Td>{LastName}</Td>
                     <Td>{Email}</Td>
                     <Td>{Password}</Td>
-                    <Td isNumeric>{CartPage.length}</Td>
-                    <Td isNumeric>{Wishlist.length}</Td>
+                    {/* <Td isNumeric>{CartPageRoom.length}</Td> */}
+                    {/* <Td isNumeric>{Wishlist.length}</Td> */}
                     <Td>
                       <Button
                         onClick={() => {

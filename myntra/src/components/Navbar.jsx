@@ -63,6 +63,7 @@ export default function Navbar() {
             <Box display={{ base: "none", md: "flex" }}>
               {Links.map((link, i) => (
                 <Link
+                key={i}
                   to={
                     link === "Men"
                       ? "/men"

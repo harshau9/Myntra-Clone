@@ -144,9 +144,10 @@ const ProductCart = () => {
           </Center>
         ) : (
           <SimpleGrid columns={[1, 2, 3, 4]} spacing={10}>
-            {cartData.map((ele) => (
+            {cartData.map((ele, i) => (
               <MainCartPage
                 ele={ele}
+                key={i}
                 cartData={cartData}
                 setTotal={setTotal}
                 handelDelete={handelDelete}

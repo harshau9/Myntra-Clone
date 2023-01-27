@@ -4,8 +4,8 @@ import React from 'react'
 export const ImagesBox = ({ data = []}) => {
   return (
     <Box>
-    {data.map((Src) => (
-      <Image src={Src} />
+    {data.map((Src,i) => (
+      <Image key={i} src={Src} />
     ))}
     </Box>
   )

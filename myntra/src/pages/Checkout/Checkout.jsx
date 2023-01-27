@@ -74,7 +74,7 @@ const Checkout = () => {
         position: "top",
 
         title: "Something went wrong",
-        description: `${"Please Enter Proper CVV Minimum 3 Latter"}`,
+        description: `${"Please Enter Proper CVV Minimum 3 Letter"}`,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -106,7 +106,7 @@ const Checkout = () => {
           <Box id="master">
             <Box id="main">
               <Box id="b1">
-                <Img src={imageSrc} alt="" />
+                {/* <Img src={imageSrc} alt="" /> */}
                 <Heading>Congratulations!</Heading>
                 <Heading>You are now a Premium Member</Heading>
               </Box>

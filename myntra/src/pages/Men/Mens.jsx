@@ -114,70 +114,70 @@ export const Mens = () => {
   ];
   return (
     <>
-    
-    <Box pt={"80px"}>
-      <Carousel1  />
-      <Flex>
-        <ImagesBox data={ImagesFirstCol} />
-        <ImagesBox data={ImagesSecCol} />
-        <ImagesBox data={ImagesThirdCol} />
-        <ImagesBox data={ImagesForthCol} />
-        <Box></Box>
-      </Flex>
 
-      {/* Lowest Price Ever  */}
-      <Box>
-        <SingleNameBox onClick={()=>navigate('/ProductPage')} data={LowestBox} />
-      </Box>
-
-      <Box>
-        <ImageProductBox data={OmgDealPageImage} />
-      </Box>
-
-      {/* Super Shaving Zone */}
-
-      <Box>
-        <SingleNameBox data={SuperShavingZoneImg} />
-      </Box>
-      <Box>
-        <ImageProductBox data={SuperShavingZone} />
-      </Box>
-
-      {/* Top List Style */}
-
-      <Box>
-        <SingleNameBox data={TopListStyleBox} />
-      </Box>
-      <Box>
-        <ImageProductBox data={TopListStyle} />
-      </Box>
-
-      {/* Never Seen Best Offer Img */}
-
-      <Box>
-        <SingleNameBox data={NeverSeenBestOfferImg} />
-      </Box>
-      <Box>
-        <ImageProductBox data={NeverSeenBestOffer} />
-      </Box>
-
-      {/* Never Seen Best Offer */}
-
-      <Box>
-        <SingleNameBox data={ShopByCatogaryImg} />
-      </Box>
-      <Box>
-        <ImageBoxGrid data={ShopByCatogary} />
+      <Box pt={"80px"}>
+        <Carousel1 />
         <Flex>
-          {LastData.map((Src) => (
-            <Box>
-              <Image src={Src} />
-            </Box>
-          ))}
+          <ImagesBox data={ImagesFirstCol} />
+          <ImagesBox data={ImagesSecCol} />
+          <ImagesBox data={ImagesThirdCol} />
+          <ImagesBox data={ImagesForthCol} />
+          <Box></Box>
         </Flex>
+
+        {/* Lowest Price Ever  */}
+        <Box>
+          <SingleNameBox onClick={() => navigate('/ProductPage')} data={LowestBox} />
+        </Box>
+
+        <Box>
+          <ImageProductBox data={OmgDealPageImage} />
+        </Box>
+
+        {/* Super Shaving Zone */}
+
+        <Box>
+          <SingleNameBox data={SuperShavingZoneImg} />
+        </Box>
+        <Box>
+          <ImageProductBox data={SuperShavingZone} />
+        </Box>
+
+        {/* Top List Style */}
+
+        <Box>
+          <SingleNameBox data={TopListStyleBox} />
+        </Box>
+        <Box>
+          <ImageProductBox data={TopListStyle} />
+        </Box>
+
+        {/* Never Seen Best Offer Img */}
+
+        <Box>
+          <SingleNameBox data={NeverSeenBestOfferImg} />
+        </Box>
+        <Box>
+          <ImageProductBox data={NeverSeenBestOffer} />
+        </Box>
+
+        {/* Never Seen Best Offer */}
+
+        <Box>
+          <SingleNameBox data={ShopByCatogaryImg} />
+        </Box>
+        <Box>
+          <ImageBoxGrid data={ShopByCatogary} />
+          <Flex>
+            {LastData.map((Src, i) => (
+              <Box key={i}>
+                <Image src={Src} />
+              </Box>
+            ))}
+          </Flex>
+        </Box>
+
       </Box>
-    
-    </Box>
     </>
   );
 };

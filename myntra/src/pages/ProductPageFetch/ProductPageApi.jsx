@@ -111,11 +111,7 @@ export const ProductPageApi = () => {
       let update = Listmintdata.filter(ele => ele.discounted_price >= ans[0] && ele.discounted_price <= ans[1])
       setdemo(update);
       setListmintdata(update);
-    
-      console.log(update)
       setdemo([]);
-
-    
     }
 
  

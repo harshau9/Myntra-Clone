@@ -64,7 +64,7 @@ const Cart = () => {
   return (
     <div>
       <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
-        {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
+        {loading && cartData.length == 0 && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
         <Box display={"flex"} justifyContent="space-around" mb={"1%"}>
           <Heading fontSize={"20px"} display={"flex"} gap="10px">
             Total Quantity:-{" "}

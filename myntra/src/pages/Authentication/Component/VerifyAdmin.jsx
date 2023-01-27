@@ -28,7 +28,7 @@ const VerifyAdmin = () => {
 
   const HandleVerify = () => {
     const arr = [PinOne, PinTwo, PinThree, PinFour];
-    if (arr.join("") === "2022") {
+    if (arr.join("") == process.env.REACT_APP_PASSWORD) {
       toast({
         title: "Admin Verification Successfully",
         status: "success",

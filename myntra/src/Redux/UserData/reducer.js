@@ -1,5 +1,4 @@
 import { dataLoading, dataSuccess, dataError } from "./actionType";
-
 const initialState = {
   loading: false,
   userData: [],
@@ -46,7 +45,7 @@ const dataReducer = (state = initialState, { type, payload }) => {
       let User = false;
       let needToSignup = false;
 
-      if (payload === "9572365331") {
+      if (payload == process.env.REACT_APP_PHONE) {
         Admin = true;
       } else {
         const VerifyUser = state.userData.filter(

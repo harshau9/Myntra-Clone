@@ -91,7 +91,7 @@ export const Beauty = () => {
         .then((res) => {
           setLoading(false);
           setData(res);
-          console.log(res);
+          // console.log(res);
         });
     }
   }

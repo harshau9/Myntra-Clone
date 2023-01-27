@@ -17,7 +17,6 @@ export const SelectBtn = ({Sortfunction}) => {
     <Box p="5px">
       <select
         outline = {"2px solid"}
-        borderRadius = "0px"
         color = "black"
         p="px"
         onChange={(e)=>handelselect(e.target.value)} value={select}

@@ -176,8 +176,8 @@ export const Womens = () => {
         <ImageBoxGrid data={ShopByCatogary} />
 
         <Flex>
-          {LastData.map((Src) => (
-            <Box>
+          {LastData.map((Src,i) => (
+            <Box key={i}>
               <Image src={Src} />
             </Box>
           ))}
