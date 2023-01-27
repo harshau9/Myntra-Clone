@@ -6,7 +6,7 @@ export const SingleCartPage = () => {
   return (
     <div>
       <Center mt="8rem">
-        <SimpleGrid columns={2} spacing={10} h="25rem">
+        <SimpleGrid columns={3} spacing={10} h="25rem">
           <Box>
             <Button
               display={"flex"}
@@ -19,6 +19,11 @@ export const SingleCartPage = () => {
           <Box>
             <Button colorScheme="teal" onClick={() => navigate("/bag/product")}>
               Product Cart Page
+            </Button>
+          </Box>
+          <Box>
+            <Button colorScheme="teal" onClick={() => navigate("/bag/beauty")}>
+              Beauty Cart Page
             </Button>
           </Box>
         </SimpleGrid>

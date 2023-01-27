@@ -24,6 +24,7 @@ import Update from "../pages/Home&Hotels/Update";
 
 import VerifiedUser from "../PrivateRoute/VerifiedUser";
 import VerifiedAdmin from "../PrivateRoute/VerifiedAdmin";
+import { Beautycart } from "../pages/cartPage/Beautycart";
 
 export const Allroutes = () => {
   return (
@@ -70,6 +71,14 @@ export const Allroutes = () => {
             <VerifiedUser>
               <ProductCart />
             </VerifiedUser>
+          }
+        ></Route>
+        <Route
+          path="/bag/beauty"
+          element={
+            <VerifiedUser>
+             <Beautycart/>
+             </VerifiedUser>
           }
         ></Route>
 
