@@ -32,7 +32,7 @@ const getuserData = async () => {
     return e;
   }
 };
-
+let arr = [];
 export const Beauty = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
@@ -50,7 +50,7 @@ export const Beauty = () => {
   const [CrouselBox, setCrouselBox] = useState(false);
   const toast = useToast();
   // const totalPages = Math.floor(data.length / 25);
-  let arr = [];
+
   async function getData(page, val, val2, val3) {
     // console.log("30", page);
     if (val) {
@@ -61,7 +61,7 @@ export const Beauty = () => {
         .then((res) => {
           setLoading(false);
           setData(res);
-          console.log(res);
+          // console.log(res);
         });
     } else if (val2) {
       await fetch(
@@ -71,7 +71,7 @@ export const Beauty = () => {
         .then((res) => {
           setLoading(false);
           setData(res);
-          console.log(res);
+          // console.log(res);
         });
     } else if (val3) {
       await fetch(
@@ -81,7 +81,7 @@ export const Beauty = () => {
         .then((res) => {
           setLoading(false);
           setData(res);
-          console.log(res);
+          
         });
     } else {
       await fetch(
@@ -119,9 +119,14 @@ export const Beauty = () => {
     }
   };
   const handleAddToCart = (el) => {
+
     arr.push(el);
+    localStorage.setItem("beauty",JSON.stringify(arr))
+    
     if (isAuth === true) {
-      postUserCartData({ CartPageRoom: arr }).then((res) => {
+      postUserCartData({}).then((res) => {
+
+      
         toast({
           title: 'Successfully',
           description: "Product added successfully",
@@ -129,6 +134,8 @@ export const Beauty = () => {
           duration: 3000,
           isClosable: true,
         })
+
+      
       }).catch((err) => {
         toast({
           title: 'Something went wrong',
@@ -426,7 +433,7 @@ export const Beauty = () => {
                                     // }
                                   >
                                     {/* <CrousalBox data={product} CrouselBox={CrouselBox} /> */}
-                                    <Image src={e.image} />
+                                    <Image src={e.image?e.image:`https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/20872918/2022/11/22/9a26f8d3-0d99-49ea-80dd-7f42c26c25141669139346375KajalandEyeliner1.jpg`} />
                                   </Box>
                                   <Box p="15px" pt={["34px", "20px", "20px"]}>
                                     <Box pb="18px" mb="40px">
@@ -496,7 +503,7 @@ export const Beauty = () => {
                                             <Text as="b" color="black">
                                               {e.discountedPrice
                                                 ? `Rs. ${e.discountedPrice}`
-                                                : ""}
+                                                : "Rs.120"}
                                             </Text>
                                           </Text>
                                           <Text
@@ -504,7 +511,7 @@ export const Beauty = () => {
                                             color="black"
                                             as="del"
                                           >
-                                            {e.strike ? `Rs. ${e.strike}` : ""}
+                                            {e.strike ? `Rs. ${e.strike}` : "Rs.20"}
                                           </Text>
                                           <Text
                                             fontSize={["sm", "sm", "sm"]}

@@ -52,8 +52,9 @@ const Cart = () => {
 
   let total = 0;
   for (let ele of cartData) {
-    total += ele.cost;
+    total += Number(ele.cost);
   }
+  console.log(total)
   localStorage.setItem("roomcarttotal", total);
 
   const handleRemove = (index) => {
