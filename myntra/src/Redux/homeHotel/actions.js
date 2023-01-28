@@ -1,5 +1,4 @@
 import axios from "axios";
-import hotel_base_url from './home&Hotel';
 
 // Action Types creates
 export const GET_ROOMS = "GET_ROOMS";
@@ -38,7 +37,7 @@ export const sortData = (data) => {
 export const getProduct = (page = 1, limit = 3) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.get(`${hotel_base_url}?_page=${page}&_limit=${limit}&_sort=cost&_order=asc`);
+    let res = await axios.get(`${process.env.REACT_APP_HOTEL_BASEURL}?_page=${page}&_limit=${limit}&_sort=cost&_order=asc`);
     dispatch({ type: PRODUCT_SUCCESS, payload: res.data });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });
@@ -48,7 +47,7 @@ export const getProduct = (page = 1, limit = 3) => async (dispatch) => {
 export const addProduct = (message) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.post(`${hotel_base_url}`, message);
+    let res = await axios.post(`${process.env.REACT_APP_HOTEL_BASEURL}`, message);
     dispatch({ type: ADD_PRODUCT, payload: res.data });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });
@@ -58,7 +57,7 @@ export const addProduct = (message) => async (dispatch) => {
 export const updateProduct = (id, changes) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.patch(`${hotel_base_url}/${id}`, {
+    let res = await axios.patch(`${process.env.REACT_APP_HOTEL_BASEURL}/${id}`, {
       ...changes
     });
     dispatch({ type: UPDATE_PRODUCT, payload: res.data });
@@ -70,7 +69,7 @@ export const updateProduct = (id, changes) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   dispatch({ type: PRODUCT_LOADING });
   try {
-    let res = await axios.delete(`${hotel_base_url}/${id}`);
+    let res = await axios.delete(`${process.env.REACT_APP_HOTEL_BASEURL}/${id}`);
     dispatch({ type: REMOVE_PRODUCT, payload: id });
   } catch (e) {
     dispatch({ type: PRODUCT_ERROR, payload: e.message });

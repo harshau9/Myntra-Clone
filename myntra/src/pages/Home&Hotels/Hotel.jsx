@@ -38,10 +38,10 @@ export default function Hotel() {
     }, 200);
     let value = e.target.value;
     if (value === "") {
-      let res = await fetch(`${hotel_base_url}`);
+      let res = await fetch(`${process.env.REACT_APP_HOTEL_BASEURL}`);
       res = await res.json().then((res) => dispatch(getData(res)));
     } else {
-      let res = await fetch(`${hotel_base_url}?category=${value}`);
+      let res = await fetch(`${process.env.REACT_APP_HOTEL_BASEURL}?category=${value}`);
       res = await res.json().then((res) => dispatch(filterData(res)));
     }
   };
