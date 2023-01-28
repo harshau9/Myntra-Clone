@@ -15,6 +15,11 @@ import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import "./Carousel.css";
 import Carousel1 from "./Carousel1";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useToast } from "@chakra-ui/react";
+
+
 let totalPages = 4;
 const Kids = () => {
   const [childData, setChildData] = useState([]);
@@ -23,6 +28,10 @@ const Kids = () => {
   const [page, setPage] = useState(1);
   const [priceChild, setPriceChild] = useState("asc");
   const [valClild, setValChild] = useState("");
+  const { isAuth } = useSelector((store) => store.dataReducer);
+  const navigate = useNavigate();
+  const toast = useToast();
+
 
   useEffect(() => {
     getData(page, priceChild, valClild);
@@ -30,9 +39,6 @@ const Kids = () => {
 
 
   const getData = async (page = 1, priceChild, valClild) => {
-
-    // console.log(valClild);
-
     try {
       if (valClild != "") {
         setLoading(true);
@@ -70,6 +76,24 @@ const Kids = () => {
       })
     }
   };
+
+  let arr = [];
+  const handleClick = (ele) => {
+    if (isAuth === true) {
+      arr.push(ele);
+      localStorage.setItem("kidscart", JSON.stringify(arr));
+      localStorage.setItem("kidFlag", true);
+      toast({
+        title: 'Successfully',
+        description: "Product added successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+    } else {
+      navigate("/login");
+    }
+  }
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -190,6 +214,7 @@ const Kids = () => {
                 <Text textAlign={"center"} color={"black"}>
                   Rating: {`${ele.rating} ---> ${ele.rating_count}`}
                 </Text>
+                <Box textAlign={"center"} mt="10px"> <Button variant={"outline"} bg="teal" w="50%" onClick={() => handleClick(ele)}>Add To Cart</Button> </Box>
               </Box>
             ))}
         </Box>

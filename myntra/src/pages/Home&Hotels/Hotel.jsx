@@ -6,11 +6,9 @@ import { Spinner } from '@chakra-ui/react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@chakra-ui/react";
-import hotel_base_url from '../../Redux/homeHotel/home&Hotel';
 
-
-let totalPages = 3;
 let arr = [];
+let totalPages = 3;
 export default function Hotel() {
   const [page, setPage] = useState(1);
   const [flag, setFlag] = useState(false);
@@ -85,6 +83,7 @@ export default function Hotel() {
   const handleAddToCart = (el) => {
     arr.push(el);
     if (isAuth === true) {
+      localStorage.setItem('hotelFlag', true);
       postUserCartData({ CartPageRoom: arr }).then((res) => {
         toast({
           title: 'Successfully',

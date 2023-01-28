@@ -1,11 +1,11 @@
 import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import getData from "../../Redux/UserData/action";
 
 import { Blocks } from "react-loader-spinner";
 import TableComponent from "./Component/Table";
 import { useDispatch, useSelector } from "react-redux";
+import getData from "../../Redux/UserData/action";
 const AdminPage = () => {
   const [change, setChange] = useState(false);
   const dispatch = useDispatch();

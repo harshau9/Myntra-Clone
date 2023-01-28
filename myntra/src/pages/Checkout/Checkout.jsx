@@ -4,17 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Box, Heading } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
-import { Img } from "@chakra-ui/image";
 import CheckoutAlert from "./CheckoutAlert";
-import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
+var totalAmount = 0;
 const Checkout = () => {
   const nevigate = useNavigate();
   const [imageSrc, setImageSrc] = useState(false);
-  const [TotalProduct, setTotalProduct] = useState(0);
-  const [TotalRoom, setTotalRoom] = useState(0);
-
   const toast = useToast();
 
   //  Input useState
@@ -28,15 +24,14 @@ const Checkout = () => {
   const year = d.getFullYear().toString();
 
   const handleCheckout = () => {
-
     let x = 0
     let put = ""
-    for(let i = 0; i < cardNo.length; i++){
-      if(cardNo[i] == "-"){
+    for (let i = 0; i < cardNo.length; i++) {
+      if (cardNo[i] == "-") {
         x++
-        put+="-"
-      }else{
-        put+="x"
+        put += "-"
+      } else {
+        put += "x"
       }
     }
 
@@ -52,7 +47,6 @@ const Checkout = () => {
     } else if (cardNo.length <= 18 || x < 3) {
       toast({
         position: "top",
-
         title: "Something went wrong",
         description: `${`Please Use Proper Formate xxxx-xxxx-xxxx-xxxx`}`,
         status: "error",
@@ -62,7 +56,6 @@ const Checkout = () => {
     } else if (date[2] + date[3] < year[2] + year[3]) {
       toast({
         position: "top",
-
         title: "Something went wrong",
         description: `${"Your Card Is Expire"}`,
         status: "error",
@@ -72,7 +65,6 @@ const Checkout = () => {
     } else if (cvv.length <= 2) {
       toast({
         position: "top",
-
         title: "Something went wrong",
         description: `${"Please Enter Proper CVV Minimum 3 Letter"}`,
         status: "error",
@@ -83,18 +75,19 @@ const Checkout = () => {
       setImageSrc(true);
       setTimeout(() => {
         nevigate("/");
+        localStorage.removeItem("cartTotal");
+        localStorage.removeItem("beautyFlag");
+        localStorage.removeItem("productFlag");
+        localStorage.removeItem("kidFlag");
+        localStorage.removeItem("hotelFlag");
+        localStorage.removeItem("beautycart");
+        localStorage.removeItem("kidscart");
       }, 4000);
     }
   };
 
-
- 
-
   useEffect(() => {
-    let x = JSON.parse(localStorage.getItem("MyntShopCartTotal"))
-    let y = JSON.parse(localStorage.getItem("roomcarttotal"))
-    setTotalProduct(x)
-    setTotalRoom(y)
+    totalAmount = localStorage.getItem("cartTotal");
   }, []);
 
   return (
@@ -106,18 +99,14 @@ const Checkout = () => {
           <Box id="master">
             <Box id="main">
               <Box id="b1">
-                {/* <Img src={imageSrc} alt="" /> */}
                 <Heading>Congratulations!</Heading>
                 <Heading>You are now a Premium Member</Heading>
               </Box>
               <Box id="b2" padding={"5%"}>
                 <Box padding={"5%"}>
-                   <Box gap="5px">
-                   <Heading>Room Cart Amount - {TotalRoom}</Heading>
-                    <Heading>Product Cart Amount - {TotalProduct}</Heading>
-                    
-                  <Heading>Total Amount to be paid: ₹ {TotalProduct + TotalRoom}</Heading>
-                   </Box>
+                  <Box gap="5px">
+                    <Heading>Total Amount to be paid: ₹ {totalAmount}</Heading>
+                  </Box>
                   <Box
                     action=""
                     id="payment"

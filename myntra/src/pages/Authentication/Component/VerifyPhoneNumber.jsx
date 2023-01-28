@@ -65,7 +65,7 @@ function VerfiyPhoneNumber() {
   };
 
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getData);
   }, []);
 
   if (error) {

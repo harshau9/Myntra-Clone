@@ -10,23 +10,23 @@ import PhoneNumberInput from "./Component/PhoneNumberInput";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import VerfiyPhoneNumber from "./Component/VerifyPhoneNumber";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const GetUserData = async () => {
   let response = await axios.get(
     `https://mock-server-trz7.onrender.com/User-Data`
   );
-
   return response.data;
 };
 
 export default function LoginPage() {
-  const toast = useToast();
   const { user, admin, needToSignup } = useSelector(
     (store) => store.dataReducer
   );
-
+  const toast = useToast();
+  
   if (needToSignup === true) {
+    window.location.reload();
     toast({
       title: "You need to sign up",
       status: "info",

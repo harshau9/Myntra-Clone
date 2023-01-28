@@ -19,11 +19,11 @@ import Checkout from "../pages/Checkout/Checkout";
 import Cart from "../pages/cartPage/Cart";
 import ProductCart from "../pages/cartPage/ProductCart";
 
-import AdminPage from "../pages/AdminPage/AdminPage";
 import Update from "../pages/Home&Hotels/Update";
 
 import VerifiedUser from "../PrivateRoute/VerifiedUser";
 import VerifiedAdmin from "../PrivateRoute/VerifiedAdmin";
+import AdminPage from "../Backend/AdminPage/AdminPage";
 
 export const Allroutes = () => {
   return (
@@ -44,7 +44,7 @@ export const Allroutes = () => {
           path="/bag"
           element={
             <VerifiedUser>
-              <SingleCartPage />
+              <Cart />
             </VerifiedUser>
           }
         ></Route>
@@ -56,22 +56,22 @@ export const Allroutes = () => {
             </VerifiedUser>
           }
         ></Route>
-        <Route
+        {/* <Route
           path="/bag/cart"
           element={
             <VerifiedUser>
               <Cart />
             </VerifiedUser>
           }
-        ></Route>
-        <Route
+        ></Route> */}
+        {/* <Route
           path="/bag/product"
           element={
             <VerifiedUser>
               <ProductCart />
             </VerifiedUser>
           }
-        ></Route>
+        ></Route> */}
 
         <Route
           path="/AdminPage"

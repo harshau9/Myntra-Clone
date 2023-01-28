@@ -33,6 +33,7 @@ const getuserData = async () => {
   }
 };
 
+var arr = [];
 export const Beauty = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
@@ -50,7 +51,7 @@ export const Beauty = () => {
   const [CrouselBox, setCrouselBox] = useState(false);
   const toast = useToast();
   // const totalPages = Math.floor(data.length / 25);
-  let arr = [];
+
   async function getData(page, val, val2, val3) {
     // console.log("30", page);
     if (val) {
@@ -118,25 +119,18 @@ export const Beauty = () => {
       })
     }
   };
+
   const handleAddToCart = (el) => {
-    arr.push(el);
     if (isAuth === true) {
-      postUserCartData({ CartPageRoom: arr }).then((res) => {
-        toast({
-          title: 'Successfully',
-          description: "Product added successfully",
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-      }).catch((err) => {
-        toast({
-          title: 'Something went wrong',
-          description: `${err.message}`,
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        })
+      arr.push(el);
+      localStorage.setItem("beautycart", JSON.stringify(arr));
+      localStorage.setItem("beautyFlag", true);
+      toast({
+        title: 'Successfully',
+        description: "Product added successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
       })
     } else {
       navigate("/login");
@@ -145,7 +139,7 @@ export const Beauty = () => {
 
   return (
     <>
-      <Box width={"97%"}  gap="2px" m={"auto"} bg="white">
+      <Box width={"97%"} gap="2px" m={"auto"} bg="white">
         <Box p="10px" textAlign={"start"}>
           <Text color="black">Home/ Personal Care</Text>
         </Box>
@@ -421,9 +415,9 @@ export const Beauty = () => {
                                   <Box
                                     h="13.5rem"
                                     overflow="hidden"
-                                    // onClick={() =>
-                                    //   handleClick(e._id, e.product)
-                                    // }
+                                  // onClick={() =>
+                                  //   handleClick(e._id, e.product)
+                                  // }
                                   >
                                     {/* <CrousalBox data={product} CrouselBox={CrouselBox} /> */}
                                     <Image src={e.image} />
@@ -480,7 +474,7 @@ export const Beauty = () => {
                                                   handleAddToCart(e)
                                                 }
                                               >
-                                               Add to cart
+                                                Add to cart
                                               </Text>
                                             </Button>
                                             <Text fontSize={"14px"}>
