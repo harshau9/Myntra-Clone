@@ -4,6 +4,7 @@ import React from 'react'
 const CheckoutAlert = () => {
     return (
         <div>
+
             <Alert
                 status='success'
                 variant={''}

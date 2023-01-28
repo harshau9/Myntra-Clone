@@ -14,7 +14,6 @@ const Checkout = () => {
   const [imageSrc, setImageSrc] = useState(false);
   const [TotalProduct, setTotalProduct] = useState(0);
   const [TotalRoom, setTotalRoom] = useState(0);
-  const [Totalbeauty, setTotalbeauty] = useState(0);
 
   const toast = useToast();
 
@@ -29,14 +28,15 @@ const Checkout = () => {
   const year = d.getFullYear().toString();
 
   const handleCheckout = () => {
-    let x = 0;
-    let put = "";
-    for (let i = 0; i < cardNo.length; i++) {
-      if (cardNo[i] == "-") {
-        x++;
-        put += "-";
-      } else {
-        put += "x";
+
+    let x = 0
+    let put = ""
+    for(let i = 0; i < cardNo.length; i++){
+      if(cardNo[i] == "-"){
+        x++
+        put+="-"
+      }else{
+        put+="x"
       }
     }
 
@@ -85,21 +85,18 @@ const Checkout = () => {
         nevigate("/");
       }, 4000);
     }
-    localStorage.removeItem("beauty");
   };
 
-  useEffect(() => {
-    let x = Number(localStorage.getItem("MyntShopCartTotal"));
-    let y = Number(localStorage.getItem("roomcarttotal"));
-    let z = Number(localStorage.getItem("beautyPrice"));
 
-    setTotalProduct(x);
-    setTotalRoom(y);
-    setTotalbeauty(z);
+ 
+
+  useEffect(() => {
+    let x = JSON.parse(localStorage.getItem("MyntShopCartTotal"))
+    let y = JSON.parse(localStorage.getItem("roomcarttotal"))
+    setTotalProduct(x)
+    setTotalRoom(y)
   }, []);
-  console.log(TotalRoom);
-  const finalPrice =
-    Number(TotalProduct) + Number(TotalRoom) + Number(Totalbeauty);
+
   return (
     <Box>
       <Box mt={"5%"}>
@@ -115,14 +112,12 @@ const Checkout = () => {
               </Box>
               <Box id="b2" padding={"5%"}>
                 <Box padding={"5%"}>
-                  <Box gap="5px">
-                    <Heading>Room Cart Amount : {TotalRoom}</Heading>
-                    <Heading>
-                      Product Cart Amount : {TotalProduct + Totalbeauty}
-                    </Heading>
-
-                    <Heading>Total Amount to be paid:- ₹ {finalPrice}</Heading>
-                  </Box>
+                   <Box gap="5px">
+                   <Heading>Room Cart Amount - {TotalRoom}</Heading>
+                    <Heading>Product Cart Amount - {TotalProduct}</Heading>
+                    
+                  <Heading>Total Amount to be paid: ₹ {TotalProduct + TotalRoom}</Heading>
+                   </Box>
                   <Box
                     action=""
                     id="payment"
