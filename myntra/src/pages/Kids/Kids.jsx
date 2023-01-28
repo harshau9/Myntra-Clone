@@ -7,6 +7,9 @@ import {
   Heading,
   Text,
   Toast,
+  Button,
+  Stack,
+  HStack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
@@ -18,23 +21,43 @@ const Kids = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
+  const [priceChild, setPriceChild] = useState("asc");
+  const [valClild, setValChild] = useState("");
 
   useEffect(() => {
-    getData(page);
-  }, [page]);
+    getData(page, priceChild, valClild);
+  }, [page, priceChild, valClild]);
 
-  const getData = async (page = 1) => {
+
+  const getData = async (page = 1, priceChild, valClild) => {
+
+    // console.log(valClild);
+
     try {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-      setError(false);
-      let res = await fetch(
-        `https://myntra-database-lt5b7yjpx-aloki9singh.vercel.app/clothing?category=Child&_limit=10&_page=${page}`
-      );
-      res = await res.json();
-      setChildData(res);
+      if (valClild != "") {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        setError(false);
+        let res = await fetch(
+          `${process.env.REACT_APP_CHILD_BASEURL}?_page=${page}&_limit=10&_sort=strike_price&_order=${priceChild}&title=${valClild}`
+        );
+        res = await res.json();
+        setChildData(res);
+      } else {
+        // console.log(priceChild);
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        setError(false);
+        let res = await fetch(
+          `${process.env.REACT_APP_CHILD_BASEURL}?_page=${page}&_limit=10&_sort=strike_price&_order=${priceChild}`
+        );
+        res = await res.json();
+        setChildData(res);
+      }
     } catch (err) {
       setLoading(false);
       setError(true);
@@ -46,6 +69,12 @@ const Kids = () => {
         isClosable: true,
       })
     }
+  };
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setPriceChild(value)
+    getData(page, priceChild);
   };
 
   const handlePageChange = (val) => {
@@ -70,6 +99,56 @@ const Kids = () => {
 
         {loading && <Spinner size={"xl"} color="red.500" />}
 
+
+        <Box m="1% 0" display={"flex"} flexDirection="row" gap={"13%"} justifyContent="center" alignItems={"center"}>
+          <Box border={"1px solid black"}>
+            <select onChange={handleChange}>
+              <option value={"asc"}>Sort by Price</option>
+              <option value={"asc"}>Ascending</option>
+              <option value={"desc"}>Descending</option>
+            </select>
+          </Box>
+
+          <Box>
+            <Text color={"black"} as="b">
+              FILTERS BY TITLE
+            </Text>
+            <Stack p="5px" pt={5} pb={5}>
+              <hr />
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="HELLCAT"
+                  checked={valClild === "HELLCAT"}
+                  onChange={(e) => setValChild(e.target.value)}
+                />
+                <Text fontSize={"14px"}>HELLCAT</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="MANZON"
+                  checked={valClild === "MANZON"}
+                  onChange={(e) => setValChild(e.target.value)}
+                />
+                <Text fontSize={"14px"}>MANZON</Text>
+              </HStack>
+              <HStack width={"20%"}>
+                <input
+                  type="radio"
+                  value="VASTRAMAY"
+                  checked={valClild === "VASTRAMAY"}
+                  onChange={(e) => setValChild(e.target.value)}
+                />
+                <Text fontSize={"14px"}>VASTRAMAY</Text>
+              </HStack>
+            </Stack>
+          </Box>
+
+
+        </Box>
+
+
         <Box
           display={"grid"}
           gridTemplateColumns={{
@@ -88,7 +167,7 @@ const Kids = () => {
                 padding="10px"
                 borderRadius={"10px"}
               >
-                <Image src={ele.images} alt=""></Image>
+                <Image src={ele.images[0]} alt="child image" w="100%"></Image>
                 <Text textAlign={"center"}>Category: {ele.category}</Text>
                 <Text
                   textAlign={"center"}
@@ -98,7 +177,7 @@ const Kids = () => {
                 </Text>
                 <Box display={"flex"} justifyContent={"space-between"}>
                   <Text color={"black"}>Discount: ₹{ele.discounted_price}</Text>
-                  <Text color={"black"}>
+                  <Text color={"green"}>
                     Original Price: ₹{ele.strike_price}
                   </Text>
                 </Box>
@@ -114,7 +193,7 @@ const Kids = () => {
               </Box>
             ))}
         </Box>
-        <Box m="auto" mt="1%" mb="1%" textAlign="center" w="100px" display={"flex"} alignItems="center" justifyContent={"center"}>
+        <Box m="auto" mt="2%" mb="1%" textAlign="center" w="100px" display={"flex"} alignItems="center" justifyContent={"center"}>
           <Pagination totalPages={totalPages} currentPage={page} handlePageChange={handlePageChange} />
         </Box>
       </Box>
