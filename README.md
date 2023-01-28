@@ -9,7 +9,7 @@ CW-RCT201-B21
 
 Project Code - eager-grain-3783
 Project -https://www.myntra.com
-Vercel link : https://myntra-rho.vercel.app
+Vercel link : https://myntra-black.vercel.app
 
 IA - Sheelu
 
