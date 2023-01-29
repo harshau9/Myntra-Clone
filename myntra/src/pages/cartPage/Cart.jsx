@@ -15,12 +15,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Grid } from "react-loader-spinner";
 import { BsStar } from "react-icons/bs";
+import { BsCartXFill } from 'react-icons/bs';
 
 const Cart = () => {
   const [cartData, setCartData] = useState("");
   const [hotelFlag, setHotelFlag] = useState(false);
-  // const [productData, setProductData] = useState("");
-  // const [productFlag, setProductFlag] = useState(false);
+  const [productData, setProductData] = useState("");
+  const [productFlag, setProductFlag] = useState(false);
   const [kidsData, setKidsData] = useState([]);
   const [kidsFlag, setKidsFlag] = useState(false);
   const [beautyData, setbeautyData] = useState([]);
@@ -33,9 +34,9 @@ const Cart = () => {
 
   useEffect(() => {
     getData();
-    // getProductData();
     setHotelFlag(localStorage.getItem("hotelFlag"));
-    // setProductFlag(localStorage.getItem("productFlag"));
+    setProductFlag(localStorage.getItem("productFlag"));
+    setProductData(JSON.parse(localStorage.getItem("productcart")) || []);
     setKidsData(JSON.parse(localStorage.getItem("kidscart")) || []);
     setKidsFlag(localStorage.getItem("kidFlag"));
     setbeautyData(JSON.parse(localStorage.getItem("beautycart")) || []);
@@ -64,31 +65,6 @@ const Cart = () => {
     }
   };
 
-  // const getProductData = async () => {
-  //   try {
-  //     setLoading(true);
-  //     setTimeout(() => {
-  //       setLoading(false);
-  //     }, 2000);
-  //     let res = await axios.get(
-  //       `https://mock-server-trz7.onrender.com/User-Data/${id}`
-  //     );
-  //     setProductData(res.data.CartPageProduct);
-  //   } catch (e) {
-  //     toast({
-  //       title: "Something went wrong",
-  //       description: `${e.message}`,
-  //       status: "error",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // };
-
-
-
-  // console.log(productData);
-
   const handleCheckout = () => {
     navigate("/checkout");
   };
@@ -99,13 +75,20 @@ const Cart = () => {
   }
   let total2 = 0;
   for (let ele of beautyData) {
+    if(!ele.discountedPrice){
+      ele.discountedPrice = 100;
+    }
     total2 += Number(ele.discountedPrice);
   }
   let total3 = 0;
   for (let ele of kidsData) {
     total3 += Number(ele.strike_price);
   }
-  localStorage.setItem("cartTotal", total1 + total2 + total3);
+  let total4 = 0;
+  for (let ele of productData) {
+    total4 += Number(ele.discounted_price);
+  }
+  localStorage.setItem("cartTotal", total1 + total2 + total3 + total4);
 
   const handleRemove = (index) => {
     setLoading(true);
@@ -118,16 +101,19 @@ const Cart = () => {
     }
   };
 
-  // const handleRemoveProduct = (index) => {
-  //   setLoading(true);
-  //   setInterval(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  //   productData.splice(index, 1);
-  //   if (productData.length === 0) {
-  //     localStorage.setItem("productFlag", false);
-  //   }
-  // };
+  const handleRemoveProduct = (index) => {
+    setLoading(true);
+    setInterval(() => {
+      setLoading(false);
+    }, 1000);
+    productData.splice(index, 1);
+    setProductData(productData);
+    localStorage.setItem("productcart", JSON.stringify(productData));
+    if (productData.length === 0) {
+      localStorage.setItem("productFlag", false);
+      localStorage.removeItem("productcart");
+    }
+  };
 
   const handleRemoveKids = (index) => {
     setLoading(true);
@@ -157,7 +143,9 @@ const Cart = () => {
     }
   };
 
-
+  if (productData.length === 0 && kidsData.length === 0 && beautyData.length === 0 && cartData.length === 0) {
+    return <Box mt="2%" display={"flex"} justifyContent="center" alignContent={"center"}> <Heading color={"red.300"}>Cart is Empty😒 <BsCartXFill /> </Heading> </Box>
+  };
 
   return (
     <Box mt={{ base: "5%", sm: "10%", lg: "5%" }}>
@@ -166,13 +154,13 @@ const Cart = () => {
         <Heading fontSize={"20px"} display={"flex"} gap="10px">
           Total Quantity:-{" "}
           <Text fontSize={"20px"} color={"pink.500"}>
-            {cartData.length + beautyData.length + kidsData.length}
+            {cartData.length + beautyData.length + kidsData.length + productData.length}
           </Text>
         </Heading>
         <Heading fontSize={"20px"} display={"flex"} gap="10px">
           Total Price:-{" "}
           <Text fontSize={"20px"} color={"pink.500"}>
-            {total1 + total2 + total3}
+            {total1 + total2 + total3 + total4}
           </Text>
         </Heading>
       </Box>
@@ -225,11 +213,10 @@ const Cart = () => {
                 </Box>
               </Box>
             ))}
-        </Box> : <Heading>No Hotel Data</Heading>
-      }
+        </Box> : null}
 
 
-      {/* {(productFlag && productData.length !== 0) ?
+      {(productFlag && productData.length !== 0) ?
         <Box
           display={"grid"}
           gridTemplateColumns={{
@@ -275,8 +262,7 @@ const Cart = () => {
                 </Box>
               </Box>
             ))}
-        </Box> : <Heading>No Product Data</Heading>
-      } */}
+        </Box> : null}
 
 
 
@@ -335,7 +321,7 @@ const Cart = () => {
                 </Button>
               </Box>
             ))}
-        </Box> : <Heading>No Kits Data</Heading>}
+        </Box> : null}
 
 
 
@@ -384,7 +370,7 @@ const Cart = () => {
                 </Box>
               </Box>
             ))}
-        </Box> : <Heading>No Beauty Data</Heading>}
+        </Box> : null}
 
 
 

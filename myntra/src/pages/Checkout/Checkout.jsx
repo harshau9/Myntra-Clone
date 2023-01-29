@@ -80,14 +80,16 @@ const Checkout = () => {
         localStorage.removeItem("productFlag");
         localStorage.removeItem("kidFlag");
         localStorage.removeItem("hotelFlag");
+        localStorage.removeItem("productcart");
         localStorage.removeItem("beautycart");
         localStorage.removeItem("kidscart");
+        localStorage.removeItem("cartTotal");
       }, 4000);
     }
   };
 
   useEffect(() => {
-    totalAmount = localStorage.getItem("cartTotal");
+    totalAmount = localStorage.getItem("cartTotal") || 0;
   }, []);
 
   return (

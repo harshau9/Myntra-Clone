@@ -24,13 +24,14 @@ export default function LoginPage() {
     (store) => store.dataReducer
   );
   const toast = useToast();
+
   
   if (needToSignup === true) {
     window.location.reload();
     toast({
       title: "You need to sign up",
       status: "info",
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
     });
   }
