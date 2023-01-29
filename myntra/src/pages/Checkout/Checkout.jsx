@@ -80,6 +80,7 @@ const Checkout = () => {
         localStorage.removeItem("productFlag");
         localStorage.removeItem("kidFlag");
         localStorage.removeItem("hotelFlag");
+        localStorage.removeItem("hotelcart");
         localStorage.removeItem("productcart");
         localStorage.removeItem("beautycart");
         localStorage.removeItem("kidscart");

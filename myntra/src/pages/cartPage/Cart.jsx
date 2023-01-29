@@ -1,20 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   Box,
   Spinner,
-  useToast,
   Image,
   Heading,
   Button,
-  Text,
-  Flex,
-  SimpleGrid,
+  Text
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Grid } from "react-loader-spinner";
-import { BsStar } from "react-icons/bs";
 import { BsCartXFill } from 'react-icons/bs';
 
 const Cart = () => {
@@ -26,14 +19,11 @@ const Cart = () => {
   const [kidsFlag, setKidsFlag] = useState(false);
   const [beautyData, setbeautyData] = useState([]);
   const [beautyFlag, setbeautyFlag] = useState(false);
-  const toast = useToast();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { currentUserData } = useSelector((store) => store.dataReducer);
-  const { id } = currentUserData;
 
   useEffect(() => {
-    getData();
+    setCartData(JSON.parse(localStorage.getItem("hotelcart")) || []);
     setHotelFlag(localStorage.getItem("hotelFlag"));
     setProductFlag(localStorage.getItem("productFlag"));
     setProductData(JSON.parse(localStorage.getItem("productcart")) || []);
@@ -42,28 +32,6 @@ const Cart = () => {
     setbeautyData(JSON.parse(localStorage.getItem("beautycart")) || []);
     setbeautyFlag(localStorage.getItem("beautyFlag"));
   }, []);
-
-
-  const getData = async () => {
-    try {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-      let res = await axios.get(
-        `https://mock-server-trz7.onrender.com/User-Data/${id}`
-      );
-      setCartData(res.data.CartPageRoom);
-    } catch (e) {
-      toast({
-        title: "Something went wrong",
-        description: `${e.message}`,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
 
   const handleCheckout = () => {
     navigate("/checkout");
@@ -96,8 +64,12 @@ const Cart = () => {
       setLoading(false);
     }, 1000);
     cartData.splice(index, 1);
+    setCartData(cartData);
+    localStorage.setItem("hotelcart", JSON.stringify(cartData));
     if (cartData.length === 0) {
-      localStorage.setItem('hotelFlag', false);
+      localStorage.removeItem('hotelFlag');
+      localStorage.removeItem("hotelcart");
+      window.location.reload();
     }
   };
 
@@ -110,8 +82,9 @@ const Cart = () => {
     setProductData(productData);
     localStorage.setItem("productcart", JSON.stringify(productData));
     if (productData.length === 0) {
-      localStorage.setItem("productFlag", false);
+      localStorage.removeItem("productFlag");
       localStorage.removeItem("productcart");
+      window.location.reload();
     }
   };
 
@@ -124,8 +97,9 @@ const Cart = () => {
     setKidsData(kidsData);
     localStorage.setItem("kidscart", JSON.stringify(kidsData));
     if (kidsData.length === 0) {
-      localStorage.setItem("kidFlag", false);
+      localStorage.removeItem("kidFlag");
       localStorage.removeItem("kidscart");
+      window.location.reload();
     }
   };
 
@@ -138,8 +112,9 @@ const Cart = () => {
     setbeautyData(beautyData);
     localStorage.setItem("beautycart", JSON.stringify(beautyData));
     if (beautyData.length === 0) {
-      localStorage.setItem("beautyFlag", false);
+      localStorage.removeItem("beautyFlag");
       localStorage.removeItem("beautycart");
+      window.location.reload();
     }
   };
 

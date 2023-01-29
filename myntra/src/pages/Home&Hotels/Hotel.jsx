@@ -81,25 +81,16 @@ export default function Hotel() {
 
   /*Add to Cart Functions */
   const handleAddToCart = (el) => {
-    arr.push(el);
     if (isAuth === true) {
-      localStorage.setItem('hotelFlag', true);
-      postUserCartData({ CartPageRoom: arr }).then((res) => {
-        toast({
-          title: 'Successfully',
-          description: "Product added successfully",
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-      }).catch((err) => {
-        toast({
-          title: 'Something went wrong',
-          description: `${err.message}`,
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        })
+      arr.push(el);
+      localStorage.setItem("hotelcart", JSON.stringify(arr));
+      localStorage.setItem("hotelFlag", true);
+      toast({
+        title: 'Successfully',
+        description: "Product added successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
       })
     } else {
       navigate("/login");
