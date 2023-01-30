@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 
-
+let arr = [];
 let totalPages = 4;
 const Kids = () => {
   const [childData, setChildData] = useState([]);
@@ -77,7 +77,6 @@ const Kids = () => {
     }
   };
 
-  let arr = [];
   const handleClick = (ele) => {
     if (isAuth === true) {
       arr.push(ele);
@@ -93,7 +92,7 @@ const Kids = () => {
     } else {
       navigate("/login");
     }
-  }
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;

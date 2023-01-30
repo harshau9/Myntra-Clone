@@ -31,28 +31,16 @@ export const AddToCartBox = ({ data }) => {
   };
 
   const HandelAddToCart = (el) => {
-    data.id = Date.now()
-    data.isAuth = true
-    data.count = 1
-    arr.push(el);
     if (isAuth === true) {
-      localStorage.setItem('productFlag', true);
-      postUserCartData({ CartPageProduct: arr }).then((res) => {
-        toast({
-          title: 'Successfully',
-          description: "Product added successfully",
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-      }).catch((err) => {
-        toast({
-          title: 'Something went wrong',
-          description: `${err.message}`,
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        })
+      arr.push(el);
+      localStorage.setItem("productcart", JSON.stringify(arr));
+      localStorage.setItem("productFlag", true);
+      toast({
+        title: 'Successfully',
+        description: "Product added successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
       })
     } else {
       navigate("/login");
