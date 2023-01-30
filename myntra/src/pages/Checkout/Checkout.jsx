@@ -5,7 +5,7 @@ import { Box, Heading } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
 import CheckoutAlert from "./CheckoutAlert";
-import { useToast } from "@chakra-ui/react";
+import { Spinner, useToast } from "@chakra-ui/react";
 
 var totalAmount = 0;
 const Checkout = () => {
@@ -18,10 +18,20 @@ const Checkout = () => {
   const [date, setDate] = useState("");
   const [cardName, setCardName] = useState("");
   const [cvv, setCVV] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //   Geting year for date chec
   const d = new Date();
   const year = d.getFullYear().toString();
+
+
+  useEffect(() => {
+    setLoading(true);
+    setInterval(() => {
+      setLoading(false);
+    }, 3000);
+    totalAmount = localStorage.getItem("cartTotal") || 0;
+  }, []);
 
   const handleCheckout = () => {
     let x = 0
@@ -85,16 +95,16 @@ const Checkout = () => {
         localStorage.removeItem("beautycart");
         localStorage.removeItem("kidscart");
         localStorage.removeItem("cartTotal");
+        window.localStorage.clear();
       }, 4000);
     }
   };
 
-  useEffect(() => {
-    totalAmount = localStorage.getItem("cartTotal") || 0;
-  }, []);
+
 
   return (
     <Box>
+      <Box ml="40%"> {loading && <Spinner size={"lg"} />} </Box>
       <Box mt={"5%"}>
         {imageSrc === true ? (
           <CheckoutAlert />
