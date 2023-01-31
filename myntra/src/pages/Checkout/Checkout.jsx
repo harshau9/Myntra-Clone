@@ -132,8 +132,8 @@ const Checkout = () => {
           <Box mt={{ base: "5%", sm: "10%", lg: "5%" }} m={"20px"}>
             <Center>
               <Heading pl={"25px"} pb={7} display="flex" color={"black.300"}>
-                {" "}
-                Cart Summary <BsCartCheckFill />
+                {" "} <BsCartCheckFill />
+                Cart Summary 
                 ({cartData.length +
                   beautyData.length +
                   kidsData.length +
@@ -268,8 +268,8 @@ const Checkout = () => {
                     <Heading>You are now a Premium Member</Heading>
                   </Box>
                   <Box id="b2" padding={"5%"}>
-                    <Box padding={"10px"}>
-                      <Box gap="5px">
+                    <Box padding={"10%"}>
+                      <Box gap="15px">
                         <Heading>
                           Total Amount to be paid: ₹ {totalAmount}
                         </Heading>
@@ -281,14 +281,14 @@ const Checkout = () => {
                         display="flex"
                         flexDirection={"column"}
                         justifyContent={"space-between"}
-                        gap="5%"
+                        gap="30%"
                         p={"5%"}
                       >
                         <Input
                           isInvalid={cardNo == ""}
                           value={cardNo}
                           onChange={(e) => setCardNo(e.target.value)}
-                          mt="2%"
+                          mt="4%"
                           id="card_number"
                           type="tel"
                           inputMode="numeric"
@@ -301,7 +301,7 @@ const Checkout = () => {
                           isInvalid={date == ""}
                           value={date}
                           onChange={(e) => setDate(e.target.value)}
-                          mt="2%"
+                          mt="4%"
                           type="date"
                           id="expiry"
                           placeholder="Expiry"
@@ -310,7 +310,7 @@ const Checkout = () => {
                           isInvalid={cardName == ""}
                           value={cardName}
                           onChange={(e) => setCardName(e.target.value)}
-                          mt="2%"
+                          mt="4%"
                           type="text"
                           id="holder"
                           placeholder="Card Holder Name"
@@ -319,7 +319,7 @@ const Checkout = () => {
                           isInvalid={cvv == ""}
                           value={cvv}
                           onChange={(e) => setCVV(e.target.value)}
-                          mt="2%"
+                          mt="4%"
                           type="password"
                           maxLength="3"
                           minLength="3"
