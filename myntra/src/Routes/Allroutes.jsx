@@ -14,9 +14,11 @@ import Hotel from "../pages/Home&Hotels/Hotel";
 import Kids from "../pages/Kids/Kids";
 import { Beauty } from "../pages/Beauty/Beauty";
 import { ProductPageApi } from "../pages/ProductPageFetch/ProductPageApi";
-
+import { SingleCartPage } from "../pages/cartPage/SingleCartPage";
 import Checkout from "../pages/Checkout/Checkout";
 import Cart from "../pages/cartPage/Cart";
+import ProductCart from "../pages/cartPage/ProductCart";
+
 import Update from "../pages/Home&Hotels/Update";
 
 import VerifiedUser from "../PrivateRoute/VerifiedUser";
@@ -30,7 +32,6 @@ export const Allroutes = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/men" element={<Mens />} />
@@ -88,7 +89,7 @@ export const Allroutes = () => {
             </VerifiedAdmin>
           }
         />
-        <Route path="/error" element={<ErrorPage />} />
+        <Route path='/error' element={<ErrorPage/> } />
       </Routes>
       <Footer />
     </>

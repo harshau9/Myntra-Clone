@@ -1,8 +1,7 @@
 
 #master {
     margin: auto;
-    width:100vw;
-    /* border:1px solid greenyellow; */
+    width: 100vw;
     height: 750px;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -17,7 +16,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 200%;
     margin-left: -100%;
 }
 
@@ -38,7 +37,7 @@
 }
 
 #b2 {
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 1% 1%;
 }
 
