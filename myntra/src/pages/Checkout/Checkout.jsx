@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Checkout.css";
 import { useNavigate } from "react-router-dom";
-
-import { BsCartXFill } from "react-icons/bs";
+import { BsCartCheckFill } from "react-icons/bs";
 import { Input } from "@chakra-ui/input";
 import CheckoutAlert from "./CheckoutAlert";
 import {
   Spinner,
   useToast,
-  Flex,
   Image,
   Button,
-  Text,
   Box,
   Heading,
   HStack,
   SimpleGrid,
-  VStack,
-  Container,
   Center,
 } from "@chakra-ui/react";
 
@@ -26,12 +21,16 @@ const Checkout = () => {
   const nevigate = useNavigate();
   const [imageSrc, setImageSrc] = useState(false);
   const toast = useToast();
+  const [loading, setLoading] = useState(false);
 
   //  Input useState
   const [cardNo, setCardNo] = useState("");
   const [date, setDate] = useState("");
   const [cardName, setCardName] = useState("");
   const [cvv, setCVV] = useState("");
+  //   Geting year for date check
+  const d = new Date();
+  const year = d.getFullYear().toString();
 
   const [cartData, setCartData] = useState("");
   const [hotelFlag, setHotelFlag] = useState(false);
@@ -41,8 +40,6 @@ const Checkout = () => {
   const [kidsFlag, setKidsFlag] = useState(false);
   const [beautyData, setbeautyData] = useState([]);
   const [beautyFlag, setbeautyFlag] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -59,10 +56,6 @@ const Checkout = () => {
     setbeautyData(JSON.parse(localStorage.getItem("beautycart")) || []);
     setbeautyFlag(localStorage.getItem("beautyFlag"));
   }, []);
-
-  //   Geting year for date chec
-  const d = new Date();
-  const year = d.getFullYear().toString();
 
   const handleCheckout = () => {
     let x = 0;
@@ -133,31 +126,32 @@ const Checkout = () => {
 
   return (
     <Box shadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+      {loading && <Spinner ml={"40%"} size={"xl"} color="green" />}
       <SimpleGrid columns={2} margin={7} gap={2}>
         <>
           <Box mt={{ base: "5%", sm: "10%", lg: "5%" }} m={"20px"}>
             <Center>
-              <Heading pl={"25px"} pb={7}>
+              <Heading pl={"25px"} pb={7} display="flex" color={"black.300"}>
                 {" "}
-                Cart Summary (
+                Cart Summary <BsCartCheckFill />
                 {cartData.length +
                   beautyData.length +
                   kidsData.length +
                   productData.length}
-                ){" "}
+                {" "}
               </Heading>
             </Center>
-            {loading && <Spinner ml={"40%"} size={"xl"} color="red.500" />}
 
             {hotelFlag && cartData.length !== 0 ? (
               <Box display={"grid"} textAlign="center">
                 {cartData &&
-                  cartData.map((el, index) => (
+                  cartData.map((el) => (
                     <Box
                       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
                       m={"1rem"}
                       key={el.id}
                       w="100%"
+                      padding={"15px"}
                     >
                       <HStack justifyContent={"space-around"}>
                         <Image
@@ -172,7 +166,7 @@ const Checkout = () => {
                           {el.category.toUpperCase()} ROOM
                         </p>
                         <p style={{ color: "green" }}>
-                          Cost : ₹{el.cost || 100}
+                          Cost : ₹{el.cost}
                         </p>
                       </HStack>
                     </Box>
@@ -189,13 +183,14 @@ const Checkout = () => {
                       m={"1rem"}
                       key={index}
                       w="100%"
+                      padding={"10px"}
                     >
                       <HStack justifyContent={"space-around"}>
                         <Image
                           src={el.images[0]}
-                          alt="room"
-                          w={"10%"}
-                          h={"20%"}
+                          alt="product"
+                          w={"8%"}
+                          h={"8%"}
                         ></Image>
 
                         <p style={{ fontSize: "12px" }}>Brand : {el.title}</p>
@@ -212,11 +207,11 @@ const Checkout = () => {
               <Box display={"grid"} textAlign="center">
                 {kidsData &&
                   kidsData.map((ele, index) => (
-                    <Box key={index} m={"1rem"} w="100%">
+                    <Box key={index} m={"1rem"} w="100%" boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} padding="10px">
                       <HStack justifyContent={"space-around"}>
                         <Image
                           src={ele.images[0]}
-                          alt="room"
+                          alt="kids"
                           w={"10%"}
                           h={"20%"}
                         ></Image>
@@ -240,13 +235,14 @@ const Checkout = () => {
                       key={index}
                       w={"100%"}
                       m={"1rem"}
+                      padding="10px"
                     >
                       <HStack justifyContent={"space-around"}>
                         <Image
                           src={el.image}
                           alt="room"
                           w={"10%"}
-                          h={"20%"}
+                          h={"15%"}
                         ></Image>
 
                         <p style={{ fontSize: "12px" }}>Brand : {el.brand}</p>
@@ -261,7 +257,6 @@ const Checkout = () => {
           </Box>
         </>
         <Box>
-          <Box> {loading && <Spinner size={"lg"} />} </Box>
           <Box>
             {imageSrc === true ? (
               <CheckoutAlert />
@@ -273,7 +268,7 @@ const Checkout = () => {
                     <Heading>You are now a Premium Member</Heading>
                   </Box>
                   <Box id="b2" padding={"5%"}>
-                    <Box padding={"5%"}>
+                    <Box padding={"10px"}>
                       <Box gap="5px">
                         <Heading>
                           Total Amount to be paid: ₹ {totalAmount}
