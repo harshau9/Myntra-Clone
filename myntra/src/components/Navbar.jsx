@@ -41,7 +41,7 @@ export default function Navbar() {
   const { isAuth } = useSelector((store) => store.dataReducer);
   return (
     <>
-      <Box boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px">
+      <Box boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px" mt={"5%"}>
         <Flex
           h={16}
           alignItems={"center"}
