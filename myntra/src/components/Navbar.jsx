@@ -14,7 +14,7 @@ import MyntraLogo from "../pages/myn.png";
 import { FaRegUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-const Links = ["Men", "Women", "Kids", "Home & Living", "BEAUTY", "Studio"];
+const Links = ["Kids", "Home & Living", "BEAUTY", "Studio", "Men", "Women"];
 
 const NavLink = ({ children }) => (
   <Box
@@ -46,7 +46,7 @@ export default function Navbar() {
           h={16}
           alignItems={"center"}
           justifyContent={"space-between"}
-          px="10"
+          position={"fixed"} top="0.1px" zIndex={"100"} bg="white" w="100%" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" padding={"10px"}
         >
           <IconButton
             size={"md"}
@@ -56,28 +56,28 @@ export default function Navbar() {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Flex gap="5" alignItems={"center"} border="0px solid red">
+          <Flex gap="5" alignItems={"center"}>
             <Link to="/">
               <Image src={MyntraLogo} alt="MyntraLogo" width="16" height="" />
             </Link>
             <Box display={{ base: "none", md: "flex" }}>
               {Links.map((link, i) => (
                 <Link
-                key={i}
+                  key={i}
                   to={
                     link === "Men"
                       ? "/men"
                       : link === "Women"
-                      ? "/women"
-                      : link === "Kids"
-                      ? "/kids"
-                      : link === "Home & Living"
-                      ? "/hotel"
-                      : link === "Studio"
-                      ? "/ProductPage"
-                      : link === "BEAUTY"
-                      ? "/beauty"
-                      : undefined
+                        ? "/women"
+                        : link === "Kids"
+                          ? "/kids"
+                          : link === "Home & Living"
+                            ? "/hotel"
+                            : link === "Studio"
+                              ? "/ProductPage"
+                              : link === "BEAUTY"
+                                ? "/beauty"
+                                : undefined
                   }
                 >
                   {" "}
@@ -162,16 +162,16 @@ export default function Navbar() {
                     link === "Men"
                       ? "/men"
                       : link === "Women"
-                      ? "/women"
-                      : link === "Kids"
-                      ? "/kids"
-                      : link === "Home & Living"
-                      ? "/hotel"
-                      : link === "Studio"
-                      ? "/ProductPage"
-                      : link === "BEAUTY"
-                      ? "/beauty"
-                      : undefined
+                        ? "/women"
+                        : link === "Kids"
+                          ? "/kids"
+                          : link === "Home & Living"
+                            ? "/hotel"
+                            : link === "Studio"
+                              ? "/ProductPage"
+                              : link === "BEAUTY"
+                                ? "/beauty"
+                                : undefined
                   }
                 >
                   {" "}
