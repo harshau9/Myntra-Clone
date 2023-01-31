@@ -127,140 +127,138 @@ const Checkout = () => {
   return (
     <Box shadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
       {loading && <Spinner ml={"40%"} size={"xl"} color="green" />}
-      <SimpleGrid columns={2} margin={7} gap={2}>
-        <>
-          <Box mt={{ base: "5%", sm: "10%", lg: "5%" }} m={"20px"}>
-            <Center>
-              <Heading pl={"25px"} pb={7} display="flex" color={"black.300"}>
-                {" "} <BsCartCheckFill />
-                Cart Summary 
-                ({cartData.length +
-                  beautyData.length +
-                  kidsData.length +
-                  productData.length})
-                {" "}
-              </Heading>
-            </Center>
+      {imageSrc === true ? <CheckoutAlert /> :
+        <SimpleGrid columns={2} margin={7} gap={2}>
+          <>
+            <Box mt={{ base: "5%", sm: "10%", lg: "5%" }} m={"20px"}>
+              <Center>
+                <Heading pl={"25px"} pb={7} display="flex" color={"black.300"}>
+                  {" "} <BsCartCheckFill />
+                  Cart Summary
+                  ({cartData.length +
+                    beautyData.length +
+                    kidsData.length +
+                    productData.length})
+                  {" "}
+                </Heading>
+              </Center>
 
-            {hotelFlag && cartData.length !== 0 ? (
-              <Box display={"grid"} textAlign="center">
-                {cartData &&
-                  cartData.map((el) => (
-                    <Box
-                      boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
-                      m={"1rem"}
-                      key={el.id}
-                      w="100%"
-                      padding={"15px"}
-                    >
-                      <HStack justifyContent={"space-around"}>
-                        <Image
-                          src={el.image_url}
-                          alt="room"
-                          w={"10%"}
-                          h={"20%"}
-                        ></Image>
+              {hotelFlag && cartData.length !== 0 ? (
+                <Box display={"grid"} textAlign="center">
+                  {cartData &&
+                    cartData.map((el) => (
+                      <Box
+                        boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
+                        m={"1rem"}
+                        key={el.id}
+                        w="100%"
+                        padding={"15px"}
+                      >
+                        <HStack justifyContent={"space-around"}>
+                          <Image
+                            src={el.image_url}
+                            alt="room"
+                            w={"10%"}
+                            h={"20%"}
+                          ></Image>
 
-                        <p style={{ fontSize: "12px" }}>
-                          {" "}
-                          {el.category.toUpperCase()} ROOM
-                        </p>
-                        <p style={{ color: "green" }}>
-                          Cost : ₹{el.cost}
-                        </p>
-                      </HStack>
-                    </Box>
-                  ))}
-              </Box>
-            ) : null}
+                          <p style={{ fontSize: "12px" }}>
+                            {" "}
+                            {el.category.toUpperCase()} ROOM
+                          </p>
+                          <p style={{ color: "green" }}>
+                            Cost : ₹{el.cost}
+                          </p>
+                        </HStack>
+                      </Box>
+                    ))}
+                </Box>
+              ) : null}
 
-            {productFlag && productData.length !== 0 ? (
-              <Box display={"grid"} textAlign="center">
-                {productData &&
-                  productData.map((el, index) => (
-                    <Box
-                      boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
-                      m={"1rem"}
-                      key={index}
-                      w="100%"
-                      padding={"10px"}
-                    >
-                      <HStack justifyContent={"space-around"}>
-                        <Image
-                          src={el.images[0]}
-                          alt="product"
-                          w={"8%"}
-                          h={"8%"}
-                        ></Image>
+              {productFlag && productData.length !== 0 ? (
+                <Box display={"grid"} textAlign="center">
+                  {productData &&
+                    productData.map((el, index) => (
+                      <Box
+                        boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
+                        m={"1rem"}
+                        key={index}
+                        w="100%"
+                        padding={"10px"}
+                      >
+                        <HStack justifyContent={"space-around"}>
+                          <Image
+                            src={el.images[0]}
+                            alt="product"
+                            w={"8%"}
+                            h={"8%"}
+                          ></Image>
 
-                        <p style={{ fontSize: "12px" }}>Brand : {el.title}</p>
-                        <p style={{ color: "green" }}>
-                          Cost : ₹{el.discounted_price || 100}
-                        </p>
-                      </HStack>
-                    </Box>
-                  ))}
-              </Box>
-            ) : null}
+                          <p style={{ fontSize: "12px" }}>Brand : {el.title}</p>
+                          <p style={{ color: "green" }}>
+                            Cost : ₹{el.discounted_price || 100}
+                          </p>
+                        </HStack>
+                      </Box>
+                    ))}
+                </Box>
+              ) : null}
 
-            {kidsFlag && kidsData.length !== 0 ? (
-              <Box display={"grid"} textAlign="center">
-                {kidsData &&
-                  kidsData.map((ele, index) => (
-                    <Box key={index} m={"1rem"} w="100%" boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} padding="10px">
-                      <HStack justifyContent={"space-around"}>
-                        <Image
-                          src={ele.images[0]}
-                          alt="kids"
-                          w={"10%"}
-                          h={"20%"}
-                        ></Image>
+              {kidsFlag && kidsData.length !== 0 ? (
+                <Box display={"grid"} textAlign="center">
+                  {kidsData &&
+                    kidsData.map((ele, index) => (
+                      <Box key={index} m={"1rem"} w="100%" boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"} padding="10px">
+                        <HStack justifyContent={"space-around"}>
+                          <Image
+                            src={ele.images[0]}
+                            alt="kids"
+                            w={"10%"}
+                            h={"20%"}
+                          ></Image>
 
-                        <p style={{ fontSize: "12px" }}>Brand : {ele.title}</p>
-                        <p style={{ color: "green" }}>
-                          Cost : ₹{ele.discounted_price || 100}
-                        </p>
-                      </HStack>
-                    </Box>
-                  ))}
-              </Box>
-            ) : null}
+                          <p style={{ fontSize: "12px" }}>Brand : {ele.title}</p>
+                          <p style={{ color: "green" }}>
+                            Cost : ₹{ele.discounted_price || 100}
+                          </p>
+                        </HStack>
+                      </Box>
+                    ))}
+                </Box>
+              ) : null}
 
-            {beautyFlag && beautyData.length !== 0 ? (
-              <Box display={"grid"} textAlign="center">
-                {beautyData &&
-                  beautyData.map((el, index) => (
-                    <Box
-                      boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
-                      key={index}
-                      w={"100%"}
-                      m={"1rem"}
-                      padding="10px"
-                    >
-                      <HStack justifyContent={"space-around"}>
-                        <Image
-                          src={el.image}
-                          alt="room"
-                          w={"10%"}
-                          h={"15%"}
-                        ></Image>
+              {beautyFlag && beautyData.length !== 0 ? (
+                <Box display={"grid"} textAlign="center">
+                  {beautyData &&
+                    beautyData.map((el, index) => (
+                      <Box
+                        boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
+                        key={index}
+                        w={"100%"}
+                        m={"1rem"}
+                        padding="10px"
+                      >
+                        <HStack justifyContent={"space-around"}>
+                          <Image
+                            src={el.image}
+                            alt="room"
+                            w={"10%"}
+                            h={"15%"}
+                          ></Image>
 
-                        <p style={{ fontSize: "12px" }}>Brand : {el.brand}</p>
-                        <p style={{ color: "green" }}>
-                          Cost : ₹{el.discountedPrice || 100}
-                        </p>
-                      </HStack>
-                    </Box>
-                  ))}
-              </Box>
-            ) : null}
-          </Box>
-        </>
-        <Box>
+                          <p style={{ fontSize: "12px" }}>Brand : {el.brand}</p>
+                          <p style={{ color: "green" }}>
+                            Cost : ₹{el.discountedPrice || 100}
+                          </p>
+                        </HStack>
+                      </Box>
+                    ))}
+                </Box>
+              ) : null}
+            </Box>
+          </>
           <Box>
-            {imageSrc === true ? (
-              <CheckoutAlert />
-            ) : (
+            <Box>
               <Box id="master">
                 <Box id="main">
                   <Box id="b1">
@@ -345,10 +343,9 @@ const Checkout = () => {
                   </Box>
                 </Box>
               </Box>
-            )}
+            </Box>
           </Box>
-        </Box>
-      </SimpleGrid>
+        </SimpleGrid>}
     </Box>
   );
 };
