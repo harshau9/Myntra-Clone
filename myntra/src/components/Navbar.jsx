@@ -46,7 +46,7 @@ export default function Navbar() {
           h={16}
           alignItems={"center"}
           justifyContent={"space-between"}
-          position={"fixed"} top="0.1px" zIndex={"100"} bg="white" w="100%" boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px;" padding={"10px"}
+          position={"fixed"} top="0.1px" zIndex={"100"} bg="white" w="100%" padding={"10px"}
         >
           <IconButton
             size={"md"}
