@@ -134,10 +134,10 @@ const Checkout = () => {
               <Heading pl={"25px"} pb={7} display="flex" color={"black.300"}>
                 {" "}
                 Cart Summary <BsCartCheckFill />
-                {cartData.length +
+                ({cartData.length +
                   beautyData.length +
                   kidsData.length +
-                  productData.length}
+                  productData.length})
                 {" "}
               </Heading>
             </Center>
