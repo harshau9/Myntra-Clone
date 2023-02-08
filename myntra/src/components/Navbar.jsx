@@ -14,6 +14,9 @@ import MyntraLogo from "../pages/myn.png";
 import { FaRegUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import ReactSwitch from "react-switch";
+import { useContext } from "react";
+import { ThemeContext } from "../pages/ThemeContext/ThemeContext";
 const Links = ["Kids", "Home & Living", "BEAUTY", "Studio", "Men", "Women"];
 
 const NavLink = ({ children }) => (
@@ -39,6 +42,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useSelector((store) => store.dataReducer);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <>
       <Box boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px" mt={"5%"}>
@@ -125,6 +129,7 @@ export default function Navbar() {
                   </Heading>
                 </Flex>
               </Link>
+              <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
             </Flex>
 
             <Flex>

@@ -6,16 +6,19 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./Redux/store";
+import ThemeContextProvider from "./pages/ThemeContext/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <ChakraProvider>
-      <ReduxProvider store={store}>
-        <App />
-      </ReduxProvider>
-    </ChakraProvider>
-  </BrowserRouter>
+  <ThemeContextProvider>
+    <BrowserRouter>
+      <ChakraProvider>
+        <ReduxProvider store={store}>
+          <App />
+        </ReduxProvider>
+      </ChakraProvider>
+    </BrowserRouter>
+  </ThemeContextProvider>
 );
 
 reportWebVitals();
