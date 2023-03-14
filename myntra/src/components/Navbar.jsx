@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReactSwitch from "react-switch";
 import { useContext } from "react";
+import './navbar.css';
 import { ThemeContext } from "../pages/ThemeContext/ThemeContext";
 const Links = ["Kids", "Home & Living", "BEAUTY", "Studio", "Men", "Women"];
 
@@ -53,20 +54,22 @@ export default function Navbar() {
           position={"fixed"} top="0.1px" zIndex={"100"} bg="white" w="100%" padding={"10px"}
         >
           <IconButton
-            size={"md"}
+          className="icon"
+            size={"lg"}
             width="20"
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            icon={isOpen ? <CloseIcon color={"black"} /> : <HamburgerIcon color={"black"} />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Flex gap="5" alignItems={"center"}>
+          <Flex color={"black"} gap="5" alignItems={"center"}>
             <Link to="/">
-              <Image src={MyntraLogo} alt="MyntraLogo" width="16" height="" />
+              <Image className="icon" src={MyntraLogo} alt="MyntraLogo" width="16" height="" />
             </Link>
-            <Box display={{ base: "none", md: "flex" }}>
+            <Box color={"black"} display={{ base: "none", md: "flex" }}>
               {Links.map((link, i) => (
                 <Link
+                className="icon"
                   key={i}
                   to={
                     link === "Men"
@@ -92,6 +95,7 @@ export default function Navbar() {
           </Flex>
 
           <Flex
+          color={"black"}
             border="0px solid red"
             gap={"5"}
             alignItems={"center"}
@@ -111,9 +115,9 @@ export default function Navbar() {
               xl: "unset",
             }}
           >
-            <Flex gap="5">
+            <Flex gap="5" color={"black"}>
               <Link to="/bag">
-                <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
+                <Flex className="icon" flexDirection={"column"} gap={1} alignItems={"center"}>
                   <HiOutlineShoppingBag size={25} />
                   <Heading as={"p"} fontSize="x-small">
                     BAG
@@ -122,17 +126,17 @@ export default function Navbar() {
               </Link>
 
               <Link to="/login">
-                <Flex flexDirection={"column"} gap={1} alignItems={"center"}>
+                <Flex className="icon" flexDirection={"column"} gap={1} alignItems={"center"}>
                   <FaRegUser size={25} color="black" />
                   <Heading as={"p"} fontSize="x-small">
                     PROFILE
                   </Heading>
                 </Flex>
               </Link>
-              <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
+              <ReactSwitch className="icon" onChange={toggleTheme} checked={theme === "dark"} />
             </Flex>
 
-            <Flex>
+            <Flex color={"black"} className="icon">
               {isAuth && (
                 <Button
                   onClick={() => {
@@ -154,7 +158,7 @@ export default function Navbar() {
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
+          <Box pb={4} display={{ md: "none" }} color="black">
             <Stack
               as={"nav"}
               spacing={4}
@@ -163,6 +167,7 @@ export default function Navbar() {
             >
               {Links.map((link, i) => (
                 <Link
+                className="icon"
                   to={
                     link === "Men"
                       ? "/men"

@@ -109,6 +109,7 @@ export default function SignupPage() {
       {loading ? (
         <Center>
           <Blocks
+          color="black"
             visible={true}
             height="80"
             width="80"
@@ -123,6 +124,7 @@ export default function SignupPage() {
           justify={"center"}
           backgroundColor="#fdedf0"
           border={"none"}
+          color="black"
         >
           <Stack
             spacing={4}
